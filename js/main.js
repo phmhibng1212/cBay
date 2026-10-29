@@ -79,38 +79,86 @@
   })();
 
   /* ------------------------------------------------------------------
-     4. Projects carousel (arrow buttons + native swipe/scroll)
+     4. Projects carousel: arrows (desktop), swipe + snap + dots (touch)
      ------------------------------------------------------------------ */
   (function initCarousel() {
     var track = document.querySelector('[data-carousel]');
     var prev = document.querySelector('[data-carousel-prev]');
     var next = document.querySelector('[data-carousel-next]');
-    if (!track || !prev || !next) return;
+    var dotsWrap = document.querySelector('[data-carousel-dots]');
+    if (!track) return;
 
-    function step() {
-      var card = track.querySelector('.project');
-      return card ? card.getBoundingClientRect().width + 16 : 400;
+    var items = Array.prototype.slice.call(track.querySelectorAll('.project'));
+    var dots = [];
+    var active = -1;
+    var ticking = false;
+
+    function gutter() { return parseFloat(getComputedStyle(track).paddingLeft) || 0; }
+    function targetLeft(i) { return items[i].offsetLeft - gutter(); }
+    function behavior() { return reduceMotion ? 'auto' : 'smooth'; }
+
+    function nearestIndex() {
+      var max = track.scrollWidth - track.clientWidth;
+      if (track.scrollLeft <= 2) return 0;
+      if (track.scrollLeft >= max - 2) return items.length - 1;
+      var best = 0, bestDist = Infinity;
+      items.forEach(function (el, i) {
+        var d = Math.abs(targetLeft(i) - track.scrollLeft);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      return best;
     }
 
-    function updateState() {
-      var max = track.scrollWidth - track.clientWidth - 2;
-      prev.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= max;
+    function setActive(i) {
+      if (i === active) return;
+      active = i;
+      items.forEach(function (el, n) { el.classList.toggle('is-active', n === i); });
+      dots.forEach(function (d, n) {
+        d.classList.toggle('is-active', n === i);
+        if (n === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current');
+      });
     }
 
-    function go(dir) {
-      track.scrollBy({ left: dir * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+    function update() {
+      ticking = false;
+      if (prev) prev.disabled = track.scrollLeft <= 2;
+      if (next) next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      setActive(nearestIndex());
     }
 
-    prev.addEventListener('click', function () { go(-1); });
-    next.addEventListener('click', function () { go(1); });
-    track.addEventListener('scroll', updateState, { passive: true });
-    window.addEventListener('resize', updateState);
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(items.length - 1, i));
+      track.scrollTo({ left: targetLeft(i), behavior: behavior() });
+    }
+
+    if (dotsWrap) {
+      items.forEach(function (el, i) {
+        var name = el.querySelector('.project__name');
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', 'Dự án ' + (i + 1) + (name ? ': ' + name.textContent.trim() : ''));
+        dot.addEventListener('click', function () { goTo(i); });
+        dotsWrap.appendChild(dot);
+        dots.push(dot);
+      });
+    }
+
+    if (prev) prev.addEventListener('click', function () { goTo(nearestIndex() - 1); });
+    if (next) next.addEventListener('click', function () { goTo(nearestIndex() + 1); });
+    track.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(nearestIndex() + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(nearestIndex() - 1); }
     });
-    updateState();
+    update();
   })();
 
   /* ------------------------------------------------------------------
