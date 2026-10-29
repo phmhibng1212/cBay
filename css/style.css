@@ -192,12 +192,12 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 
 /* ---------- 6. Hero ---------- */
 .hero { padding: 80px 0 120px; }
-.hero__stage { position: relative; height: 767px; }
+.hero__stage { position: relative; height: 767px; container-type: inline-size; }
 
 .hero__title {
   position: absolute; left: 0; top: 71px; z-index: 2;
-  width: 612px; max-width: 800px;
-  font-family: var(--font-head); font-weight: 700; font-size: 56px; line-height: 64px;
+  width: 47.8cqw; max-width: 800px;           /* 612 / 1280 */
+  font-family: var(--font-head); font-weight: 700; font-size: clamp(36px, 4.375cqw, 56px); line-height: 1.143;
   color: #0a0f1c;
 }
 
@@ -215,7 +215,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 
 .hero__cta {
   position: absolute; right: 0; bottom: 0; z-index: 2;
-  width: 532px; min-width: 340px; display: flex; flex-direction: column; gap: 20px;
+  width: 41.56cqw; display: flex; flex-direction: column; gap: 20px;   /* 532 / 1280: stays inside the photo notch */
 }
 .hero__desc { color: var(--text-2); font-size: 16px; line-height: 26px; }
 .hero__actions { display: flex; align-items: center; gap: 12px; }
@@ -520,7 +520,6 @@ body.is-locked { overflow: hidden; }
   .faq__inner { gap: 48px; }
   .faq__title { width: 340px; }
   .h2 { font-size: 48px; line-height: 56px; }
-  .hero__title { font-size: 52px; line-height: 60px; }
   .benefit__text { font-size: 22px; line-height: 30px; }
 }
 
