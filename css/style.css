@@ -465,11 +465,12 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .footer__contact-text a:hover { color: #fff; text-decoration: underline; }
 
 .socials { display: flex; gap: 16px; }
+/* the SVGs already include the white rounded box + border */
 .social {
-  width: 40px; height: 40px; border-radius: 10px; border: 1px solid #e5e5e5; background: #fff;
-  display: flex; align-items: center; justify-content: center;
+  display: block; width: 40px; height: 40px; border-radius: 10px;
   transition: transform 0.2s, box-shadow 0.2s;
 }
+.social img { width: 40px; height: 40px; }
 .social:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); }
 
 .footer__nav { display: flex; flex-direction: column; gap: 16px; }
