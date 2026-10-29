@@ -234,6 +234,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 
 .product-card {
   position: relative; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: var(--green-950);
+  container-type: inline-size;
 }
 .product-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .product-card::after {
@@ -244,11 +245,11 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 }
 .product-card__caption {
   position: absolute; z-index: 1; left: 28px; right: 28px; bottom: 24px;
-  display: flex; align-items: flex-end; gap: 4px; color: var(--paper);
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 4px; color: var(--paper);
 }
 .product-card__name {
   font-family: var(--font-head); font-weight: 700;
-  font-size: clamp(44px, 6.4vw, 92.2px); line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap;
+  font-size: clamp(44px, 17.87cqw, 92.2px); line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap;
 }
 .product-card__sub { padding-bottom: 2px; font-size: 16px; line-height: 28px; white-space: nowrap; }
 
@@ -556,7 +557,6 @@ body.is-locked { overflow: hidden; }
   .solution__lead { max-width: none; }
   .solution__body { grid-template-columns: 1fr; gap: 24px; }
   .product-card { max-width: 560px; }
-  .product-card__name { font-size: clamp(48px, 12vw, 92.2px); }
 
   .proof__inner { padding-top: 64px; padding-bottom: 80px; gap: 56px; }
   .materials { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -598,7 +598,7 @@ body.is-locked { overflow: hidden; }
   .solution__head { gap: 24px; }
   .solution__body { gap: 24px; }
   .product-card { max-width: none; }
-  .product-card__caption { left: 18px; right: 18px; bottom: 20px; }
+  .product-card__caption { left: 18px; right: 18px; bottom: 20px; flex-wrap: wrap; row-gap: 0; }
   .product-card__name { font-size: 32px; line-height: 40px; letter-spacing: 0; }
   .product-card__sub { padding-bottom: 6px; }
   .benefit { gap: 20px; }
@@ -610,8 +610,11 @@ body.is-locked { overflow: hidden; }
   .proof-card__link { font-family: var(--font-body); font-weight: 800; font-size: 16px; line-height: 28px; }
   .proof-card { flex-direction: column; align-items: stretch; }
   .proof-card__text { flex: none; }
-  .proof-card__stat { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .stat__value-row { align-items: flex-end; }
+  .proof-card__stat { flex-direction: column; align-items: flex-start; gap: 8px; white-space: normal; min-width: 0; }
+  .stat__label { white-space: normal; }
+  .stat__value-row { align-items: flex-end; flex-wrap: wrap; row-gap: 0; max-width: 100%; }
+  .stat__value { font-size: clamp(64px, 27vw, 100.8px); line-height: 0.8; letter-spacing: -0.06em; }
+  .proof-card__link { text-align: left; }
   .compat__head .h2 { font-size: 24px; line-height: 32px; }
   .materials { grid-template-columns: 1fr; gap: 34px; }
 
@@ -643,4 +646,24 @@ body.is-locked { overflow: hidden; }
   .modal__close { top: 8px; right: 8px; }
   .modal__img { width: 100%; height: auto; max-height: calc(100dvh - 240px); }
   .modal__caption { white-space: normal; text-align: left; }
+}
+
+/* =====================================================================
+   Very small phones ≤420 (320 / 360 / foldables down to 280)
+   ===================================================================== */
+@media (max-width: 420px) {
+  .btn { white-space: normal; height: auto; min-height: 44px; padding: 10px 16px; line-height: 20px; }
+  .hero__desc { font-size: 14px; line-height: 22px; }
+  .solution { padding-inline: 12px; }
+  .proof-card { padding: 20px; }
+  .form-card { padding: 20px; }
+  .register__panel { padding-inline: 12px; }
+  .field__input--area { min-height: 96px; }
+  .faq__q { padding-inline: 16px; gap: 12px; }
+  .faq__a-clip { padding-inline: 16px; }
+}
+
+@media (max-width: 300px) {
+  .field__input--area { min-height: 116px; }
+  .proof-card__title, .benefit__text { overflow-wrap: anywhere; }
 }
