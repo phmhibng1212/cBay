@@ -314,6 +314,23 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 }
 .carousel::-webkit-scrollbar { display: none; }
 .carousel:focus-visible { outline-offset: -3px; }
+.carousel { cursor: grab; }
+.carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; -webkit-user-select: none; }
+.project img { -webkit-user-drag: none; user-select: none; }
+
+/* draggable scrollbar under the carousel (desktop) */
+.carousel-scrub { display: none; margin-top: -16px; }
+.carousel-scrub[hidden] { display: none !important; }
+.scrub__track { position: relative; height: 20px; cursor: pointer; }
+.scrub__track::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 4px; border-radius: 99px; background: var(--line); }
+.scrub__thumb { position: absolute; left: 0; top: 0; height: 20px; min-width: 56px; cursor: grab; touch-action: none; will-change: transform; }
+.scrub__thumb::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 4px; border-radius: 99px; background: var(--green-950);
+  transition: top 0.2s var(--ease), height 0.2s var(--ease), background-color 0.2s;
+}
+.scrub__thumb:hover::before, .scrub__thumb.is-dragging::before { top: 6px; height: 8px; background: var(--green-600); }
+.scrub__thumb.is-dragging { cursor: grabbing; }
+.scrub__thumb:focus-visible { outline-offset: 2px; }
 
 .project { flex: none; height: 560px; width: var(--w); padding-top: var(--pt, 0); scroll-snap-align: start; scroll-margin-left: var(--gutter); }
 .project--1 { --w: 620px; }
@@ -334,7 +351,9 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .project__name { font-family: var(--font-head); font-weight: 700; font-size: 30px; line-height: 33px; letter-spacing: -0.9px; color: #fff; }
 .project__loc { font-weight: 500; font-size: 13px; line-height: 20px; color: var(--green-100); }
 
-/* position dots: tablet + mobile only (desktop uses the arrow buttons) */
+@media (min-width: 1100px) { .carousel-scrub { display: block; } }
+
+/* position dots: tablet + mobile only (desktop uses arrows + scrollbar) */
 .carousel-dots { display: none; }
 
 /* ---------- 9b. Customer satisfaction ---------- */
@@ -373,17 +392,36 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .field__input::placeholder { color: var(--text-4); opacity: 1; }
 .field__input:hover { box-shadow: inset 0 0 0 1px #c3ccc6; }
 .field__input:focus { outline: 0; box-shadow: inset 0 0 0 2px var(--green-600); }
-/* dropdown (Công việc/Dự án): native select so it behaves well on phones, styled like the inputs */
-.select { position: relative; }
-.field__select { -webkit-appearance: none; appearance: none; height: 53px; padding-right: 48px; cursor: pointer; text-overflow: ellipsis; }
-.field__select:invalid { color: var(--text-4); }              /* placeholder state */
-.field__select option { color: var(--text); }
-.select::after {
-  content: ""; position: absolute; right: 20px; top: 50%; width: 8px; height: 8px; pointer-events: none;
-  border-right: 2px solid var(--green-700); border-bottom: 2px solid var(--green-700);
-  transform: translateY(-70%) rotate(45deg); transition: transform 0.25s var(--ease);
+/* custom dropdown (Công việc/Dự án): matches the inputs, no browser-default popup */
+.dropdown { position: relative; }
+.dropdown__trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 53px; text-align: left; cursor: pointer; }
+.dropdown__value { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-4); }
+.dropdown.has-value .dropdown__value { color: var(--text); }
+.dropdown__chev { flex: none; color: var(--green-700); transition: transform 0.3s var(--ease); }
+.dropdown.is-open .dropdown__chev { transform: rotate(180deg); }
+.dropdown.is-open .dropdown__trigger { box-shadow: inset 0 0 0 2px var(--green-600); }
+.dropdown__list {
+  position: absolute; z-index: 30; left: 0; right: 0; top: calc(100% + 8px);
+  margin: 0; padding: 6px; list-style: none; border-radius: 12px; background: #fff;
+  box-shadow: 0 0 0 1px var(--line), 0 18px 40px rgba(15, 28, 18, 0.16);
+  transform-origin: top center; animation: dd-in 0.22s var(--ease);
 }
-.select:focus-within::after { transform: translateY(-30%) rotate(-135deg); }
+.dropdown__list[hidden] { display: none; }
+.dropdown.is-up .dropdown__list { top: auto; bottom: calc(100% + 8px); transform-origin: bottom center; animation-name: dd-in-up; }
+.dropdown__opt {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 14px; border-radius: 8px; cursor: pointer;
+  font-size: 15px; line-height: 20px; color: var(--text);
+  transition: background-color 0.15s, color 0.15s;
+}
+.dropdown__opt.is-active { background: var(--green-50); }
+.dropdown__opt[aria-selected="true"] { background: var(--green-100); color: var(--green-950); font-weight: 600; }
+.dropdown__opt[aria-selected="true"]::after {
+  content: ""; flex: none; width: 16px; height: 16px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3.5 8.5l3 3 6-6.5' stroke='%2345734d' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+@keyframes dd-in { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes dd-in-up { from { opacity: 0; transform: translateY(6px) scale(0.98); } to { opacity: 1; transform: none; } }
 .field.is-invalid .field__input { box-shadow: inset 0 0 0 1px var(--danger); }
 .field.is-invalid .field__input:focus { box-shadow: inset 0 0 0 2px var(--danger); }
 .field__error { margin-top: 6px; font-weight: 500; font-size: 12px; line-height: 16px; color: var(--danger); }
@@ -537,17 +575,18 @@ body.is-locked { overflow: hidden; }
 
   /* hero: title → text → image → buttons */
   .hero { padding: 48px 0 64px; }
-  /* title → [photo with the text sitting in its notch] → buttons */
-  .hero__stage { height: auto; max-width: 520px; margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .hero__title { position: static; width: auto; max-width: none; grid-row: 1; font-size: 40px; line-height: 48px; margin-bottom: 45px; }
+  /* title → [photo with the text sitting in its notch] → buttons.
+     The notch + rounded corners are drawn by js/main.js (initHeroMask) so they fit any width. */
+  .hero__stage { height: auto; max-width: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; --band: clamp(449px, 52vw, 600px); }
+  .hero__title { position: static; width: auto; max-width: none; grid-row: 1; font-size: clamp(32px, 5.4vw, 56px); line-height: 1.143; margin-bottom: 45px; }
   .hero__cta { display: contents; }
   .hero__media, .hero__desc { grid-row: 2; grid-column: 1; }
   .hero__media {
-    position: relative; inset: auto; min-height: 567px;
+    position: relative; inset: auto; min-height: calc(var(--notch-h, 117px) + var(--band));
     -webkit-mask-image: url("../assets/icons/hero-mask-mobile.svg"); mask-image: url("../assets/icons/hero-mask-mobile.svg");
   }
-  .hero__media img { left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 76% 50%; }
-  .hero__desc { position: relative; z-index: 2; align-self: start; width: 75.5%; margin: 0; }
+  .hero__media img { left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+  .hero__desc { position: relative; z-index: 2; align-self: start; width: min(75.5%, 520px); margin: 0; }
   .hero__actions { grid-row: 3; margin-top: 24px; }
 
   .solution { padding: 64px 32px; }
@@ -593,7 +632,6 @@ body.is-locked { overflow: hidden; }
   .br-desktop { display: none; }
 
   .hero { padding: 64px 0; }
-  .hero__stage { max-width: none; }
   .hero__title { font-size: 32px; line-height: 40px; margin-bottom: 45px; }
   .hero__actions { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 24px; }
   .hero__actions .btn { width: 100%; }
@@ -664,6 +702,7 @@ body.is-locked { overflow: hidden; }
   .proof-card { padding: 20px; }
   .form-card { padding: 20px; }
   .register__panel { padding-inline: 12px; }
+  .dropdown__value { white-space: normal; line-height: 20px; }
   .faq__q { padding-inline: 16px; gap: 12px; }
   .faq__a-clip { padding-inline: 16px; }
 }

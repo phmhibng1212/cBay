@@ -79,13 +79,17 @@
   })();
 
   /* ------------------------------------------------------------------
-     4. Projects carousel: arrows (desktop), swipe + snap + dots (touch)
+     4. Projects carousel: arrows, draggable scrollbar, mouse drag,
+        touch swipe + snap, position dots
      ------------------------------------------------------------------ */
   (function initCarousel() {
     var track = document.querySelector('[data-carousel]');
     var prev = document.querySelector('[data-carousel-prev]');
     var next = document.querySelector('[data-carousel-next]');
     var dotsWrap = document.querySelector('[data-carousel-dots]');
+    var scrub = document.querySelector('[data-carousel-scrub]');
+    var scrubTrack = scrub && scrub.querySelector('[data-scrub-track]');
+    var thumb = scrub && scrub.querySelector('.scrub__thumb');
     if (!track) return;
 
     var items = Array.prototype.slice.call(track.querySelectorAll('.project'));
@@ -94,19 +98,35 @@
     var ticking = false;
 
     function gutter() { return parseFloat(getComputedStyle(track).paddingLeft) || 0; }
+    function maxScroll() { return Math.max(0, track.scrollWidth - track.clientWidth); }
     function targetLeft(i) { return items[i].offsetLeft - gutter(); }
     function behavior() { return reduceMotion ? 'auto' : 'smooth'; }
 
     function nearestIndex() {
-      var max = track.scrollWidth - track.clientWidth;
       if (track.scrollLeft <= 2) return 0;
-      if (track.scrollLeft >= max - 2) return items.length - 1;
+      if (track.scrollLeft >= maxScroll() - 2) return items.length - 1;
       var best = 0, bestDist = Infinity;
       items.forEach(function (el, i) {
         var d = Math.abs(targetLeft(i) - track.scrollLeft);
         if (d < bestDist) { bestDist = d; best = i; }
       });
       return best;
+    }
+
+    /* The cards near the end can never reach the left edge (nothing to scroll),
+       so "previous / next" is decided from the current scroll position, not from the active card. */
+    function prevIndex() {
+      for (var i = items.length - 1; i >= 0; i--) if (targetLeft(i) < track.scrollLeft - 4) return i;
+      return 0;
+    }
+    function nextIndex() {
+      for (var i = 0; i < items.length; i++) if (targetLeft(i) > track.scrollLeft + 4) return i;
+      return items.length - 1;
+    }
+
+    function goTo(i) {
+      i = Math.max(0, Math.min(items.length - 1, i));
+      track.scrollTo({ left: Math.min(targetLeft(i), maxScroll()), behavior: behavior() });
     }
 
     function setActive(i) {
@@ -119,24 +139,29 @@
       });
     }
 
+    function updateScrub() {
+      if (!scrub) return;
+      var max = maxScroll();
+      scrub.hidden = max <= 2;
+      if (max <= 2) return;
+      var tw = scrubTrack.clientWidth;
+      var w = Math.max(56, tw * track.clientWidth / track.scrollWidth);
+      var x = (tw - w) * Math.min(1, track.scrollLeft / max);
+      thumb.style.width = w + 'px';
+      thumb.style.transform = 'translateX(' + x + 'px)';
+      thumb.setAttribute('aria-valuenow', String(Math.round(track.scrollLeft / max * 100)));
+    }
+
     function update() {
       ticking = false;
       if (prev) prev.disabled = track.scrollLeft <= 2;
-      if (next) next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+      if (next) next.disabled = track.scrollLeft >= maxScroll() - 2;
       setActive(nearestIndex());
+      updateScrub();
     }
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
 
-    function onScroll() {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-
-    function goTo(i) {
-      i = Math.max(0, Math.min(items.length - 1, i));
-      track.scrollTo({ left: targetLeft(i), behavior: behavior() });
-    }
-
+    /* dots */
     if (dotsWrap) {
       items.forEach(function (el, i) {
         var name = el.querySelector('.project__name');
@@ -150,14 +175,81 @@
       });
     }
 
-    if (prev) prev.addEventListener('click', function () { goTo(nearestIndex() - 1); });
-    if (next) next.addEventListener('click', function () { goTo(nearestIndex() + 1); });
+    /* arrows + keyboard */
+    if (prev) prev.addEventListener('click', function () { goTo(prevIndex()); });
+    if (next) next.addEventListener('click', function () { goTo(nextIndex()); });
+    track.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(nextIndex()); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(prevIndex()); }
+    });
+
+    /* mouse drag on the cards (touch already scrolls natively) */
+    (function () {
+      var down = false, moved = false, startX = 0, startLeft = 0;
+      track.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse' || e.button !== 0) return;
+        down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var dx = e.clientX - startX;
+        if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+        if (moved) track.scrollLeft = startLeft - dx;
+      });
+      function end() {
+        if (!down) return;
+        down = false;
+        if (moved) {
+          track.classList.remove('is-dragging');
+          goTo(nearestIndex());
+        }
+      }
+      window.addEventListener('pointerup', end);
+      window.addEventListener('pointercancel', end);
+    })();
+
+    /* draggable scrollbar */
+    if (scrub) {
+      var dragging = false, startX = 0, startLeft = 0;
+      thumb.addEventListener('pointerdown', function (e) {
+        dragging = true; startX = e.clientX; startLeft = track.scrollLeft;
+        thumb.setPointerCapture(e.pointerId);
+        thumb.classList.add('is-dragging');
+        track.classList.add('is-dragging');
+        e.preventDefault();
+      });
+      thumb.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var room = scrubTrack.clientWidth - thumb.offsetWidth;
+        if (room <= 0) return;
+        track.scrollLeft = startLeft + (e.clientX - startX) * (maxScroll() / room);
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        thumb.classList.remove('is-dragging');
+        track.classList.remove('is-dragging');
+      }
+      thumb.addEventListener('pointerup', endDrag);
+      thumb.addEventListener('pointercancel', endDrag);
+      // click on the rail: jump there
+      scrubTrack.addEventListener('pointerdown', function (e) {
+        if (e.target === thumb) return;
+        var rect = scrubTrack.getBoundingClientRect();
+        var room = rect.width - thumb.offsetWidth;
+        var ratio = room > 0 ? (e.clientX - rect.left - thumb.offsetWidth / 2) / room : 0;
+        track.scrollTo({ left: Math.max(0, Math.min(1, ratio)) * maxScroll(), behavior: behavior() });
+      });
+      thumb.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); goTo(nextIndex()); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(prevIndex()); }
+        if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+        if (e.key === 'End') { e.preventDefault(); goTo(items.length - 1); }
+      });
+    }
+
     track.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    track.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(nearestIndex() + 1); }
-      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(nearestIndex() - 1); }
-    });
     update();
   })();
 
@@ -216,6 +308,167 @@
         }
       });
     });
+  })();
+
+  /* ------------------------------------------------------------------
+     5b. Hero photo shape. The L-shaped cut-out (white notches for the text)
+         is drawn as an SVG mask sized to the real element, so the rounded
+         corners keep their true radius at every screen width.
+     ------------------------------------------------------------------ */
+  (function initHeroMask() {
+    var stage = document.querySelector('.hero__stage');
+    var media = document.querySelector('.hero__media');
+    var desc = document.querySelector('.hero__desc');
+    if (!stage || !media || !desc) return;
+    var desktop = window.matchMedia('(min-width: 1100px)');
+    var frame = 0;
+
+    function setMask(path, w, h) {
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '"><path d="' + path + '"/></svg>';
+      var url = 'url("data:image/svg+xml,' + encodeURIComponent(svg) + '")';
+      media.style.setProperty('-webkit-mask-image', url);
+      media.style.setProperty('mask-image', url);
+      media.style.setProperty('-webkit-mask-size', '100% 100%');
+      media.style.setProperty('mask-size', '100% 100%');
+    }
+
+    function arc(r, sweep, x, y) { return 'A' + r + ' ' + r + ' 0 0 ' + sweep + ' ' + x + ' ' + y; }
+
+    function build() {
+      frame = 0;
+      var w, h, d;
+      if (desktop.matches) {
+        stage.style.removeProperty('--notch-h');
+        w = media.offsetWidth; h = media.offsetHeight;
+        if (!w || !h) return;
+        var r = 32, k = w / 1280, y0 = 318, y2 = 563, x1 = 702 * k, x3 = 717 * k;
+        d = 'M' + r + ' ' + y0 + 'H' + (x1 - r) + arc(r, 0, x1, y0 - r) + 'V' + r + arc(r, 1, x1 + r, 0) +
+            'H' + (w - r) + arc(r, 1, w, r) + 'V' + (y2 - r) + arc(r, 1, w - r, y2) +
+            'H' + (x3 + r) + arc(r, 0, x3, y2 + r) + 'V' + (h - r) + arc(r, 1, x3 - r, h) +
+            'H' + r + arc(r, 1, 0, h - r) + 'V' + (y0 + r) + arc(r, 1, r, y0) + 'Z';
+      } else {
+        // text notch grows with the paragraph; the photo band below keeps a fixed height
+        stage.style.setProperty('--notch-h', Math.round(desc.offsetHeight + 13) + 'px');
+        w = media.offsetWidth; h = media.offsetHeight;
+        if (!w || !h) return;
+        var rr = 24, nh = Math.round(desc.offsetHeight + 13), nw = Math.min(w - rr * 2 - 8, desc.offsetWidth + 15);
+        d = 'M' + rr + ' ' + nh + 'H' + (nw - rr) + arc(rr, 0, nw, nh - rr) + 'V' + rr + arc(rr, 1, nw + rr, 0) +
+            'H' + (w - rr) + arc(rr, 1, w, rr) + 'V' + (h - rr) + arc(rr, 1, w - rr, h) +
+            'H' + rr + arc(rr, 1, 0, h - rr) + 'V' + (nh + rr) + arc(rr, 1, rr, nh) + 'Z';
+      }
+      setMask(d, w, h);
+    }
+
+    function schedule() { if (!frame) frame = requestAnimationFrame(build); }
+
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(schedule);
+      ro.observe(stage); ro.observe(desc); ro.observe(media);
+    }
+    window.addEventListener('resize', schedule);
+    desktop.addEventListener('change', schedule);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+    build();
+  })();
+
+  /* ------------------------------------------------------------------
+     5c. Custom dropdown (Công việc/Dự án) – keyboard + screen-reader friendly
+     ------------------------------------------------------------------ */
+  (function initDropdown() {
+    var root = document.querySelector('[data-dropdown]');
+    if (!root) return;
+    var btn = root.querySelector('.dropdown__trigger');
+    var list = root.querySelector('.dropdown__list');
+    var label = root.querySelector('.dropdown__value');
+    var opts = Array.prototype.slice.call(list.querySelectorAll('[role="option"]'));
+    var placeholder = label.getAttribute('data-placeholder');
+    var current = -1;
+
+    function setActive(i) {
+      current = i;
+      opts.forEach(function (o, n) { o.classList.toggle('is-active', n === i); });
+      if (i >= 0) {
+        btn.setAttribute('aria-activedescendant', opts[i].id);
+        opts[i].scrollIntoView({ block: 'nearest' });
+      } else {
+        btn.removeAttribute('aria-activedescendant');
+      }
+    }
+
+    function isOpen() { return !list.hidden; }
+
+    function open() {
+      if (isOpen()) return;
+      list.hidden = false;
+      root.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      // flip upwards when there is no room below
+      var rect = btn.getBoundingClientRect();
+      var need = list.offsetHeight + 16;
+      root.classList.toggle('is-up', rect.bottom + need > window.innerHeight && rect.top > need);
+      var selected = opts.findIndex(function (o) { return o.getAttribute('aria-selected') === 'true'; });
+      setActive(selected >= 0 ? selected : 0);
+    }
+
+    function close() {
+      list.hidden = true;
+      root.classList.remove('is-open', 'is-up');
+      btn.setAttribute('aria-expanded', 'false');
+      setActive(-1);
+    }
+
+    function choose(i) {
+      var o = opts[i];
+      opts.forEach(function (x) { x.setAttribute('aria-selected', x === o ? 'true' : 'false'); });
+      btn.value = o.getAttribute('data-value');
+      label.textContent = o.textContent;
+      root.classList.add('has-value');
+      close();
+      btn.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    function reset() {
+      btn.value = '';
+      label.textContent = placeholder;
+      root.classList.remove('has-value');
+      opts.forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+      close();
+    }
+
+    btn.addEventListener('click', function () { if (isOpen()) close(); else open(); });
+    // keep focus on the trigger while clicking options (avoids a premature blur validation)
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    list.addEventListener('click', function (e) {
+      var li = e.target.closest('[role="option"]');
+      if (li) choose(opts.indexOf(li));
+    });
+    list.addEventListener('mousemove', function (e) {
+      var li = e.target.closest('[role="option"]');
+      if (li) setActive(opts.indexOf(li));
+    });
+
+    btn.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (k === 'ArrowDown' || k === 'ArrowUp') {
+        e.preventDefault();
+        if (!isOpen()) { open(); return; }
+        setActive(k === 'ArrowDown' ? Math.min(opts.length - 1, current + 1) : Math.max(0, current - 1));
+      } else if (k === 'Home' && isOpen()) { e.preventDefault(); setActive(0); }
+      else if (k === 'End' && isOpen()) { e.preventDefault(); setActive(opts.length - 1); }
+      else if (k === 'Enter' || k === ' ') {
+        e.preventDefault();
+        if (isOpen() && current >= 0) choose(current); else open();
+      } else if (k === 'Escape' && isOpen()) { e.preventDefault(); e.stopPropagation(); close(); }
+      else if (k === 'Tab' && isOpen()) { close(); }
+      else if (k.length === 1) {
+        var hit = opts.findIndex(function (o) { return o.textContent.trim().toLowerCase().indexOf(k.toLowerCase()) === 0; });
+        if (hit >= 0) { if (!isOpen()) open(); setActive(hit); }
+      }
+    });
+
+    document.addEventListener('click', function (e) { if (isOpen() && !root.contains(e.target)) close(); });
+    var form = root.closest('form');
+    if (form) form.addEventListener('reset', reset);
   })();
 
   /* ------------------------------------------------------------------
