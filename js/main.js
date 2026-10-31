@@ -245,7 +245,7 @@
         return '';
       },
       area: function (v) { return v.trim() ? '' : 'Vui lòng nhập khu vực của bạn.'; },
-      job: function (v) { return v.trim() ? '' : 'Vui lòng cho biết công việc hoặc dự án của bạn.'; }
+      job: function (v) { return v ? '' : 'Vui lòng chọn công việc hiện tại của bạn.'; }
     };
 
     function showError(input, message) {
