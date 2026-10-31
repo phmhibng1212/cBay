@@ -545,6 +545,26 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 
 body.is-locked { overflow: hidden; }
 
+/* ---------- 14. Back to top ---------- */
+.to-top {
+  position: fixed; z-index: 40;
+  right: max(32px, env(safe-area-inset-right, 0px)); bottom: max(32px, env(safe-area-inset-bottom, 0px));
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--green-600); color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 10px 24px rgba(15, 28, 18, 0.28);
+  opacity: 0; visibility: hidden; transform: translateY(14px);
+  transition: opacity 0.3s, transform 0.35s var(--ease), background-color 0.2s, visibility 0s 0.3s;
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.to-top.is-visible:hover { background: var(--green-700); transform: translateY(-3px); }
+.to-top.is-visible:active { transform: scale(0.94); }
+.to-top svg { transition: transform 0.3s var(--ease); }
+.to-top:hover svg { transform: translateY(-2px); }
+@media (max-width: 767px) {
+  .to-top { right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); width: 44px; height: 44px; }
+}
+
 /* =====================================================================
    Laptop 1100–1279
    ===================================================================== */

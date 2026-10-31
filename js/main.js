@@ -472,6 +472,26 @@
   })();
 
   /* ------------------------------------------------------------------
+     5d. Back-to-top button
+     ------------------------------------------------------------------ */
+  (function initToTop() {
+    var btn = document.querySelector('[data-to-top]');
+    if (!btn) return;
+    var ticking = false;
+    function update() {
+      ticking = false;
+      btn.classList.toggle('is-visible', window.scrollY > 600);
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    update();
+  })();
+
+  /* ------------------------------------------------------------------
      6. Trial form – client-side validation only. Nothing is sent anywhere.
      ------------------------------------------------------------------ */
   (function initForm() {
