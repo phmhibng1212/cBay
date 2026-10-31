@@ -542,7 +542,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .modal__close:hover { background: var(--green-50); }
 /* the report fills the available height of the screen (panel = 80 top + 40 bottom padding, caption, gaps),
    so it grows on big monitors and shrinks on short ones; width follows the page's aspect ratio */
-.modal__img { width: auto; height: min(calc(100dvh - 232px), 1500px); aspect-ratio: 1363 / 2000; max-width: 100%; object-fit: contain; }
+.modal__img { width: auto; height: auto; max-width: 100%; max-height: min(calc(100dvh - 232px), 1500px); object-fit: contain; }
 .modal__caption { max-width: min(100%, 900px); font-weight: 800; font-size: 18px; line-height: 28px; color: var(--green-950); text-align: center; text-wrap: balance; }
 
 body.is-locked { overflow: hidden; }
@@ -711,7 +711,7 @@ body.is-locked { overflow: hidden; }
   .modal__panel { width: min(324px, 100%); padding: 64px 20px 24px; border-radius: 24px; }
   .modal__close { top: 8px; right: 8px; }
   .modal__panel { width: min(420px, 100%); }
-  .modal__img { width: auto; height: min(calc(100dvh - 250px), 620px); }
+  .modal__img { max-height: min(calc(100dvh - 250px), 640px); }
   .modal__caption { text-align: left; text-wrap: pretty; }
 }
 
