@@ -222,7 +222,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .hero__actions { display: flex; align-items: center; gap: 12px; }
 
 /* ---------- 7. Solution (D8 Filler) ---------- */
-.solution-wrap { padding: 0 16px; }
+.solution-wrap { padding: 0 16px; max-width: calc(var(--container) + 32px); margin-inline: auto; }
 .solution { background: var(--green-950); border-radius: 20px; padding: 96px 60px; }
 .solution__inner { max-width: var(--container); margin-inline: auto; display: flex; flex-direction: column; gap: 64px; }
 
@@ -252,7 +252,6 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
   font-family: var(--font-head); font-weight: 700;
   font-size: clamp(44px, 17.87cqw, 92.2px); line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap;
 }
-.product-card__sub { padding-bottom: 2px; font-size: 16px; line-height: 28px; white-space: nowrap; }
 
 .benefits { display: flex; flex-direction: column; }
 .benefit {
@@ -309,7 +308,8 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .carousel {
   position: relative;
   display: flex; align-items: flex-start; gap: 16px;
-  padding-inline: max(var(--gutter), calc((100% - var(--container)) / 2));
+  --pad: max(var(--gutter), calc((100% - var(--container)) / 2));   /* = left edge of the page content */
+  padding-inline: var(--pad); scroll-padding-inline: var(--pad);
   overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; overscroll-behavior-x: contain;
 }
 .carousel::-webkit-scrollbar { display: none; }
@@ -332,7 +332,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .scrub__thumb.is-dragging { cursor: grabbing; }
 .scrub__thumb:focus-visible { outline-offset: 2px; }
 
-.project { flex: none; height: 560px; width: var(--w); padding-top: var(--pt, 0); scroll-snap-align: start; scroll-margin-left: var(--gutter); }
+.project { flex: none; height: 560px; width: var(--w); padding-top: var(--pt, 0); scroll-snap-align: start; }
 .project--1 { --w: 620px; }
 .project--2 { --w: 460px; --pt: 80px; }
 .project--3, .project--5, .project--7 { --w: 560px; --pt: 40px; }   /* bottom aligned with their neighbours */
@@ -365,6 +365,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 /* ---------- 10. Register (trial form) ---------- */
 .register {
   display: flex; gap: 8px; padding: 0 16px; min-height: 770px;
+  max-width: calc(var(--container) + 32px); margin-inline: auto;   /* lines up with the header / headings on very wide screens */
 }
 .register__media { position: relative; flex: 1 1 0; min-width: 0; border-radius: 16px; overflow: hidden; background: var(--surface); }
 .register__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 100% 60%; }
@@ -666,7 +667,6 @@ body.is-locked { overflow: hidden; }
   .product-card { max-width: none; }
   .product-card__caption { left: 18px; right: 18px; bottom: 20px; flex-wrap: wrap; row-gap: 0; }
   .product-card__name { font-size: 32px; line-height: 40px; letter-spacing: 0; }
-  .product-card__sub { padding-bottom: 6px; }
   .benefit { gap: 20px; }
   .benefit__icon { width: 24px; height: 24px; }
   .benefit__text { font-family: var(--font-body); font-weight: 800; font-size: 16px; line-height: 28px; }
@@ -686,7 +686,7 @@ body.is-locked { overflow: hidden; }
   .projects__arrows { display: none; }
   .projects__head { padding-top: 48px; }
   .carousel { gap: 18px; }
-  .project { width: min(319px, calc(100vw - 56px)); height: 288px; padding: 0 !important; scroll-margin-left: 20px; }
+  .project { width: min(319px, calc(100vw - 56px)); height: 288px; padding: 0 !important; }
   .js .carousel .project { transform: scale(0.94); opacity: 0.65; transition: transform 0.5s var(--ease), opacity 0.5s; }
   .js .carousel .project.is-active { transform: none; opacity: 1; }
   .projects { gap: 20px; }
