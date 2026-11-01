@@ -5,6 +5,39 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ------------------------------------------------------------------
+     0. Always open at the top of the page (hero), and keep in-page
+        buttons from writing "#section" into the address bar, so a
+        reloaded / re-opened link never jumps to an old position.
+     ------------------------------------------------------------------ */
+  (function initStartAtTop() {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+    var touched = false;
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+      window.addEventListener(ev, function () { touched = true; }, { once: true, passive: true });
+    });
+    function toTop() {
+      if (location.hash || touched) return;     // an explicit #link (or the user already scrolling) wins
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }
+    toTop();
+    window.addEventListener('load', function () { toTop(); setTimeout(toTop, 250); });
+    window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href').slice(1);
+      var behavior = reduceMotion ? 'auto' : 'smooth';
+      if (!id || id === 'top') { e.preventDefault(); window.scrollTo({ top: 0, behavior: behavior }); return; }
+      var target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: behavior, block: 'start' });
+    });
+  })();
+
+  /* ------------------------------------------------------------------
      1. Scroll-reveal animations ([data-anim] → .is-visible)
      ------------------------------------------------------------------ */
   (function initReveal() {
