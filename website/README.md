@@ -26,6 +26,8 @@ website/
 ├── neo-floor.html            # Trang Neo Floor (sàn đá SPC)
 ├── khach-hang.html           # Khách hàng — Dự án tiêu biểu (lọc theo loại dự án)
 ├── ve-chung-toi.html         # Về chúng tôi
+├── d8-filler.html            # Keo chống nứt D8 Filler
+├── vua-hieu-ung.html         # Vữa hiệu ứng VASA (có quạt mẫu hiệu ứng + popup chi tiết sản phẩm)
 ├── blog.html                 # Blog (tổng): tin nổi bật · tin tức (lọc + xem thêm) · dự án tiêu biểu
 ├── bai-viet.html             # Blog — bài viết chi tiết (mục lục tự tô sáng, bài liên quan)
 ├── (các trang sau: d8-filler.html, vua-hieu-ung.html, … — chỉ cần thêm file .html ở đây, Vite tự nhận)
@@ -35,12 +37,12 @@ website/
 │   ├── styles/
 │   │   ├── tokens.css        # ★ Design tokens lấy từ Figma (màu, font, cỡ chữ, bo góc, đổ bóng)
 │   │   ├── base.css  animations.css  fonts.css  main.css
-│   │   ├── components/       # buttons, header, footer(+CTA), forms, modal, floating, post-card (thẻ bài viết)
+│   │   ├── components/       # buttons, header, footer(+CTA), forms, modal, floating, post-card (thẻ bài viết), related-products (Sản phẩm liên quan)
 │   │   └── pages/            # CSS riêng từng trang: home.css, neo-floor.css, blog.css, bai-viet.css …
 │   └── scripts/
 │       ├── main.js           # khởi tạo phần dùng chung
 │       ├── modules/          # reveal (animation), header, modal, forms, lead (gửi form)
-│       ├── data/             # dữ liệu (neo-floor.js: mã màu · projects.js: công trình · blog.js: bài viết, dự án nổi bật)
+│       ├── data/             # dữ liệu (neo-floor.js: mã màu · projects.js: công trình · blog.js: bài viết, dự án nổi bật · d8.js · vasa.js)
 │       └── pages/            # logic riêng từng trang: home.js, neo-floor.js, blog.js, bai-viet.js …
 └── public/assets/            # ảnh (webp) + icon (svg) xuất từ Figma
 ```
@@ -62,6 +64,8 @@ website/
 ## Những chỗ dev cần nối tiếp (TODO)
 
 - **Gửi form**: `src/scripts/modules/lead.js` → điền `LEAD_ENDPOINT`. Hiện chưa gửi dữ liệu đi đâu (giống landing cũ).
-- **Link các trang chưa làm** (`d8-filler.html`, `vua-hieu-ung.html`, `keo-dan-gach.html`, `tai-lieu.html`) đang trỏ tới tên file dự kiến — sẽ 404 cho tới khi các trang đó được dựng.
+- **Link các trang chưa làm** (`keo-dan-gach.html`, `tai-lieu.html`) đang trỏ tới tên file dự kiến — sẽ 404 cho tới khi các trang đó được dựng.
 - **Ảnh Marble Plus**: thiết kế chưa có ảnh, đang hiện khung giữ chỗ (`src/scripts/data/neo-floor.js`).
 - **Bài viết Blog**: dữ liệu ở `src/scripts/data/blog.js`. Hiện chỉ có **1 trang chi tiết mẫu** (`bai-viet.html`, bài DeMont Cafe) nên mọi thẻ bài viết đều trỏ về trang này (`POST_URL`). Khi có CMS/nhiều bài: sinh trang theo bài (hoặc đọc `?bai=`) và thay `POST_URL` bằng đường dẫn từng bài.
+- **Bản xem thử gộp** (`npm run build:preview`): ảnh webp lớn được thu nhỏ nhẹ (cần ImageMagick `convert`, nếu thiếu thì dùng ảnh gốc) để file < 16MB. Chỉ ảnh hưởng bản xem thử.
+- **File tài liệu PDF** (trang D8): link đang để `#` (`data-doc`) — dev gắn đường dẫn file thật. Video hướng dẫn D8 mở link Google Drive trong code thiết kế.

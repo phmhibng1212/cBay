@@ -29,6 +29,7 @@
 .nav-btn > span { padding-inline: 8px; }
 .nav-btn:hover, .nav-btn[aria-expanded='true'] { background: var(--green-50); }
 .nav-btn[aria-current='page'] { background: var(--ink-100); } /* Figma: nút trang hiện tại nền ink/100 */
+.nav-btn[data-nav-group][aria-current='page']:not([aria-expanded='true']):not(:hover) { background: transparent; } /* nhóm Sản phẩm: Figma không tô nền ở trang sản phẩm */
 
 .nav-btn__chev { width: 24px; height: 24px; transition: rotate var(--dur-base) var(--ease-out); }
 .nav-btn[aria-expanded='true'] .nav-btn__chev { rotate: 180deg; }

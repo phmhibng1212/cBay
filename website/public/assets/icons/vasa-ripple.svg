@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="262" height="262" viewBox="0 0 262 262" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Circle">
+<circle id="Ripple" cx="131" cy="131" r="130.396" stroke-width="1.20737" stroke="#66A371"/>
+<mask id="stroke0_0_135" fill="white">
+<path d="M220.949 130.396C220.949 179.741 180.678 219.742 131 219.742C81.3224 219.742 41.0507 179.741 41.0507 130.396C41.0507 81.0521 81.3224 41.0507 131 41.0507C180.678 41.0507 220.949 81.0521 220.949 130.396Z"/>
+</mask>
+<ellipse id="Ripple_2" cx="131" cy="130.396" rx="89.9493" ry="89.3456" stroke-width="2.41475" stroke="#66A371" mask="url(#stroke0_0_135)"/>
+<mask id="stroke1_0_135" fill="white">
+<path d="M178.691 130.396C178.691 157.069 157.339 178.691 131 178.691C104.661 178.691 83.3088 157.069 83.3088 130.396C83.3088 103.724 104.661 82.1014 131 82.1014C157.339 82.1014 178.691 103.724 178.691 130.396Z"/>
+</mask>
+<ellipse id="Ripple_3" cx="131" cy="130.396" rx="47.6912" ry="48.2949" stroke-width="2.41475" stroke="#66A371" mask="url(#stroke1_0_135)"/>
+</g>
+</svg>

@@ -42,7 +42,9 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 | 3 | Về chúng tôi (`ve-chung-toi.html`) | ✅ Đã dựng (desktop + mobile) — Figma `277:199` / mobile `376:841` |
 | 4 | Khách hàng — Dự án tiêu biểu (`khach-hang.html`) | ✅ Đã dựng (desktop + mobile) — Figma `279:231` / mobile `376:842` |
 | 5 | Blog — tổng (`blog.html`) + bài viết chi tiết (`bai-viet.html`) | ✅ Đã dựng (desktop + mobile) — Figma `281:338` / `282:396`, mobile `376:843` / `376:844` |
-| 6–9 | D8 Filler, Vữa hiệu ứng, Keo dán gạch, Tài liệu (tên dự kiến) | Chờ design |
+| 6 | D8 Filler (`d8-filler.html`) | ✅ Đã dựng (desktop + mobile) — Figma `284:440` / mobile `376:846` |
+| 7 | Vữa hiệu ứng VASA (`vua-hieu-ung.html`) | ✅ Đã dựng (desktop + mobile) — Figma `286:538` / mobile `376:847` |
+| 8–9 | Keo dán gạch, Tài liệu (tên dự kiến) | Chờ design |
 
 ### Tên file trang dự kiến (CHƯA user xác nhận — link trong header/footer đang trỏ tới các tên này)
 `d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `bai-viet.html` (chi tiết Blog) · `tai-lieu.html`
@@ -65,8 +67,20 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - **Blog chi tiết**: Figma desktop không có cột "Chia sẻ" (code có) → không làm. Mục lục: tô sáng theo vị trí cuộn + bấm để cuộn (code).
 - **Blog chi tiết mobile**: Figma mobile bị CẮT do frame cố định chiều cao (tiêu đề 3 dòng bị cụt, khối meta "Đăng bởi/Ngày đăng…" ẩn, 3 ô thống kê bị nén 95px) → ĐÃ hiển thị đầy đủ theo ý đồ (meta như desktop, ô thống kê đủ padding, nên trang dài hơn Figma ~250px). Cần user xác nhận.
 - Blog mobile: thumbnail dự án (5 ảnh) Figma không vẽ trạng thái chọn → giữ như desktop (mờ 55% + viền xanh cho ảnh đang chọn).
+- **D8 (đợt 5)**: thứ tự mục theo Figma (Hero → Dự án → Tính năng → Video → Thông số → Tài liệu → Liên quan; code thiết kế xếp khác). Số liệu theo Figma ("1L & 5L", 1 tài liệu PDF) thay vì code ("5L ~4,5 kg", 2 tài liệu). Chấm tròn "Chứng nhận" trong pill Figma để trống (nền green-100) — code có ảnh chứng nhận nhỏ.
+- **D8**: popup "Chứng nhận Bộ Xây Dựng" (bấm pill) Figma chưa có → làm theo code (ảnh chứng nhận + chú thích). Video: bấm mở link Google Drive tab mới (code). Tài liệu PDF: link `#` chờ file thật.
+- **D8 Tính năng**: thanh tiến trình chạy 5s rồi tự sang mục kế, dừng khi rê chuột (code). Figma không có số 01–04 và không có bộ đếm trên ảnh → không làm. Ảnh mục 2–4 Figma không vẽ → ảnh hero + ảnh Masteri, HUD (như code).
+- **D8 carousel**: mỗi lần đi 1 thẻ; nhãn "01 / 05" cố định tổng 5 (Figma) cả trên mobile.
+- **VASA (đợt 5)**: Figma "quạt mẫu" dùng nhãn Vân hoa / Vân xước / Vân khối / Vân nhám / Travertine / Vân đá / Tường đất / Rơm trấu (khác tên trong code: Nhám đặc, Giả gạch, Vỏ cây…) → theo Figma, kèm ảnh texture Figma. Mặc định chọn "Vân hoa".
+- **VASA — CẦN HỎI USER**: (1) Figma có 2 nút "Xoay nhà" góc trên trái và dòng "kéo ngang để xoay 360°" nhưng không có ảnh/asset xoay → tạm cho 2 nút này chuyển mẫu hiệu ứng trước/sau (giống nút ở thanh chú thích), chưa có kéo xoay. (2) Ảnh bức tường/phòng khách chỉ có cho mẫu "Vân hoa"; 7 mẫu còn lại tạm hiện ảnh texture của mẫu (như code). Cần ảnh phòng khách cho từng mẫu hoặc xác nhận cách làm.
+- **VASA**: popup "Xem chi tiết" (4 tab: Tổng quan / Thông số / Vận chuyển & bảo quản / An toàn) Figma chưa có → làm theo code, dùng khung popup chi tiết có sẵn. "Nhận bản mẫu" mở form dùng thử, chọn sẵn Vữa hiệu ứng.
+- **Related (D8, VASA)**: thẻ liên quan = Vữa VASA/D8 + Neo Floor + Keo dán gạch (Figma). Trên mobile cuộn ngang, thẻ Neo Floor cao hơn (Figma).
+- Header: nhóm "Sản phẩm – Giải pháp" không tô nền ở trang sản phẩm (Figma không tô), nút trang hiện tại khác (Blog…) tô nền ink/100.
 - Header: nút trang hiện tại có nền `ink/100` (theo Figma "Blog" ở trang Blog) → thêm style cho mọi trang.
 - Tên menu: Figma footer "Vữa hiệu ứng / Giải pháp chống thấm", code "Vữa trắng phong cách / Keo dán gạch chống thấm" → dùng Figma ở footer, code ở dropdown.
+
+### Node Figma đợt 5 — D8 + VASA (4 node)
+- Desktop: D8 `284:440`, VASA `286:538` · Mobile: D8 `376:846`, VASA `376:847` (component Feature showcase `339:649`)
 
 ### Node Figma đợt 4 — Blog (4 node)
 - Desktop: Blog tổng `281:338`, Blog chi tiết `282:396` · Mobile: Blog tổng `376:843`, Blog chi tiết `376:844`
