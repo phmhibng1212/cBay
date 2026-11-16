@@ -46,15 +46,16 @@ export const VASA_SAFETY = [
 
 /**
  * 8 hiệu ứng trong quạt mẫu — thứ tự và tên nhãn theo Figma (từ trái sang phải).
- * Mẫu "Vân hoa" là mẫu đang chọn trong Figma; ảnh bức tường (room) chỉ có cho mẫu này.
+ * Mẫu "Vân hoa" là mẫu đang chọn trong Figma. `room` = ảnh phòng khách có bức tường hoàn thiện (do user cung cấp, 4 mẫu: Vân hoa, Vân khối, Vân nhám, Vân đá);
+ * mẫu chưa có `room` tạm hiện ảnh texture của mẫu.
  */
 export const VASA_EFFECTS = [
   { name: 'Vân hoa', tex: asset('assets/images/vasa/fx-van-hoa.webp'), room: asset('assets/images/vasa/room-van-hoa.webp') },
   { name: 'Vân xước', tex: asset('assets/images/vasa/fx-van-xuoc.webp') },
-  { name: 'Vân khối', tex: asset('assets/images/vasa/fx-van-khoi.webp') },
-  { name: 'Vân nhám', tex: asset('assets/images/vasa/fx-van-nham.webp') },
+  { name: 'Vân khối', tex: asset('assets/images/vasa/fx-van-khoi.webp'), room: asset('assets/images/vasa/room-van-khoi.webp') },
+  { name: 'Vân nhám', tex: asset('assets/images/vasa/fx-van-nham.webp'), room: asset('assets/images/vasa/room-van-nham.webp') },
   { name: 'Travertine', tex: asset('assets/images/vasa/fx-travertine.webp') },
-  { name: 'Vân đá', tex: asset('assets/images/vasa/fx-van-da.webp') },
+  { name: 'Vân đá', tex: asset('assets/images/vasa/fx-van-da.webp'), room: asset('assets/images/vasa/room-van-da.webp') },
   { name: 'Tường đất', tex: asset('assets/images/vasa/fx-tuong-dat.webp') },
   { name: 'Rơm trấu', tex: asset('assets/images/vasa/fx-rom-tru.webp') },
 ];
