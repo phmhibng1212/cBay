@@ -11,6 +11,8 @@
 @import '@fontsource/manrope/latin-800.css';
 @import '@fontsource/manrope/latin-ext-800.css';
 @import '@fontsource/manrope/vietnamese-800.css';
+@import '@fontsource/sora/latin-400.css'; /* Heading/H5 R — đoạn dẫn bài viết */
+@import '@fontsource/sora/latin-ext-400.css';
 @import '@fontsource/sora/latin-600.css';
 @import '@fontsource/sora/latin-ext-600.css';
 @import '@fontsource/sora/latin-700.css';

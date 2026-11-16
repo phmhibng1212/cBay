@@ -1,10 +1,10 @@
 /**
  * Build BẢN XEM THỬ GỘP 1 FILE:  npm run build:preview
  *
- * Gộp Trang chủ + Neo Floor thành 1 tài liệu, nhúng sẵn CSS, JS, font, ảnh (base64) nên:
+ * Gộp các trang đã dựng thành 1 tài liệu, nhúng sẵn CSS, JS, font, ảnh (base64) nên:
  *  - mở thẳng bằng cách bấm đúp file, không cần server, không cần mạng;
  *  - đăng lên Artifact / gửi qua chat được;
- *  - các trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc, #khach-hang, #ve-chung-toi) như site thật.
+ *  - các trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc, #khach-hang, #ve-chung-toi, #blog, #bai-viet) như site thật.
  *
  * Kết quả (thư mục dist-preview/):
  *   cbay-preview.html           tài liệu đầy đủ, mở trực tiếp
@@ -28,6 +28,8 @@ const home = render(read('index.html'));
 const neo = render(read('neo-floor.html'));
 const khach = render(read('khach-hang.html'));
 const about = render(read('ve-chung-toi.html'));
+const blog = render(read('blog.html'));
+const post = render(read('bai-viet.html'));
 const detailModal = neo.match(/(<!-- =+ POPUP · CHI TIẾT MẪU SÀN[\s\S]*?)<\/body>/)[1];
 
 let doc = `<!doctype html>
@@ -43,6 +45,8 @@ ${render('<!-- @include header.html -->')}
 <main data-view="neo-floor" hidden>${mainOf(neo)}</main>
 <main data-view="khach-hang" hidden>${mainOf(khach)}</main>
 <main data-view="ve-chung-toi" hidden>${mainOf(about)}</main>
+<main data-view="blog" hidden>${mainOf(blog)}</main>
+<main data-view="bai-viet" hidden>${mainOf(post)}</main>
 ${render('<!-- @include contact-cta.html -->\n<!-- @include footer.html -->\n<!-- @include floating.html -->\n<!-- @include modals.html -->')}
 ${detailModal}
 </body>
@@ -50,13 +54,16 @@ ${detailModal}
 `;
 
 // ---- 2. Viết lại link giữa các trang ----
-const SOON = ['d8-filler', 'vua-hieu-ung', 'keo-dan-gach', 'blog', 'tai-lieu'];
+const SOON = ['d8-filler', 'vua-hieu-ung', 'keo-dan-gach', 'tai-lieu'];
 doc = doc
   .replace(/href="\.\/index\.html"/g, 'href="#trang-chu"')
   .replace(/href="\.\/neo-floor\.html#([\w-]+)"/g, 'href="#$1"')
   .replace(/href="\.\/neo-floor\.html"/g, 'href="#san-da-spc"')
   .replace(/href="\.\/khach-hang\.html"/g, 'href="#khach-hang"')
   .replace(/href="\.\/ve-chung-toi\.html"/g, 'href="#ve-chung-toi"')
+  .replace(/href="\.\/blog\.html#([\w-]+)"/g, 'href="#$1"')
+  .replace(/href="\.\/blog\.html"/g, 'href="#blog"')
+  .replace(/href="\.\/bai-viet\.html"/g, 'href="#bai-viet"')
   .replace(new RegExp(`href="\\./(${SOON.join('|')})\\.html"`, 'g'), 'href="#" data-soon');
 writeFileSync(resolve(root, 'preview.html'), doc);
 
@@ -81,7 +88,10 @@ const files = readdirSync(assetsDir);
 const jsFile = files.find((f) => f.endsWith('.js'));
 const cssFile = files.find((f) => f.endsWith('.css'));
 
-let js = inlineAssets(readFileSync(resolve(assetsDir, jsFile), 'utf8')).replace(/<\/script/gi, '<\\/script');
+// link bài viết nằm trong dữ liệu JS (src/scripts/data/blog.js) -> đổi sang hash của bản xem thử
+let js = inlineAssets(readFileSync(resolve(assetsDir, jsFile), 'utf8'))
+  .replaceAll('./bai-viet.html', '#bai-viet')
+  .replace(/<\/script/gi, '<\\/script');
 let css = readFileSync(resolve(assetsDir, cssFile), 'utf8')
   // bỏ bản font .woff dự phòng (đã có .woff2) để file nhẹ hơn
   .replace(/,\s*url\(data:font\/woff;base64,[^)]*\)\s*format\(["']woff["']\)/g, '');

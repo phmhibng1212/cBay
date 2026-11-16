@@ -66,6 +66,10 @@ input, textarea, select { font: inherit; color: inherit; }
 @media (max-width: 1099px) { .section { padding-block: 64px; } }
 @media (max-width: 560px) { .section { padding-block: 0; padding-top: 64px; } }
 
+/* Cùng 1 đoạn nhưng Figma mobile ghi khác desktop (vd. "D8" / "D8 Filler"): .only-d chỉ hiện trên desktop, .only-m chỉ hiện trên mobile */
+.only-m { display: none; }
+@media (max-width: 560px) { .only-d { display: none; } .only-m { display: inline; } }
+
 /* Ảnh phủ kín khung (object-fit cover) */
 .cover {
   position: absolute; inset: 0;

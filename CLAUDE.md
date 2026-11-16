@@ -41,10 +41,11 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 | 2 | Neo Floor (`neo-floor.html`) | ✅ Đã dựng (desktop + mobile) |
 | 3 | Về chúng tôi (`ve-chung-toi.html`) | ✅ Đã dựng (desktop + mobile) — Figma `277:199` / mobile `376:841` |
 | 4 | Khách hàng — Dự án tiêu biểu (`khach-hang.html`) | ✅ Đã dựng (desktop + mobile) — Figma `279:231` / mobile `376:842` |
-| 5–9 | D8 Filler, Vữa hiệu ứng, Keo dán gạch, Blog, Tài liệu (tên dự kiến) | Chờ design |
+| 5 | Blog — tổng (`blog.html`) + bài viết chi tiết (`bai-viet.html`) | ✅ Đã dựng (desktop + mobile) — Figma `281:338` / `282:396`, mobile `376:843` / `376:844` |
+| 6–9 | D8 Filler, Vữa hiệu ứng, Keo dán gạch, Tài liệu (tên dự kiến) | Chờ design |
 
 ### Tên file trang dự kiến (CHƯA user xác nhận — link trong header/footer đang trỏ tới các tên này)
-`d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `tai-lieu.html`
+`d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `bai-viet.html` (chi tiết Blog) · `tai-lieu.html`
 
 ### Quyết định tạm (đã làm theo code/Figma, CHỜ user xác nhận)
 - Nút "Liên hệ ngay" (header + khối CTA) → mở popup **Form liên hệ ngay** (Figma có form, code thiết kế thì mở Zalo).
@@ -58,7 +59,17 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Trang Khách hàng: tab "Resort" Figma ghi 4 nhưng chỉ có 3 card Resort (và tổng 16) → số trên tab được TỰ ĐẾM từ danh sách (Resort = 3). Code thiết kế có thêm "Homestay Phố đi bộ Mộc Châu" (Resort) — Figma không có nên chưa đưa vào.
 - Trang Khách hàng/Về chúng tôi: Figma header ghi "Sản phẩm – Giải pháp", "Tài liệu – Catalogue" (gạch dài); Trang chủ ghi "- Catalog" → đang dùng bản Trang chủ cho thống nhất.
 - Nút "Tư vấn cho công trình của bạn" (hero Khách hàng) → mở form liên hệ. "Xem dự án" → cuộn tới danh sách.
+- **Blog (đợt 4)**: tab lọc "Tin tức" theo Figma = Tất cả / Dự án tiêu biểu / Sự kiện / Tin tức (code thiết kế dùng chủ đề khác: Kiến thức vật liệu/Hướng dẫn thi công/Tin cBay → các nhãn này vẫn hiện trên thẻ). 6 thẻ Figma xếp vào nhóm "Tin tức"; 4 bài nổi bật (DeMont, Workshop, Neo Floor Marble Plus, Moco) cũng là bài thường → hiện khi bấm "Xem thêm bài viết" hoặc lọc theo nhóm.
+- **Blog**: mọi thẻ bài viết đều dẫn tới 1 trang chi tiết mẫu `bai-viet.html` (bài DeMont Cafe) vì mới có 1 design chi tiết (code thiết kế cũng làm vậy). Tên file `bai-viet.html` CHƯA user xác nhận.
+- **Blog tổng**: ảnh bài "Workshop" và "Neo Floor Marble Plus" (tab nổi bật) Figma không có → lấy từ zip code thiết kế. Ảnh 4 dự án phụ (Moco, The View, Thúng Mơ, Time Coffee) dùng ảnh từ trang Khách hàng. Tự chuyển bài nổi bật sau 7s (code), dừng khi rê chuột/focus và khi bật giảm chuyển động; thanh tiến trình trên tab (code) KHÔNG làm vì Figma tab active là đường xanh đặc.
+- **Blog chi tiết**: Figma desktop không có cột "Chia sẻ" (code có) → không làm. Mục lục: tô sáng theo vị trí cuộn + bấm để cuộn (code).
+- **Blog chi tiết mobile**: Figma mobile bị CẮT do frame cố định chiều cao (tiêu đề 3 dòng bị cụt, khối meta "Đăng bởi/Ngày đăng…" ẩn, 3 ô thống kê bị nén 95px) → ĐÃ hiển thị đầy đủ theo ý đồ (meta như desktop, ô thống kê đủ padding, nên trang dài hơn Figma ~250px). Cần user xác nhận.
+- Blog mobile: thumbnail dự án (5 ảnh) Figma không vẽ trạng thái chọn → giữ như desktop (mờ 55% + viền xanh cho ảnh đang chọn).
+- Header: nút trang hiện tại có nền `ink/100` (theo Figma "Blog" ở trang Blog) → thêm style cho mọi trang.
 - Tên menu: Figma footer "Vữa hiệu ứng / Giải pháp chống thấm", code "Vữa trắng phong cách / Keo dán gạch chống thấm" → dùng Figma ở footer, code ở dropdown.
+
+### Node Figma đợt 4 — Blog (4 node)
+- Desktop: Blog tổng `281:338`, Blog chi tiết `282:396` · Mobile: Blog tổng `376:843`, Blog chi tiết `376:844`
 
 ### Node Figma đợt 1 (19 node)
 - Desktop: Home `270:319`, Neo floor `270:1209`

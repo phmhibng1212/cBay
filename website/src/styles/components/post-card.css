@@ -1,0 +1,27 @@
+/* ==========================================================================
+   THẺ BÀI VIẾT (.post-card) — dùng ở trang Blog (lưới Tin tức) và Bài viết liên quan
+   Desktop: ảnh 248 trên, chữ dưới · Mobile (≤560): ảnh vuông 112 bên trái, chữ bên phải
+   ========================================================================== */
+.post-card { display: flex; flex-direction: column; gap: 18px; color: var(--green-950); }
+.post-card__media { position: relative; height: 248px; border-radius: var(--radius-sm); background: var(--green-50); overflow: clip; }
+.post-card__media .cover { transition: transform 0.8s var(--ease-out); }
+.post-card:hover .post-card__media .cover { transform: scale(1.05); }
+.post-card__body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.post-card__cat { font-weight: 800; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--green-600); }
+.post-card__title { padding-right: 8px; font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h5); line-height: var(--lh-h5); color: var(--green-950); transition: color var(--dur-fast); } /* padding-right: ngắt dòng giống Figma */
+.post-card:hover .post-card__title { color: var(--green-600); }
+.post-card__excerpt { color: var(--green-800); }
+.post-card__meta { color: var(--ink-500); }
+
+
+@media (max-width: 1099px) and (min-width: 561px) {
+  .post-card__media { height: 220px; }
+}
+@media (max-width: 560px) {
+  .post-card { flex-direction: row; align-items: flex-start; gap: 16px; }
+  .post-card__media { flex: none; width: 112px; height: 112px; }
+  .post-card__body { flex: 1 1 0; gap: 6px; }
+  .post-card__cat { font-size: var(--fs-body); line-height: var(--lh-body); }
+  .post-card__title { padding-right: 0; font-family: var(--font-body); font-weight: 800; font-size: var(--fs-body); line-height: var(--lh-body); }
+  .post-card__meta { font-size: var(--fs-body); line-height: var(--lh-body); }
+}

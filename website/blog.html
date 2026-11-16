@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <!-- @include head.html -->
+  <title>Blog — Câu chuyện từ công trình | cBay</title>
+  <meta name="description" content="Tin tức, sự kiện và những dự án được hoàn thiện cùng vật liệu cBay — từ mối nối tấm thạch cao đến bề mặt vữa hiệu ứng.">
+  <script type="module" src="/src/scripts/pages/blog.js"></script>
+</head>
+<body data-page="blog">
+  <!-- @include header.html -->
+
+  <main id="main">
+    <!-- ============ HERO (Figma 281:390) ============ -->
+    <section class="bl-hero" aria-labelledby="bl-title">
+      <div class="bl-hero__card" data-anim="zoom">
+        <img class="cover" src="/assets/images/blog/hero.webp" alt="Toà nhà văn phòng mặt tiền cong dưới nắng" fetchpriority="high">
+        <div class="bl-hero__shade" aria-hidden="true"></div>
+        <div class="bl-hero__copy">
+          <p class="bl-hero__eyebrow" data-anim="fade-up">Blog cBay</p>
+          <h1 class="bl-hero__title" id="bl-title" data-anim="fade-up" style="--d:80ms">Câu chuyện <br>từ công trình</h1>
+          <p class="bl-hero__text" data-anim="fade-up" style="--d:160ms">Tin tức, sự kiện và những dự án được hoàn thiện cùng vật liệu cBay — từ mối nối tấm thạch cao đến bề mặt vữa hiệu ứng.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIN NỔI BẬT (Figma 281:399) ============ -->
+    <section class="bl-section" id="noi-bat" aria-labelledby="bl-feat-title" data-featured>
+      <div class="container bl-stack">
+        <div class="bl-head" data-anim="fade-up">
+          <h2 class="bl-head__title" id="bl-feat-title">Tin <span class="em">nổi bật</span></h2>
+          <p class="bl-head__text">Case study, sự kiện và cập nhật đáng chú ý nhất từ cBay.</p>
+        </div>
+        <div class="bl-feat" data-anim="fade-up" style="--d:80ms">
+          <a class="bl-feat__stage" href="./bai-viet.html" data-feat-stage aria-label="Đọc bài nổi bật">
+            <span class="bl-feat__shade" aria-hidden="true"></span>
+            <span class="bl-feat__caption" aria-live="polite">
+              <span class="bl-feat__text">
+                <span class="bl-feat__chip" data-feat-chip></span>
+                <span class="bl-feat__excerpt" data-feat-excerpt></span>
+              </span>
+              <span class="bl-feat__go" aria-hidden="true"><img src="/assets/icons/arrow-up-right-20.svg" alt="" width="20" height="20"></span>
+            </span>
+          </a>
+          <div class="bl-feat__tabs" role="tablist" aria-label="Bài nổi bật" data-feat-tabs></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIN TỨC (Figma 281:436) ============ -->
+    <section class="bl-section" id="tin-tuc" aria-labelledby="bl-news-title" data-news>
+      <div class="container bl-stack">
+        <div class="bl-news-head" data-anim="fade-up">
+          <h2 class="bl-head__title" id="bl-news-title">Tin tức</h2>
+          <div class="bl-topics" role="tablist" aria-label="Chủ đề" data-news-tabs></div>
+        </div>
+        <ul class="bl-grid" data-news-grid></ul>
+        <div class="bl-more" data-news-more>
+          <button type="button" class="btn btn--outline-dark btn--lg btn--bold" data-news-more-btn>Xem thêm bài viết</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DỰ ÁN TIÊU BIỂU (Figma 281:576) ============ -->
+    <section class="bl-section bl-section--pad" id="blog-du-an" aria-labelledby="bl-proj-title" data-showcase>
+      <div class="container bl-stack">
+        <div class="bl-head" data-anim="fade-up">
+          <h2 class="bl-head__title" id="bl-proj-title">Dự án <span class="em">tiêu biểu</span></h2>
+          <p class="bl-head__text">Những không gian thật, được hoàn thiện bằng vật liệu cBay.</p>
+        </div>
+        <div class="bl-proj" data-anim="fade-up" style="--d:80ms">
+          <div class="bl-proj__media" data-proj-media></div>
+          <div class="bl-proj__body">
+            <div class="bl-proj__info" aria-live="polite" data-proj-info></div>
+            <a class="btn btn--primary btn--lg btn--bold bl-proj__cta" href="./bai-viet.html">Đọc case study <img src="/assets/icons/arrow-right-18-white.svg" alt="" width="18" height="18"></a>
+            <div class="bl-proj__thumbs" role="tablist" aria-label="Chọn dự án" data-proj-thumbs></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include contact-cta.html -->
+  <!-- @include footer.html -->
+  <!-- @include floating.html -->
+  <!-- @include modals.html -->
+</body>
+</html>
