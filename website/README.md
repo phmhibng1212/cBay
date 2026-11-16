@@ -24,6 +24,8 @@ Cần Node 18+.
 website/
 ├── index.html                # Trang chủ
 ├── neo-floor.html            # Trang Neo Floor (sàn đá SPC)
+├── khach-hang.html           # Khách hàng — Dự án tiêu biểu (lọc theo loại dự án)
+├── ve-chung-toi.html         # Về chúng tôi
 ├── (các trang sau: d8-filler.html, vua-hieu-ung.html, … — chỉ cần thêm file .html ở đây, Vite tự nhận)
 ├── partials/                 # Khối dùng chung, chèn bằng  <!-- @include header.html -->
 │   ├── head.html  header.html  footer.html  contact-cta.html  floating.html  modals.html
@@ -58,5 +60,5 @@ website/
 ## Những chỗ dev cần nối tiếp (TODO)
 
 - **Gửi form**: `src/scripts/modules/lead.js` → điền `LEAD_ENDPOINT`. Hiện chưa gửi dữ liệu đi đâu (giống landing cũ).
-- **Link các trang chưa làm** (`d8-filler.html`, `vua-hieu-ung.html`, `keo-dan-gach.html`, `khach-hang.html`, `ve-chung-toi.html`, `blog.html`, `tai-lieu.html`) đang trỏ tới tên file dự kiến — sẽ 404 cho tới khi các trang đó được dựng.
+- **Link các trang chưa làm** (`d8-filler.html`, `vua-hieu-ung.html`, `keo-dan-gach.html`, `blog.html`, `tai-lieu.html`) đang trỏ tới tên file dự kiến — sẽ 404 cho tới khi các trang đó được dựng.
 - **Ảnh Marble Plus**: thiết kế chưa có ảnh, đang hiện khung giữ chỗ (`src/scripts/data/neo-floor.js`).

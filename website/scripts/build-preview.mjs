@@ -4,7 +4,7 @@
  * Gộp Trang chủ + Neo Floor thành 1 tài liệu, nhúng sẵn CSS, JS, font, ảnh (base64) nên:
  *  - mở thẳng bằng cách bấm đúp file, không cần server, không cần mạng;
  *  - đăng lên Artifact / gửi qua chat được;
- *  - 2 trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc) như site thật.
+ *  - các trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc, #khach-hang, #ve-chung-toi) như site thật.
  *
  * Kết quả (thư mục dist-preview/):
  *   cbay-preview.html           tài liệu đầy đủ, mở trực tiếp
@@ -26,6 +26,8 @@ const render = (html) =>
 const mainOf = (html) => html.match(/<main id="main">([\s\S]*?)<\/main>/)[1];
 const home = render(read('index.html'));
 const neo = render(read('neo-floor.html'));
+const khach = render(read('khach-hang.html'));
+const about = render(read('ve-chung-toi.html'));
 const detailModal = neo.match(/(<!-- =+ POPUP · CHI TIẾT MẪU SÀN[\s\S]*?)<\/body>/)[1];
 
 let doc = `<!doctype html>
@@ -39,6 +41,8 @@ ${read('partials/head.html')}
 ${render('<!-- @include header.html -->')}
 <main id="main" data-view="home">${mainOf(home)}</main>
 <main data-view="neo-floor" hidden>${mainOf(neo)}</main>
+<main data-view="khach-hang" hidden>${mainOf(khach)}</main>
+<main data-view="ve-chung-toi" hidden>${mainOf(about)}</main>
 ${render('<!-- @include contact-cta.html -->\n<!-- @include footer.html -->\n<!-- @include floating.html -->\n<!-- @include modals.html -->')}
 ${detailModal}
 </body>
@@ -46,11 +50,13 @@ ${detailModal}
 `;
 
 // ---- 2. Viết lại link giữa các trang ----
-const SOON = ['d8-filler', 'vua-hieu-ung', 'keo-dan-gach', 'khach-hang', 've-chung-toi', 'blog', 'tai-lieu'];
+const SOON = ['d8-filler', 'vua-hieu-ung', 'keo-dan-gach', 'blog', 'tai-lieu'];
 doc = doc
   .replace(/href="\.\/index\.html"/g, 'href="#trang-chu"')
   .replace(/href="\.\/neo-floor\.html#([\w-]+)"/g, 'href="#$1"')
   .replace(/href="\.\/neo-floor\.html"/g, 'href="#san-da-spc"')
+  .replace(/href="\.\/khach-hang\.html"/g, 'href="#khach-hang"')
+  .replace(/href="\.\/ve-chung-toi\.html"/g, 'href="#ve-chung-toi"')
   .replace(new RegExp(`href="\\./(${SOON.join('|')})\\.html"`, 'g'), 'href="#" data-soon');
 writeFileSync(resolve(root, 'preview.html'), doc);
 
@@ -68,7 +74,7 @@ const dataUri = (rel) => {
   return `data:${MIME[extname(file)]};base64,${readFileSync(file).toString('base64')}`;
 };
 const inlineAssets = (text) =>
-  text.replace(/(?:\.\/|\/)?(assets\/(?:icons|images)\/[A-Za-z0-9_\-./]+)/g, (_, rel) => dataUri(rel));
+  text.replace(/(?:\.\/|\/)?(assets\/(?:icons|images)\/[A-Za-z0-9_\-./]+\.(?:webp|svg|png|jpg))/g, (_, rel) => dataUri(rel));
 
 const assetsDir = out('assets');
 const files = readdirSync(assetsDir);

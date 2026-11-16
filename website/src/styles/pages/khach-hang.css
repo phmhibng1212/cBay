@@ -1,0 +1,107 @@
+/* ==========================================================================
+   TRANG KHÁCH HÀNG — DỰ ÁN TIÊU BIỂU — khach-hang.html
+   Desktop 1440 (Figma 279:231) · Mobile 390 (Figma 376:842)
+   ========================================================================== */
+
+/* ---------- HERO ---------- */
+.kh-hero { padding: 16px 16px 0; }
+.kh-hero__card { height: 640px; background: var(--green-50); border-radius: var(--radius-block-lg); overflow: clip; }
+.kh-hero__inner {
+  display: flex; align-items: center; gap: 32px; height: 100%;
+  max-width: 1728px; margin-inline: auto; padding: 16px;
+}
+.kh-hero__copy { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.kh-hero__title { font-family: var(--font-heading); font-weight: 700; font-size: 56px; line-height: 64px; color: var(--green-950); }
+.kh-hero__title .em { color: var(--green-600); }
+.kh-hero__text { max-width: 500px; font-size: var(--fs-large); line-height: var(--lh-large); color: var(--green-800); }
+.kh-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.kh-hero__actions .btn { height: 54px; } /* Figma: py13 + dòng 28 */
+.kh-hero__media { position: relative; flex: 1 1 0; align-self: stretch; min-width: 0; margin: 0; border-radius: 18px; overflow: clip; background: var(--green-100); }
+.kh-hero__caption {
+  position: absolute; left: 20px; bottom: 20px; display: flex; flex-direction: column; gap: 2px;
+  padding: 10px 16px; border-radius: var(--radius-card); background: rgba(253, 253, 252, 0.92);
+}
+.kh-hero__caption span { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--ink-500); }
+.kh-hero__caption strong { font-weight: 800; color: var(--green-950); }
+
+@media (max-width: 1099px) {
+  .kh-hero__card { height: auto; }
+  .kh-hero__inner { flex-direction: column; align-items: stretch; padding: 40px 24px 24px; gap: 32px; }
+  .kh-hero__copy { padding-left: 0; }
+  .kh-hero__title { font-size: 44px; line-height: 52px; }
+  .kh-hero__media { flex: none; height: 420px; }
+}
+@media (max-width: 560px) {
+  .kh-hero__card { border-radius: var(--radius-block); }
+  .kh-hero__inner { padding: 40px 16px 16px; gap: 28px; }
+  .kh-hero__copy { gap: 20px; padding: 0 8px; }
+  .kh-hero__title { font-size: 32px; line-height: 40px; }
+  .kh-hero__title br { display: none; }
+  .kh-hero__actions { flex-direction: column; width: 100%; }
+  .kh-hero__actions .btn { width: 100%; }
+  .kh-hero__media { height: 320px; border-radius: var(--radius-card); }
+  .kh-hero__caption { left: 16px; bottom: 16px; }
+  .kh-hero__caption span, .kh-hero__caption strong { font-size: var(--fs-body); line-height: var(--lh-body); }
+}
+
+/* ---------- DANH SÁCH DỰ ÁN ---------- */
+.kh-list { padding-top: 112px; }
+.kh-list .container { display: flex; flex-direction: column; gap: 40px; }
+.kh-list__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
+.kh-list__title { font-family: var(--font-heading); font-weight: 700; font-size: 48px; line-height: 56px; letter-spacing: -0.96px; }
+.kh-list__title .em { color: var(--green-600); }
+.kh-list__count { color: var(--ink-500); white-space: nowrap; }
+
+.type-tabs {
+  position: sticky; top: var(--header-h); z-index: 20;
+  display: flex; gap: 28px; overflow-x: auto; scrollbar-width: none;
+  background: rgba(253, 253, 252, 0.96); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: inset 0 -1px 0 var(--green-100);
+}
+.type-tabs::-webkit-scrollbar { display: none; }
+.type-tab {
+  flex: none; display: inline-flex; align-items: baseline; gap: 6px; padding: 16px 0;
+  color: var(--ink-500); transition: color var(--dur-base), box-shadow var(--dur-base);
+}
+.type-tab__label { font-weight: 800; }
+.type-tab__count { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--ink-400); }
+.type-tab:hover { color: var(--green-950); }
+.type-tab[aria-selected='true'] { color: var(--green-950); box-shadow: inset 0 -2px 0 var(--green-600); }
+
+.project-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; }
+.project-card { display: flex; flex-direction: column; gap: 16px; animation: fadeUp 0.6s var(--ease-out) backwards; animation-delay: var(--d, 0ms); }
+.project-card__media { position: relative; height: 300px; border-radius: var(--radius-sm); background: var(--green-50); overflow: clip; }
+.project-card__media .cover { transition: transform 0.8s var(--ease-out); }
+.project-card:hover .project-card__media .cover { transform: scale(1.05); }
+.project-card__caption { display: flex; flex-direction: column; gap: 6px; }
+.project-card__type { font-weight: 800; font-size: var(--fs-small); line-height: var(--lh-small); color: var(--green-600); }
+.project-card__name { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h5); line-height: var(--lh-h5); color: var(--green-950); }
+.project-card__meta { color: var(--ink-500); }
+
+.project-empty {
+  display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 96px 24px; text-align: center;
+  border-radius: var(--radius-block); background: var(--green-50);
+}
+.project-empty strong { font-family: var(--font-heading); font-size: 22px; line-height: 30px; }
+.project-empty p { max-width: 420px; color: var(--green-800); }
+
+@media (max-width: 1099px) {
+  .kh-list { padding-top: 80px; }
+  .kh-list__title { font-size: 40px; line-height: 48px; }
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .kh-list { padding-top: 64px; }
+  .kh-list .container { gap: 24px; }
+  .kh-list__head { align-items: baseline; gap: 16px; }
+  .kh-list__title { font-size: 32px; line-height: 40px; letter-spacing: -0.6px; }
+  .type-tabs { top: var(--header-h); margin-inline: -16px; padding-inline: 16px; }
+  .type-tab__count { font-size: var(--fs-body); line-height: var(--lh-body); }
+  .project-grid { gap: 24px 12px; }
+  .project-card { gap: 16px; }
+  .project-card__media { height: 150px; }
+  .project-card__type { font-size: var(--fs-body); line-height: var(--lh-body); }
+  .project-card__name { font-family: var(--font-body); font-weight: 800; font-size: var(--fs-body); line-height: var(--lh-body); }
+  .project-card__meta { font-size: var(--fs-body); line-height: var(--lh-body); }
+  .project-empty { padding: 56px 20px; }
+}

@@ -51,7 +51,7 @@
   .contact-cta__hotline { gap: 4px; padding-top: 0; box-shadow: none; }
   .contact-cta__number { font-size: 32px; line-height: 40px; }
   .contact-cta__ring--lg { right: -212px; top: -250px; }
-  .contact-cta__ring--sm { right: -92px; top: auto; bottom: -150px; }
+  .contact-cta__ring--sm { right: -92px; top: auto; bottom: -91px; }
 }
 
 /* ---------- Footer ---------- */

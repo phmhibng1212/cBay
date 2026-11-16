@@ -9,11 +9,16 @@ import '../../styles/pages/home.css';
 import '../../styles/pages/neo-floor.css';
 import { initHome } from './home.logic.js';
 import { initNeoFloor } from './neo-floor.logic.js';
+import '../../styles/pages/khach-hang.css';
+import '../../styles/pages/ve-chung-toi.css';
+import { initKhachHang } from './khach-hang.logic.js';
 import { markCurrentPage } from '../modules/header.js';
 
 const VIEWS = {
   'trang-chu': { page: 'home', title: 'cBay — Your Smart Supplier for a Better Future' },
   'san-da-spc': { page: 'neo-floor', title: 'Sàn đá công nghệ SPC Neo Floor — cBay' },
+  'khach-hang': { page: 'khach-hang', title: 'Khách hàng — Dự án tiêu biểu | cBay' },
+  've-chung-toi': { page: 've-chung-toi', title: 'Về chúng tôi — cBay' },
 };
 const mains = Object.fromEntries(
   Object.keys(VIEWS).map((name) => [name, document.querySelector(`[data-view="${VIEWS[name].page}"]`)]),
@@ -22,6 +27,7 @@ const mains = Object.fromEntries(
 initSite();
 initHome();
 initNeoFloor();
+initKhachHang();
 
 function show(name) {
   Object.entries(mains).forEach(([n, el]) => (el.hidden = n !== name));

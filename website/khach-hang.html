@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <!-- @include head.html -->
+  <title>Khách hàng — Dự án tiêu biểu | cBay</title>
+  <meta name="description" content="Các công trình đã tin dùng keo chống nứt D8 Filler và vữa hiệu ứng VASA của cBay: resort, khách sạn, văn phòng, nhà hàng, coffee shop và công trình công cộng trên khắp Việt Nam.">
+  <script type="module" src="/src/scripts/pages/khach-hang.js"></script>
+</head>
+<body data-page="khach-hang">
+  <!-- @include header.html -->
+
+  <main id="main">
+    <!-- ============ HERO (Figma 279:279) ============ -->
+    <section class="kh-hero" aria-labelledby="kh-title">
+      <div class="kh-hero__card" data-anim="zoom">
+        <div class="kh-hero__inner">
+          <div class="kh-hero__copy">
+            <p class="eyebrow" data-anim="fade-up">Khách hàng</p>
+            <h1 class="kh-hero__title" id="kh-title" data-anim="fade-up" style="--d:80ms">Dự án<br> <span class="em">tiêu biểu</span></h1>
+            <p class="kh-hero__text" data-anim="fade-up" style="--d:160ms">cBay tự hào khi sản phẩm của thương hiệu đã có mặt tại hàng trăm dự án trên khắp Việt Nam trong năm qua. Dưới đây là những dự án đã sử dụng các giải pháp của chúng tôi để kiến tạo nên thành công cho công trình.</p>
+            <div class="kh-hero__actions" data-anim="fade-up" style="--d:240ms">
+              <a class="btn btn--primary btn--lg btn--bold" href="#du-an">Xem dự án <img src="/assets/icons/arrow-down-18-white.svg" alt="" width="18" height="18"></a>
+              <button type="button" class="btn btn--outline-dark btn--lg btn--bold" data-modal-open="contact">Tư vấn cho công trình của bạn</button>
+            </div>
+          </div>
+          <figure class="kh-hero__media" data-anim="slide-right">
+            <img class="cover" src="/assets/images/projects/list/lotte-mall-tay-ho.webp" alt="Lotte Mall Tây Hồ">
+            <figcaption class="kh-hero__caption"><span>Công trình</span><strong>Lotte Mall Tây Hồ</strong></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DANH SÁCH DỰ ÁN (Figma 279:297) ============ -->
+    <section class="kh-list" id="du-an" aria-labelledby="kh-list-title" data-projects>
+      <div class="container">
+        <div class="kh-list__head" data-anim="fade-up">
+          <h2 class="kh-list__title" id="kh-list-title">Phân loại <span class="em">dự án</span></h2>
+          <p class="kh-list__count" data-project-count aria-live="polite">16 dự án</p>
+        </div>
+        <div class="type-tabs" role="tablist" aria-label="Loại dự án" data-type-tabs></div>
+        <ul class="project-grid" data-project-grid></ul>
+        <div class="project-empty" data-project-empty hidden>
+          <strong>Dự án đang được cập nhật</strong>
+          <p>Chúng tôi đang tổng hợp hình ảnh cho nhóm dự án này. Hãy xem các loại dự án khác hoặc liên hệ để nhận hồ sơ năng lực.</p>
+          <button type="button" class="btn btn--outline-dark btn--md btn--bold" data-project-reset>Xem tất cả dự án</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- @include contact-cta.html -->
+  <!-- @include footer.html -->
+  <!-- @include floating.html -->
+  <!-- @include modals.html -->
+</body>
+</html>

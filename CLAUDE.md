@@ -39,7 +39,9 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 | --- | --- | --- |
 | 1 | Trang chủ (`index.html`) | ✅ Đã dựng (desktop + mobile, khớp Figma 1440/390) |
 | 2 | Neo Floor (`neo-floor.html`) | ✅ Đã dựng (desktop + mobile) |
-| 3–9 | D8 Filler, Vữa hiệu ứng, Keo dán gạch, Khách hàng, Về chúng tôi, Blog, Tài liệu (tên dự kiến) | Chờ design |
+| 3 | Về chúng tôi (`ve-chung-toi.html`) | ✅ Đã dựng (desktop + mobile) — Figma `277:199` / mobile `376:841` |
+| 4 | Khách hàng — Dự án tiêu biểu (`khach-hang.html`) | ✅ Đã dựng (desktop + mobile) — Figma `279:231` / mobile `376:842` |
+| 5–9 | D8 Filler, Vữa hiệu ứng, Keo dán gạch, Blog, Tài liệu (tên dự kiến) | Chờ design |
 
 ### Tên file trang dự kiến (CHƯA user xác nhận — link trong header/footer đang trỏ tới các tên này)
 `d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `tai-lieu.html`
@@ -53,6 +55,9 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Figma accordion D8 lặp chữ "Filler" 2 lần → đã bỏ lần lặp. Số thứ tự 01–04 chỉ có ở mục D8 trong Figma → đang hiện cho mục đang mở.
 - Slide hero 2 trong Figma có nút "trước" màu xanh (khác slide 1,3) → dùng thống nhất: trước = trắng, sau = xanh.
 - Ảnh mẫu **Marble Plus** chưa có → khung giữ chỗ.
+- Trang Khách hàng: tab "Resort" Figma ghi 4 nhưng chỉ có 3 card Resort (và tổng 16) → số trên tab được TỰ ĐẾM từ danh sách (Resort = 3). Code thiết kế có thêm "Homestay Phố đi bộ Mộc Châu" (Resort) — Figma không có nên chưa đưa vào.
+- Trang Khách hàng/Về chúng tôi: Figma header ghi "Sản phẩm – Giải pháp", "Tài liệu – Catalogue" (gạch dài); Trang chủ ghi "- Catalog" → đang dùng bản Trang chủ cho thống nhất.
+- Nút "Tư vấn cho công trình của bạn" (hero Khách hàng) → mở form liên hệ. "Xem dự án" → cuộn tới danh sách.
 - Tên menu: Figma footer "Vữa hiệu ứng / Giải pháp chống thấm", code "Vữa trắng phong cách / Keo dán gạch chống thấm" → dùng Figma ở footer, code ở dropdown.
 
 ### Node Figma đợt 1 (19 node)
@@ -66,5 +71,6 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Container desktop `max-width 1440`, padding ngang 64–80. Mobile thiết kế ở 390.
 - Landing cũ dùng quy ước animation `data-anim="fade-up | slide-left | slide-right | zoom | fade"` và `--d` (delay). Site mới giữ cùng quy ước để dev quen.
 - Ảnh phải lấy từ **Figma** (không dùng ảnh trong zip code vì khác ảnh thật trong design). Icon/SVG tải từ Figma, lưu ở `website/public/assets/`.
+- Bản xem thử gộp 1 file (`npm run build:preview` → `website/dist-preview/cbay-preview.html`): chứa cả các trang đã dựng, chuyển trang bằng hash; dùng để đăng Artifact/gửi xem. Khi thêm trang mới phải thêm vào `scripts/build-preview.mjs` + `src/scripts/pages/preview.js`.
 - Kiểm tra giao diện: chụp trang bằng Playwright rồi so với `get_screenshot` của Figma (chiều cao trang Home 5287 / Neo 5971 đã khớp).
 - Liên hệ: Hotline `0795 363 888`, email `info@sisd.vn`, Zalo `https://zalo.me/0795363888`, Facebook `https://www.facebook.com/cBayvn/`.
