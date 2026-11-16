@@ -11,7 +11,10 @@ npm install
 npm run dev        # http://localhost:5173
 npm run build      # xuất ra website/dist (chạy được ở mọi đường dẫn, base './')
 npm run preview    # xem thử bản build
+npm run build:preview   # gộp 2 trang thành 1 file xem thử: dist-preview/cbay-preview.html
 ```
+
+`cbay-preview.html` là 1 file duy nhất (ảnh, font, CSS, JS nhúng sẵn): bấm đúp để mở, 2 trang chuyển qua lại bằng menu. Chỉ dùng để xem/gửi duyệt, **bản giao dev là site nhiều trang** (`npm run build`).
 
 Cần Node 18+.
 

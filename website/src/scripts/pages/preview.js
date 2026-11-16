@@ -1,0 +1,61 @@
+/**
+ * BẢN XEM THỬ GỘP 1 FILE (chỉ dùng để xem/gửi duyệt, không phải bản giao dev).
+ * Gộp Trang chủ + Neo Floor vào 1 tài liệu, chuyển trang bằng hash (#trang-chu, #san-da-spc)
+ * nên các link menu / nút "Xem chi tiết" giữa 2 trang hoạt động như site thật.
+ * Sinh bằng:  npm run build:preview
+ */
+import { initSite } from '../main.js';
+import '../../styles/pages/home.css';
+import '../../styles/pages/neo-floor.css';
+import { initHome } from './home.logic.js';
+import { initNeoFloor } from './neo-floor.logic.js';
+import { markCurrentPage } from '../modules/header.js';
+
+const VIEWS = {
+  'trang-chu': { page: 'home', title: 'cBay — Your Smart Supplier for a Better Future' },
+  'san-da-spc': { page: 'neo-floor', title: 'Sàn đá công nghệ SPC Neo Floor — cBay' },
+};
+const mains = Object.fromEntries(
+  Object.keys(VIEWS).map((name) => [name, document.querySelector(`[data-view="${VIEWS[name].page}"]`)]),
+);
+
+initSite();
+initHome();
+initNeoFloor();
+
+function show(name) {
+  Object.entries(mains).forEach(([n, el]) => (el.hidden = n !== name));
+  document.body.dataset.page = VIEWS[name].page;
+  document.title = VIEWS[name].title;
+  markCurrentPage();
+}
+
+function route() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (VIEWS[id]) { show(id); window.scrollTo(0, 0); return; }
+  const target = id && id !== 'main' ? document.getElementById(id) : null;
+  const host = target?.closest('[data-view]');
+  if (host) {
+    const name = Object.keys(VIEWS).find((n) => VIEWS[n].page === host.dataset.view);
+    show(name);
+    requestAnimationFrame(() => target.scrollIntoView());
+    return;
+  }
+  if (!id) show('trang-chu');
+}
+window.addEventListener('hashchange', route);
+route();
+
+// Trang chưa dựng: báo nhẹ thay vì dẫn tới trang lỗi
+let toast;
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-soon]');
+  if (!link) return;
+  e.preventDefault();
+  toast ??= Object.assign(document.createElement('div'), { className: 'preview-toast', role: 'status' });
+  toast.textContent = `Trang "${link.textContent.trim().replace(/\s+/g, ' ') || 'này'}" chưa có design nên chưa dựng.`;
+  document.body.append(toast);
+  toast.classList.remove('is-in'); void toast.offsetWidth; toast.classList.add('is-in');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.remove(), 2600);
+});

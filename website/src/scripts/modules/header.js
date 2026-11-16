@@ -10,7 +10,8 @@ export function initHeader() {
   initMobileMenu();
 }
 
-function markCurrentPage() {
+export function markCurrentPage() {
+  document.querySelectorAll('[aria-current]').forEach((el) => el.removeAttribute('aria-current'));
   const page = document.body.dataset.page;
   if (!page) return;
   document.querySelectorAll(`[data-nav="${page}"]`).forEach((el) => {
@@ -37,6 +38,7 @@ function initDropdown() {
   const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
 
   toggle.addEventListener('click', () => set(!isOpen()));
+  panel.addEventListener('click', (e) => { if (e.target.closest('a')) set(false); });
   root.addEventListener('mouseenter', () => { if (MQ_DESKTOP.matches) set(true); });
   root.addEventListener('mouseleave', () => { timer = setTimeout(() => set(false), 120); });
   root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) set(false); });

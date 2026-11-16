@@ -56,3 +56,12 @@
   .side-tabs { display: none; }
   .sticky-bar { display: flex; animation: popIn 0.5s var(--ease-out) 0.4s backwards; }
 }
+
+/* Thông báo nhỏ trong bản xem thử gộp (link tới trang chưa dựng) */
+.preview-toast {
+  position: fixed; left: 50%; bottom: 96px; z-index: 80; translate: -50% 0;
+  max-width: calc(100vw - 32px); padding: 12px 18px; border-radius: var(--radius-btn);
+  background: var(--green-950); color: var(--white); box-shadow: var(--shadow-popup);
+  font-size: 14px; line-height: 20px; text-align: center;
+}
+.preview-toast.is-in { animation: popIn 0.3s var(--ease-out); }

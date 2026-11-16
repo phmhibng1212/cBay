@@ -33,7 +33,7 @@ function htmlPartials() {
 /** Tự nhận mọi file *.html ở thư mục gốc làm 1 trang (multi-page). */
 const pages = Object.fromEntries(
   readdirSync(root)
-    .filter((f) => f.endsWith('.html'))
+    .filter((f) => f.endsWith('.html') && f !== 'preview.html') // preview.html do scripts/build-preview.mjs sinh ra
     .map((f) => [f.replace(/\.html$/, ''), resolve(root, f)]),
 );
 
