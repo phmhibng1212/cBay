@@ -1,0 +1,37 @@
+/* ==========================================================================
+   ANIMATION — hiệu ứng xuất hiện khi cuộn
+   Dùng:  <div data-anim="fade-up" style="--d:120ms">…</div>
+   Giá trị: fade-up | fade | slide-left | slide-right | zoom
+   Thêm  data-anim-stagger  vào thẻ cha để tự động so le (stagger) các con có data-anim.
+   Tự tắt khi người dùng bật "giảm chuyển động" (prefers-reduced-motion).
+   (Chỉ ẩn phần tử khi JS đã chạy -> không JS vẫn hiển thị nội dung bình thường.)
+   ========================================================================== */
+.js [data-anim] {
+  opacity: 0;
+  transition:
+    opacity 0.7s var(--ease-out) var(--d, 0ms),
+    transform 0.8s var(--ease-out) var(--d, 0ms);
+  will-change: opacity, transform;
+}
+.js [data-anim='fade-up'] { transform: translateY(28px); }
+.js [data-anim='slide-left'] { transform: translateX(-36px); }
+.js [data-anim='slide-right'] { transform: translateX(36px); }
+.js [data-anim='zoom'] { transform: scale(0.94); }
+.js [data-anim].is-in { opacity: 1; transform: none; }
+
+/* ---------- Keyframes dùng chung (lấy từ code thiết kế) ---------- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+@keyframes popIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes sheetIn { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes progress { from { width: 0; } to { width: 100%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-anim] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

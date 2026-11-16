@@ -49,3 +49,7 @@ Tự tắt khi người dùng bật `prefers-reduced-motion`.
 
 - `main`: production — chỉ merge từ `dev` khi đã duyệt.
 - `dev`: nhánh phát triển chính.
+
+## Website nhiều trang (bản mới)
+
+Bản website nhiều trang nằm trong thư mục [`website/`](website/) (Vite + HTML/CSS/JS thuần). Xem [`website/README.md`](website/README.md). Landing 1 trang ở gốc repo giữ nguyên.

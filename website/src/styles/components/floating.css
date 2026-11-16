@@ -1,0 +1,58 @@
+/* ==========================================================================
+   FLOATING — tab bên trái (desktop) · thanh hành động dưới màn hình (mobile)
+   Figma: "Side tab · Nhận dùng thử" (346:1018) · "Mobile/Sticky bar"
+   ========================================================================== */
+.side-tabs {
+  position: fixed; left: 0; top: 283px; z-index: var(--z-side);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+}
+@media (max-height: 700px) { .side-tabs { top: 120px; } }
+
+.side-tab {
+  display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-start;
+  width: 48px; padding: 10px 10px; gap: 12px;
+  background: var(--green-600); color: var(--white);
+  border-radius: 0 12px 12px 0; box-shadow: var(--shadow-tab);
+  transition: background-color var(--dur-fast), width var(--dur-base) var(--ease-out);
+}
+.side-tab:hover { background: var(--green-700); width: 54px; }
+.side-tab__icon {
+  display: flex; align-items: center; justify-content: center; flex: none;
+  width: 28px; height: 28px; border-radius: 14px; background: var(--paper); overflow: clip;
+}
+.side-tab__text {
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  font-weight: 800; font-size: var(--fs-body); line-height: 28px; white-space: nowrap;
+}
+.side-tab--trial { padding: 20px 10px; }
+.side-tab--icon { height: 48px; justify-content: center; padding: 10px; }
+.side-tab--icon img { width: 28px; height: 28px; }
+
+/* Thanh hành động mobile */
+.sticky-bar {
+  position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: var(--z-side);
+  display: none; gap: 8px; padding: 8px;
+  background: var(--green-950); border-radius: var(--radius-block);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 12px 16px rgba(15, 28, 18, 0.3);
+}
+.sticky-bar__main {
+  flex: 1 0 0; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 10px;
+  height: 48px; border-radius: 12px; background: var(--green-600); color: var(--white);
+  font-weight: 800; font-size: var(--fs-body); line-height: var(--lh-body); white-space: nowrap;
+  transition: background-color var(--dur-fast);
+}
+.sticky-bar__main:hover { background: var(--green-700); }
+.sticky-bar__main img { width: 18px; height: 18px; }
+.sticky-bar__icon {
+  flex: none; display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; border-radius: 12px; background: rgba(255, 255, 255, 0.1);
+  transition: background-color var(--dur-fast);
+}
+.sticky-bar__icon:hover { background: rgba(255, 255, 255, 0.2); }
+.sticky-bar__icon img { width: 24px; height: 24px; }
+
+@media (max-width: 560px) {
+  .side-tabs { display: none; }
+  .sticky-bar { display: flex; animation: popIn 0.5s var(--ease-out) 0.4s backwards; }
+}

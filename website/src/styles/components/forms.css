@@ -1,0 +1,69 @@
+/* ==========================================================================
+   FORM — ô nhập, nhóm lựa chọn (chip), trạng thái thành công
+   Figma: "Form keo chống nứt D8", "Form liên hệ ngay" (desktop) + bản Mobile
+   ========================================================================== */
+.form { display: flex; flex-direction: column; gap: 16px; }
+.form__row { display: flex; gap: 16px; }
+.form__row > .field { flex: 1 0 0; min-width: 0; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field__label { font-size: var(--fs-small); line-height: var(--lh-small); color: var(--form-label); }
+.field__input {
+  width: 100%; height: 53px; padding: 14px 16px;
+  border: 0; border-radius: var(--radius-input);
+  background: var(--paper); color: var(--green-950);
+  font-size: 15px; line-height: 25px;
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition: box-shadow var(--dur-fast);
+}
+.field__input::placeholder { color: var(--form-placeholder); opacity: 1; }
+.field__input:hover { box-shadow: inset 0 0 0 1px var(--ink-400); }
+.field__input:focus { outline: 0; box-shadow: inset 0 0 0 2px var(--green-600); }
+.field__input[aria-invalid='true'] { box-shadow: inset 0 0 0 2px #c0392b; }
+.field__error { font-size: var(--fs-small); line-height: var(--lh-small); color: #c0392b; }
+
+/* Nhóm chip chọn 1 (dùng radio ẩn để bàn phím + đọc màn hình vẫn hoạt động) */
+.choice { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.choice__legend { padding: 0; font-weight: 600; font-size: 13px; line-height: 20px; color: var(--form-ink); }
+.choice__list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { position: relative; display: inline-flex; }
+.chip input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; }
+.chip span {
+  display: inline-flex; align-items: center; padding: 11px 18px; border-radius: var(--radius-chip);
+  font-weight: 600; font-size: 13px; line-height: 20px; color: var(--form-ink);
+  box-shadow: inset 0 0 0 1px var(--ink-200);
+  transition: background-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.chip:hover span { box-shadow: inset 0 0 0 1px var(--green-400); }
+.chip input:checked + span { background: var(--green-100); color: var(--green-950); box-shadow: none; }
+.chip input:focus-visible + span { outline: 2px solid var(--green-600); outline-offset: 2px; }
+
+.form__submit {
+  height: 44px; padding: 12px 20px; border-radius: var(--radius-btn);
+  background: var(--green-600); color: var(--white);
+  font-weight: 600; font-size: 14px; line-height: 20px; text-align: center;
+  transition: background-color var(--dur-fast), transform var(--dur-fast);
+}
+.form__submit:hover { background: var(--green-700); }
+.form__submit:active { transform: translateY(1px); }
+.form__submit:disabled { opacity: 0.7; cursor: progress; }
+
+/* Trạng thái gửi thành công (theo code thiết kế) */
+.form-success {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; padding: 60px 0; text-align: center; animation: popIn 0.4s ease;
+}
+.form-success__icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 50%; background: var(--green-600);
+}
+.form-success__title { font-family: var(--font-heading); font-weight: 700; font-size: 24px; line-height: 32px; }
+.form-success__text { max-width: 320px; color: var(--green-800); }
+
+/* Mobile: chữ lớn hơn (Figma mobile dùng 16/28) */
+@media (max-width: 560px) {
+  .form__row { flex-direction: column; }
+  .field__label { font-size: 16px; line-height: 28px; }
+  .choice__legend { font-weight: 800; font-size: 16px; line-height: 28px; }
+  .chip span { font-weight: 800; font-size: 16px; line-height: 28px; }
+}

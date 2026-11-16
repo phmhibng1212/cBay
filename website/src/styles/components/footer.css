@@ -1,0 +1,101 @@
+/* ==========================================================================
+   FOOTER + CTA LIÊN HỆ (khối xanh trước footer)
+   ========================================================================== */
+/* ---------- Khối "Liên hệ với chúng tôi" ---------- */
+.contact-cta { padding: 40px 80px; }
+.contact-cta__box {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center;
+  max-width: 1728px; margin-inline: auto;
+  height: 432px; grid-template-rows: 288px; padding: 72px 64px; /* Figma: h432, hàng nội dung 288 */
+  background: var(--green-600); border-radius: var(--radius-block); color: var(--white);
+}
+.contact-cta__ring {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+.contact-cta__ring--lg { width: 420px; height: 420px; right: -120px; top: -120px; }
+.contact-cta__ring--sm { width: 240px; height: 240px; right: -40px; top: -40px; }
+.contact-cta__main { position: relative; display: flex; flex-direction: column; gap: 24px; }
+.contact-cta__title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 48px; line-height: 56px; color: var(--white);
+}
+.contact-cta__text { max-width: 460px; color: var(--green-100); }
+.contact-cta__actions { display: flex; flex-wrap: wrap; gap: 12px; padding-top: 8px; }
+.contact-cta__hotline {
+  position: relative; display: flex; flex-direction: column; gap: 12px;
+  padding-left: 48px; box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.3);
+  color: var(--green-100);
+}
+.contact-cta__number {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 64px; line-height: 80px; color: var(--white); white-space: nowrap;
+}
+.contact-cta__number:hover { color: var(--green-100); }
+
+@media (max-width: 1099px) {
+  .contact-cta { padding: 40px var(--gutter); }
+  .contact-cta__box { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; height: auto; padding: 56px 40px; }
+  .contact-cta__hotline { padding-left: 0; padding-top: 32px; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+  .contact-cta__title { font-size: 40px; line-height: 48px; }
+}
+/* Mobile: pt64 · pb112 (chừa chỗ cho sticky bar) · block radius 20 · p 40/20 */
+@media (max-width: 560px) {
+  .contact-cta { padding: 64px 16px 112px; }
+  .contact-cta__box { gap: 24px; padding: 40px 20px; }
+  .contact-cta__main { gap: 12px; }
+  .contact-cta__title { font-size: 32px; line-height: 40px; }
+  .contact-cta__actions { flex-direction: column; padding-top: 0; margin-top: 12px; }
+  .contact-cta__actions .btn { width: 100%; }
+  .contact-cta__hotline { gap: 4px; padding-top: 0; box-shadow: none; }
+  .contact-cta__number { font-size: 32px; line-height: 40px; }
+  .contact-cta__ring--lg { right: -212px; top: -250px; }
+  .contact-cta__ring--sm { right: -92px; top: auto; bottom: -150px; }
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--green-950); border-top: 1px solid var(--ink-100); color: var(--white);
+  padding: 64px var(--gutter) 40px;
+}
+.site-footer__inner { max-width: var(--page-max); margin-inline: auto; display: flex; flex-direction: column; gap: 48px; }
+.site-footer__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; }
+.site-footer__brand { flex: 1 0 0; max-width: 500px; display: flex; flex-direction: column; gap: 16px; color: var(--ink-200); }
+.site-footer__brand img { width: 91.86px; height: 50px; }
+.site-footer__contact { flex: 1 0 0; max-width: 307px; display: flex; flex-direction: column; gap: 16px; color: var(--green-100); }
+.site-footer__heading { font-size: var(--fs-large); line-height: var(--lh-large); color: var(--white); font-weight: 400; }
+.site-footer__contact .site-footer__heading { color: var(--green-50); }
+.site-footer__contact b { font-weight: 800; }
+.site-footer__contact a:hover { text-decoration: underline; }
+.site-footer__social { display: flex; gap: 16px; }
+.social-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--ink-100); box-shadow: inset 0 0 0 1px var(--white);
+  transition: transform var(--dur-fast), background-color var(--dur-fast);
+}
+.social-btn:hover { transform: translateY(-2px); background: var(--green-100); }
+.site-footer__nav { display: flex; flex-direction: column; gap: 16px; }
+.site-footer__nav ul { display: flex; flex-direction: column; gap: 12px; }
+.site-footer__nav a:hover { text-decoration: underline; }
+.site-footer__bottom { padding-top: 40px; color: var(--ink-500); }
+
+@media (max-width: 1099px) {
+  .site-footer__top { flex-wrap: wrap; }
+  .site-footer__brand { flex-basis: 100%; max-width: none; }
+  .site-footer__contact { flex-basis: 280px; }
+}
+@media (max-width: 560px) {
+  .site-footer { padding: 72px 16px 32px; }
+  .site-footer__inner { gap: 32px; }
+  .site-footer__top { flex-direction: column; gap: 32px; }
+  .site-footer__brand, .site-footer__contact { flex: none; max-width: none; width: 100%; }
+  .site-footer__links { display: flex; gap: 20px; }
+  .site-footer__links .site-footer__nav { flex: 0 0 auto; }
+  .site-footer__nav a { white-space: nowrap; }
+  .site-footer__bottom { padding-top: 24px; border-top: 1px solid #1a2033; }
+}
+@media (min-width: 561px) {
+  .site-footer__links { display: contents; }
+}
