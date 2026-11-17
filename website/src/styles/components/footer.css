@@ -82,12 +82,13 @@
 .site-footer__bottom { padding-top: 40px; color: var(--ink-500); }
 
 @media (max-width: 1099px) {
+  .site-footer { padding-bottom: 96px; }
   .site-footer__top { flex-wrap: wrap; }
   .site-footer__brand { flex-basis: 100%; max-width: none; }
   .site-footer__contact { flex-basis: 280px; }
 }
 @media (max-width: 560px) {
-  .site-footer { padding: 72px 16px 32px; }
+  .site-footer { padding: 72px 16px 96px; } /* 96: chừa chỗ cho thanh hành động cố định phía dưới */
   .site-footer__inner { gap: 32px; }
   .site-footer__top { flex-direction: column; gap: 32px; }
   .site-footer__brand, .site-footer__contact { flex: none; max-width: none; width: 100%; }

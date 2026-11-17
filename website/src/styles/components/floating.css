@@ -52,9 +52,10 @@
 .sticky-bar__icon:hover { background: rgba(255, 255, 255, 0.2); }
 .sticky-bar__icon img { width: 24px; height: 24px; }
 
-@media (max-width: 560px) {
+/* Dưới 1100px lề nội dung chỉ còn 32px, tab trái sẽ đè chữ → dùng thanh dưới màn hình như mobile */
+@media (max-width: 1099px) {
   .side-tabs { display: none; }
-  .sticky-bar { display: flex; animation: popIn 0.5s var(--ease-out) 0.4s backwards; }
+  .sticky-bar { display: flex; max-width: 480px; margin-inline: auto; animation: popIn 0.5s var(--ease-out) 0.4s backwards; }
 }
 
 /* Thông báo nhỏ trong bản xem thử gộp (link tới trang chưa dựng) */
