@@ -7,10 +7,12 @@ import { initReveal } from './modules/reveal.js';
 import { initHeader } from './modules/header.js';
 import { initModals } from './modules/modal.js';
 import { initForms } from './modules/forms.js';
+import { initMarquee } from './modules/marquee.js';
 
 export function initSite() {
   initHeader();
   initModals();
   initForms();
   initReveal();
+  initMarquee();
 }

@@ -42,15 +42,24 @@
 .ab-strip__img--2 { aspect-ratio: 573.33 / 560; }
 .ab-strip__img--3 { aspect-ratio: 458.67 / 347.2; }
 @media (max-width: 1099px) { .ab-strip { padding-top: 40px; } }
-/* Mobile: băng chuyền vuốt ngang (Figma 03 – Hình ảnh công trình) */
+/* Mobile: dải ảnh tự chạy ngang (marquee) — Figma vẽ băng chuyền vuốt ngang, user yêu cầu cho tự chạy.
+   Giảm chuyển động: giữ vuốt tay như Figma, ẩn bản sao. */
+.ab-strip__img.is-clone { display: none; }
 @media (max-width: 560px) {
-  .ab-strip { padding: 64px 0 0; }
+  .ab-strip { padding: 64px 0 0; overflow: clip; }
   .ab-strip__row {
     display: flex; gap: 10px; padding-inline: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
     scroll-padding-inline: 16px; scrollbar-width: none; align-items: stretch;
   }
   .ab-strip__row::-webkit-scrollbar { display: none; }
   .ab-strip__img { flex: 0 0 254px; width: 254px; height: 240px; aspect-ratio: auto; border-radius: var(--radius-card); scroll-snap-align: start; }
+}
+@keyframes abMarquee { to { transform: translateX(calc(-50% - 5px)); } } /* 5px = nửa khoảng cách giữa 2 ảnh */
+@media (max-width: 560px) and (prefers-reduced-motion: no-preference) {
+  .ab-strip__row { width: max-content; margin-left: 16px; padding-inline: 0; overflow: visible; scroll-snap-type: none; animation: abMarquee 32s linear infinite; } /* không padding để -50% - 5px đúng 1 chu kỳ */
+  .ab-strip__row:active { animation-play-state: paused; }
+  .ab-strip__img { scroll-snap-align: none; }
+  .ab-strip__img.is-clone { display: block; }
 }
 
 /* ---------- GIÁ TRỊ CỐT LÕI ---------- */

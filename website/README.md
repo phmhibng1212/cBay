@@ -42,7 +42,7 @@ website/
 │   │   └── pages/            # CSS riêng từng trang: home.css, neo-floor.css, blog.css, bai-viet.css …
 │   └── scripts/
 │       ├── main.js           # khởi tạo phần dùng chung
-│       ├── modules/          # reveal (animation), header, modal, forms, lead (gửi form)
+│       ├── modules/          # reveal (animation), marquee (băng ảnh tự chạy: gắn data-marquee), header, modal, forms, lead (gửi form)
 │       ├── data/             # dữ liệu (neo-floor.js: mã màu · projects.js: công trình · blog.js: bài viết, dự án nổi bật · d8.js · vasa.js · keo-dan-gach.js: 3 sản phẩm, bảng so sánh, chỉ tiêu)
 │       └── pages/            # logic riêng từng trang: home.js, neo-floor.js, blog.js, bai-viet.js …
 └── public/assets/            # ảnh (webp) + icon (svg) xuất từ Figma

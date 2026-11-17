@@ -8,6 +8,16 @@ export function initBaiViet() {
 
   const toc = document.querySelector('[data-toc]');
   if (!toc) return;
+  // Thu vào / mở ra mục lục
+  const toggle = toc.querySelector('[data-toc-toggle]');
+  const panel = toc.querySelector('[data-toc-panel]');
+  toggle?.addEventListener('click', () => {
+    const collapsed = toc.dataset.collapsed !== 'true';
+    toc.dataset.collapsed = String(collapsed);
+    toggle.setAttribute('aria-expanded', String(!collapsed));
+    toggle.setAttribute('aria-label', collapsed ? 'Mở rộng mục lục' : 'Thu gọn mục lục');
+    panel.inert = collapsed; // ẩn khỏi bàn phím / trình đọc màn hình khi đã thu
+  });
   const links = [...toc.querySelectorAll('.ps-toc__item')];
   const targets = links.map((a) => document.getElementById(a.hash.slice(1)));
   const mark = (i) => links.forEach((a, k) => (k === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));

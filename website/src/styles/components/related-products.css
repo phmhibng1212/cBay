@@ -33,10 +33,9 @@
   .rp__stack { gap: 24px; }
   .rp__title { font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: 0; }
   .rp__head { gap: 12px; }
-  .rp__grid { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .rp__grid { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
   .rp__grid::-webkit-scrollbar { display: none; }
   .rp-card { flex: 0 0 265px; scroll-snap-align: start; }
   .rp-card__media { height: 200px; }
-  .rp-card--tall .rp-card__media { height: 260px; } /* Figma: thẻ Neo Floor cao hơn 2 thẻ còn lại */
   .rp-card__cat { font-size: var(--fs-body); line-height: var(--lh-body); }
 }
