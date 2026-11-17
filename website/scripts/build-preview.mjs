@@ -65,7 +65,7 @@ ${productModal}
 `;
 
 // ---- 2. Viết lại link giữa các trang ----
-const SOON = ['tai-lieu'];
+const SOON = []; // trang chưa dựng (link sẽ báo "chưa có design")
 doc = doc
   .replace(/href="\.\/index\.html"/g, 'href="#trang-chu"')
   .replace(/href="\.\/neo-floor\.html#([\w-]+)"/g, 'href="#$1"')
@@ -78,7 +78,7 @@ doc = doc
   .replace(/href="\.\/d8-filler\.html"/g, 'href="#d8-filler"')
   .replace(/href="\.\/vua-hieu-ung\.html"/g, 'href="#vua-hieu-ung"')
   .replace(/href="\.\/keo-dan-gach\.html"/g, 'href="#keo-dan-gach"')
-  .replace(new RegExp(`href="\\./(${SOON.join('|')})\\.html"`, 'g'), 'href="#" data-soon');
+  .replace(new RegExp(`href="\\./(${SOON.join('|') || '(?!)'})\\.html"`, 'g'), 'href="#" data-soon');
 writeFileSync(resolve(root, 'preview.html'), doc);
 
 // ---- 3. Build bằng Vite (1 JS + 1 CSS, font nhúng) ----

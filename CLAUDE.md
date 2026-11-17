@@ -45,10 +45,10 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 | 6 | D8 Filler (`d8-filler.html`) | ✅ Đã dựng (desktop + mobile) — Figma `284:440` / mobile `376:846` |
 | 7 | Vữa hiệu ứng VASA (`vua-hieu-ung.html`) | ✅ Đã dựng (desktop + mobile) — Figma `286:538` / mobile `376:847` |
 | 8 | Keo dán gạch chống thấm (`keo-dan-gach.html`) | ✅ Đã dựng (desktop khớp Figma 1440, cao 4137) — Figma `287:592` + bảng component `357:691`. **Chưa có frame mobile trong Figma** → mobile dựng theo code thiết kế `Kdg-mobile.dc.html` (đã đối chiếu ảnh chụp 390) + phần dùng chung (header/CTA/footer) theo Figma các trang trước |
-| 9 | Tài liệu (`tai-lieu.html`, tên dự kiến) | Chờ design |
+| 9 | ~~Tài liệu~~ → bỏ | User xác nhận: tab "Tài liệu - Catalog" ở header/footer đổi thành **"Khách hàng"** (trang tổng hợp dự án tiêu biểu = `khach-hang.html`, đã dựng). **Không còn trang nào chờ design — đủ 9 file HTML** (8 trang + bài viết Blog chi tiết) |
 
 ### Tên file trang dự kiến (CHƯA user xác nhận — link trong header/footer đang trỏ tới các tên này)
-`d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `bai-viet.html` (chi tiết Blog) · `tai-lieu.html`
+`d8-filler.html` · `vua-hieu-ung.html` · `keo-dan-gach.html` · `neo-floor.html` · `khach-hang.html` · `ve-chung-toi.html` · `blog.html` · `bai-viet.html` (chi tiết Blog)
 
 ### Quyết định tạm (đã làm theo code/Figma, CHỜ user xác nhận)
 - Nút "Liên hệ ngay" (header + khối CTA) → mở popup **Form liên hệ ngay** (Figma có form, code thiết kế thì mở Zalo).
@@ -60,7 +60,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Slide hero 2 trong Figma có nút "trước" màu xanh (khác slide 1,3) → dùng thống nhất: trước = trắng, sau = xanh.
 - Ảnh mẫu **Marble Plus** chưa có → khung giữ chỗ.
 - Trang Khách hàng: tab "Resort" Figma ghi 4 nhưng chỉ có 3 card Resort (và tổng 16) → số trên tab được TỰ ĐẾM từ danh sách (Resort = 3). Code thiết kế có thêm "Homestay Phố đi bộ Mộc Châu" (Resort) — Figma không có nên chưa đưa vào.
-- Trang Khách hàng/Về chúng tôi: Figma header ghi "Sản phẩm – Giải pháp", "Tài liệu – Catalogue" (gạch dài); Trang chủ ghi "- Catalog" → đang dùng bản Trang chủ cho thống nhất.
+- Header: tab "Tài liệu - Catalog" đã ĐỔI thành "Khách hàng" (link `khach-hang.html`, cả menu desktop, menu mobile và cột "Nội dung" ở footer) theo yêu cầu user. Figma header vẫn ghi "Sản phẩm – Giải pháp" (gạch dài) ở trang Khách hàng/Về chúng tôi, Trang chủ ghi "-" → dùng bản Trang chủ.
 - Nút "Tư vấn cho công trình của bạn" (hero Khách hàng) → mở form liên hệ. "Xem dự án" → cuộn tới danh sách.
 - **Blog (đợt 4)**: tab lọc "Tin tức" theo Figma = Tất cả / Dự án tiêu biểu / Sự kiện / Tin tức (code thiết kế dùng chủ đề khác: Kiến thức vật liệu/Hướng dẫn thi công/Tin cBay → các nhãn này vẫn hiện trên thẻ). 6 thẻ Figma xếp vào nhóm "Tin tức"; 4 bài nổi bật (DeMont, Workshop, Neo Floor Marble Plus, Moco) cũng là bài thường → hiện khi bấm "Xem thêm bài viết" hoặc lọc theo nhóm.
 - **Blog**: mọi thẻ bài viết đều dẫn tới 1 trang chi tiết mẫu `bai-viet.html` (bài DeMont Cafe) vì mới có 1 design chi tiết (code thiết kế cũng làm vậy). Tên file `bai-viet.html` CHƯA user xác nhận.

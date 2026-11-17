@@ -31,7 +31,7 @@ website/
 ├── blog.html                 # Blog (tổng): tin nổi bật · tin tức (lọc + xem thêm) · dự án tiêu biểu
 ├── bai-viet.html             # Blog — bài viết chi tiết (mục lục tự tô sáng, bài liên quan)
 ├── keo-dan-gach.html         # Keo dán gạch chống thấm VASA (bảng so sánh 3 loại + chi tiết 4 tab; dữ liệu ở data/keo-dan-gach.js)
-├── (các trang sau, vd tai-lieu.html — chỉ cần thêm file .html ở đây, Vite tự nhận)
+├── (trang mới: chỉ cần thêm file .html ở đây, Vite tự nhận)
 ├── partials/                 # Khối dùng chung, chèn bằng  <!-- @include header.html -->
 │   ├── head.html  header.html  footer.html  contact-cta.html  floating.html  modals.html
 ├── src/
@@ -65,7 +65,6 @@ website/
 ## Những chỗ dev cần nối tiếp (TODO)
 
 - **Gửi form**: `src/scripts/modules/lead.js` → điền `LEAD_ENDPOINT`. Hiện chưa gửi dữ liệu đi đâu (giống landing cũ).
-- **Link trang chưa làm** (`tai-lieu.html`) đang trỏ tới tên file dự kiến — sẽ 404 cho tới khi trang đó được dựng.
 - **Ảnh Marble Plus**: thiết kế chưa có ảnh, đang hiện khung giữ chỗ (`src/scripts/data/neo-floor.js`).
 - **Bài viết Blog**: dữ liệu ở `src/scripts/data/blog.js`. Hiện chỉ có **1 trang chi tiết mẫu** (`bai-viet.html`, bài DeMont Cafe) nên mọi thẻ bài viết đều trỏ về trang này (`POST_URL`). Khi có CMS/nhiều bài: sinh trang theo bài (hoặc đọc `?bai=`) và thay `POST_URL` bằng đường dẫn từng bài.
 - **Bản xem thử gộp** (`npm run build:preview`): ảnh webp lớn được thu nhỏ nhẹ (cần ImageMagick `convert`, nếu thiếu thì dùng ảnh gốc) để file < 16MB. Chỉ ảnh hưởng bản xem thử.
