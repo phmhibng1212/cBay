@@ -41,6 +41,12 @@
   .stats { flex-wrap: wrap; row-gap: 20px; }
   .stat { flex: 1 1 40%; }
 }
+/* Tablet: lưới 2 × 2 — cột trái sát lề, cột phải có vạch chia, các hàng thẳng nhau (mobile giữ 4 ô đều như Figma) */
+@media (min-width: 561px) and (max-width: 1099px) {
+  .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
+  .stat:nth-child(odd) { padding-left: 0; box-shadow: inset -1px 0 0 var(--line); }
+  .stat:nth-child(even) { padding-right: 0; box-shadow: none; }
+}
 @media (max-width: 560px) {
   .floor-hero { padding-block: 40px 0; }
   .floor-hero__inner { gap: 28px; }
