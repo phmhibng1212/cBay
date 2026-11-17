@@ -19,7 +19,7 @@ export const D8_FEATURES = [
   {
     title: 'Xử lý vết nứt mối nối vượt trội',
     desc: 'Chuyên biệt cho vết nứt phi kết cấu tại mối nối vật liệu lắp ghép. Hấp thụ, hạn chế vết nứt hình thành và tái xuất hiện.',
-    img: asset('assets/images/d8/feature-1.webp'), alt: 'D8 Filler trên tấm xi măng tại công trình', pos: '50% 60%',
+    img: asset('assets/images/d8/feature-1.webp'), alt: 'D8 Filler trên tấm xi măng tại công trình', pos: '42% 55%',
   },
   {
     title: 'Độ bám dính cao',

@@ -11,16 +11,17 @@
 .d8-hero { padding-top: 40px; }
 .d8-hero__stack { display: flex; flex-direction: column; gap: 40px; }
 .d8-hero__top { display: flex; align-items: flex-end; gap: 56px; }
-.d8-hero__title { flex: none; width: 714px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.d8-hero__title { flex: 0 1 714px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .d8-hero__title h1 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--green-950); }
 .d8-hero__title h1 .em { color: var(--green-600); }
 .d8-hero__sub { padding-top: 8px; font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h5); line-height: var(--lh-h5); color: var(--green-950); }
 .d8-hero__intro { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 28px; padding-bottom: 6px; color: var(--green-800); }
 .d8-hero__intro strong { font-weight: 800; }
-.d8-hero__actions { display: flex; align-items: flex-start; gap: 12px; }
+.d8-hero__actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
 .d8-hero__actions .btn--primary { height: 54px; }
 .d8-hero__actions .btn--outline-dark { height: 56px; }
 
+.d8-hero__media .cover { object-position: 78% 50%; } /* thùng keo nằm bên phải ảnh: giữ trong khung khi khung hẹp */
 .d8-hero__media { position: relative; height: 600px; border-radius: var(--radius-block); overflow: clip; background: var(--green-800); }
 .d8-pano { position: absolute; inset: 0; }
 .d8-pano__shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #122215 13.583%, rgba(15, 28, 18, 0) 30.628%); }
@@ -68,7 +69,7 @@
 /* ---------- TÍNH NĂNG ---------- */
 .d8-feat { padding-top: 176px; }
 .d8-feat__head { display: flex; align-items: flex-end; gap: 56px; }
-.d8-feat__title { flex: none; width: 714px; font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: -1.68px; color: var(--green-950); }
+.d8-feat__title { flex: 0 1 714px; min-width: 0; font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: -1.68px; color: var(--green-950); }
 .d8-feat__title .em { color: var(--green-600); }
 .d8-feat__text { flex: 1 1 0; min-width: 0; color: var(--green-800); }
 .d8-show { display: flex; gap: 20px; height: 600px; padding: 20px; border-radius: var(--radius-block-lg); background: var(--green-50); overflow: clip; }
@@ -95,7 +96,7 @@
 .d8-video__block { max-width: 1408px; margin-inline: auto; padding: 80px 0 64px; border-radius: var(--radius-block); background: var(--green-950); color: var(--white); }
 .d8-video__block .container { padding-inline: 64px; }
 .d8-video__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; min-height: 77px; } /* Figma: khung tiêu đề cao 77 */
-.d8-video__title { display: flex; align-items: center; height: 77px; width: 727px; font-family: var(--font-heading); font-weight: 700; font-size: 48px; line-height: 56px; letter-spacing: -0.96px; }
+.d8-video__title { display: flex; align-items: center; height: 77px; flex: 0 1 727px; min-width: 0; font-family: var(--font-heading); font-weight: 700; font-size: 48px; line-height: 56px; letter-spacing: -0.96px; }
 .d8-video__text { width: 380px; flex: none; color: var(--green-100); }
 .d8-video__player { position: relative; display: block; height: 720px; border-radius: var(--radius-media); overflow: clip; background: var(--green-800); }
 .d8-video__player .cover { transition: transform 0.8s var(--ease-out); }
@@ -139,10 +140,17 @@
 .cert__img { max-width: 100%; max-height: calc(100dvh - 220px); width: auto; object-fit: contain; box-shadow: 0 0 0 1px var(--line); }
 .cert__caption { text-align: center; font-weight: 800; font-size: 17px; line-height: 26px; color: var(--green-950); }
 
+/* Màn 1101–1199: tiêu đề + đoạn giới thiệu không đủ chỗ cạnh nhau -> xếp dọc */
+@media (min-width: 1100px) and (max-width: 1199px) {
+  .d8-hero__top { flex-direction: column; align-items: flex-start; gap: 24px; }
+  .d8-hero__title { flex: none; width: auto; }
+  .d8-hero__intro { flex: none; width: 100%; max-width: 720px; }
+}
+
 /* ---------- TABLET ---------- */
 @media (max-width: 1099px) {
   .d8-hero__top { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .d8-hero__title { width: auto; }
+  .d8-hero__title { width: auto; flex: none; }
   .d8-stats > div { padding: 20px 20px; }
   .d8-stats dd { font-size: 36px; line-height: 44px; }
   .d8-projects { padding-top: 96px; }
@@ -150,13 +158,13 @@
   .d8-projects__head .d8-h2 { width: auto; }
   .d8-feat { padding-top: 96px; }
   .d8-feat__head { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .d8-feat__title { width: auto; }
+  .d8-feat__title { width: auto; flex: none; }
   .d8-show { flex-direction: column; height: auto; }
   .d8-show__tabs { width: auto; padding: 4px; }
   .d8-show__media { flex: none; height: 420px; order: -1; }
   .d8-video { padding-top: 96px; }
   .d8-video__head { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .d8-video__title, .d8-video__text { width: auto; }
+  .d8-video__title, .d8-video__text { width: auto; flex: none; }
   .d8-video__player { height: 480px; }
   .d8-specs, .d8-docs { padding-top: 96px; }
   .d8-specs__grid, .d8-docs__grid { flex-direction: column; gap: 32px; }

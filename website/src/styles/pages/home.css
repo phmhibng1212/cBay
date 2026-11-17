@@ -117,7 +117,7 @@
 }
 
 /* ---------- 3. ĐỒNG HÀNH ---------- */
-.support__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 704px); gap: 80px; align-items: center; }
+.support__grid { display: grid; grid-template-columns: minmax(0, 516fr) minmax(0, 704fr); gap: clamp(40px, 5.6vw, 80px); align-items: center; } /* tỉ lệ ảnh : nội dung theo Figma 1440, co đều khi màn hẹp hơn */
 .support__media { position: relative; aspect-ratio: 516.66 / 645.81; background: var(--green-50); border-radius: var(--radius-sm); overflow: clip; }
 .support__content { display: flex; flex-direction: column; }
 .support__content .title-section { margin-top: 20px; }
@@ -257,6 +257,11 @@
   .neo { padding: 0 16px; }
   .neo__block { padding: 56px 32px; }
   .neo__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .neo__cards > :last-child:nth-child(odd) { grid-column: 1 / -1; } /* thẻ lẻ cuối trải hết hàng, không lệch */
+}
+@media (min-width: 740px) and (max-width: 1099px) {
+  .neo__cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .neo__cards > :last-child:nth-child(odd) { grid-column: auto; }
 }
 @media (max-width: 560px) {
   .neo { padding: 64px 16px 0; }

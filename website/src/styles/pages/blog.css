@@ -32,7 +32,7 @@
 /* ---------- TIN NỔI BẬT ---------- */
 .bl-feat { display: flex; gap: 56px; align-items: stretch; }
 .bl-feat__stage {
-  position: relative; flex: none; width: 714px; height: 600px; display: block;
+  position: relative; flex: 1 1 714px; min-width: 0; min-height: 600px; display: block;
   border-radius: var(--radius-block); overflow: clip; background: var(--green-100); color: var(--white);
 }
 .bl-feat__img {
@@ -55,7 +55,7 @@
 }
 .bl-feat__stage:hover .bl-feat__go { transform: translate(3px, -3px); }
 
-.bl-feat__tabs { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; }
+.bl-feat__tabs { flex: 1 0 380px; min-width: 380px; display: flex; flex-direction: column; justify-content: space-between; }
 .bl-tab {
   display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 100%; padding: 24px 0; text-align: left;
   border-top: 1px solid var(--green-100); color: var(--ink-400);
@@ -93,7 +93,7 @@
 .bl-proj__media { position: relative; flex: 1 1 0; min-width: 0; height: 540px; border-radius: var(--radius-block); overflow: clip; background: var(--green-100); }
 .bl-proj__media .cover { opacity: 0; transition: opacity 0.6s ease; }
 .bl-proj__media .cover.is-on { opacity: 1; }
-.bl-proj__body { flex: none; width: 513.33px; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.bl-proj__body { flex: 0 1 513.33px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
 .bl-proj__info { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; width: 100%; animation: fadeIn 0.4s ease; }
 .bl-proj__tag { font-weight: 800; color: var(--green-600); }
 .bl-proj__name { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h3); line-height: var(--lh-h3); color: var(--green-950); }
@@ -124,11 +124,12 @@
   .bl-news-head .bl-head__title { padding-top: 0; }
   .bl-head__text { width: auto; max-width: 480px; }
   .bl-feat { flex-direction: column; gap: 24px; }
-  .bl-feat__stage { width: 100%; height: 520px; }
+  .bl-feat__stage { flex: none; width: 100%; height: 520px; min-height: 0; }
+  .bl-feat__tabs { flex: none; min-width: 0; }
   .bl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bl-proj { flex-direction: column; align-items: stretch; gap: 32px; }
   .bl-proj__media { flex: none; height: 460px; }
-  .bl-proj__body { width: 100%; }
+  .bl-proj__body { width: 100%; flex: none; }
 }
 
 /* ---------- MOBILE (390) ---------- */

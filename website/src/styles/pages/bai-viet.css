@@ -10,7 +10,7 @@
 .ps-back img { transition: transform var(--dur-fast) var(--ease-out); }
 .ps-back:hover img { transform: translateX(-3px); }
 .ps-head__row { display: flex; align-items: flex-end; gap: 48px; }
-.ps-head__title { flex: none; width: 821.33px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.ps-head__title { flex: 0 1 821.33px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .ps-chip {
   padding: 6px 14px; border-radius: var(--radius-pill); background: var(--green-50); color: var(--green-700);
   font-weight: 800; font-size: var(--fs-small); line-height: var(--lh-small);
@@ -116,7 +116,7 @@
 /* ---------- TABLET ---------- */
 @media (max-width: 1099px) {
   .ps-head__row { flex-direction: column; align-items: flex-start; gap: 24px; }
-  .ps-head__title { width: auto; }
+  .ps-head__title { width: auto; flex: none; }
   .ps-head__title h1 { font-size: 44px; line-height: 52px; }
   .ps-meta { width: 100%; max-width: 480px; flex: none; }
   .ps-cover__card { height: 460px; }

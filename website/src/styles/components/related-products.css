@@ -25,17 +25,18 @@
 @media (max-width: 1099px) {
   .rp__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .rp__text { width: auto; }
-  .rp__grid { flex-wrap: wrap; }
-  .rp-card { flex: 1 1 calc(50% - 10px); }
+}
+/* ≤699: cuộn ngang (3 thẻ không vừa 1 hàng); 700–1099: 3 thẻ đều nhau 1 hàng, không để 1 thẻ lẻ cắt ảnh */
+@media (max-width: 699px) {
+  .rp__grid { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+  .rp__grid::-webkit-scrollbar { display: none; }
+  .rp-card { flex: 0 0 265px; scroll-snap-align: start; }
+  .rp-card__media { height: 200px; }
 }
 @media (max-width: 560px) {
   .rp { padding-block: 64px 0; }
   .rp__stack { gap: 24px; }
   .rp__title { font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: 0; }
   .rp__head { gap: 12px; }
-  .rp__grid { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
-  .rp__grid::-webkit-scrollbar { display: none; }
-  .rp-card { flex: 0 0 265px; scroll-snap-align: start; }
-  .rp-card__media { height: 200px; }
   .rp-card__cat { font-size: var(--fs-body); line-height: var(--lh-body); }
 }

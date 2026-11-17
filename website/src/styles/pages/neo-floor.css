@@ -65,7 +65,7 @@
 }
 
 /* ---------- 2. CẤU TRÚC ĐA LỚP ---------- */
-.structure { padding: 40px 16px; }
+.structure { padding: 40px 16px; overflow-x: clip; }
 .structure__block {
   max-width: 1408px; margin-inline: auto; padding: 88px 64px;
   display: flex; flex-direction: column; gap: 56px;
@@ -177,7 +177,8 @@
 @media (max-width: 560px) {
   .collection__head { gap: 24px; }
   .collection__title { font-size: 32px; line-height: 40px; letter-spacing: -0.6px; margin-top: 12px; }
-  .line-tabs { align-self: flex-start; }
+  .line-tabs { align-self: flex-start; max-width: 100%; }
+  .line-tab { min-width: 0; padding-inline: 14px; }
   .line-tab { padding-left: 20px; }
   .swatch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 24px; }
   .swatch__media { aspect-ratio: 169 / 211; }

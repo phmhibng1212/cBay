@@ -5,22 +5,22 @@
 .vs-stack { display: flex; flex-direction: column; gap: 40px; }
 
 /* ---------- HERO ---------- */
-.vs-hero { padding-top: 40px; }
-.vs-hero__grid { display: flex; align-items: center; justify-content: center; gap: 56px; }
-.vs-hero__copy { flex: none; width: 612px; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.vs-hero { padding-top: 40px; --u: min(1px, calc((100vw - 160px) / 1280)); } /* bố cục hero thiết kế ở 1440 (nội dung 1280): co đều khi màn 1101–1439 */
+.vs-hero__grid { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 56); }
+.vs-hero__copy { flex: none; width: calc(var(--u) * 612); display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
 .vs-hero__title { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; width: 100%; }
 .vs-hero__title h1 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h2); line-height: var(--lh-h2); color: var(--green-950); }
 .vs-hero__sub { padding-top: 6px; font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h5); line-height: var(--lh-h5); letter-spacing: -0.26px; color: var(--green-950); }
 .vs-hero__sub .em { color: var(--green-600); }
-.vs-hero__desc { display: flex; flex-direction: column; gap: 12px; color: var(--green-800); }
+.vs-hero__desc { display: flex; flex-direction: column; gap: 12px; max-width: 100%; color: var(--green-800); }
 .vs-hero__desc p { width: 540px; max-width: 100%; }
-.vs-hero__actions { display: flex; align-items: flex-start; gap: 12px; }
+.vs-hero__actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
 .vs-hero__actions .btn--primary { height: 54px; }
 .vs-hero__actions .btn--outline-dark { height: 56px; }
-.vs-collage { position: relative; flex: none; width: 612px; height: 640px; }
+.vs-collage { position: relative; flex: none; width: calc(var(--u) * 612); height: calc(var(--u) * 640); }
 .vs-collage figure { position: absolute; margin: 0; overflow: clip; background: var(--green-50); }
-.vs-collage__main { right: 0; top: 0; width: 477.36px; height: 499.2px; border-radius: var(--radius-block); }
-.vs-collage__sub { left: 0; bottom: 0; width: 281.52px; height: 332.8px; border-radius: 18px; }
+.vs-collage__main { right: 0; top: 0; width: 78%; height: 78%; border-radius: var(--radius-block); }
+.vs-collage__sub { left: 0; bottom: 0; width: 46%; height: 52%; border-radius: 18px; }
 .vs-collage__sub::after { content: ''; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 8px var(--paper); pointer-events: none; } /* Figma: viền paper 8px nằm đè lên ảnh */
 .vs-collage figure .cover { transition: transform 0.8s var(--ease-out); }
 .vs-collage figure:hover .cover { transform: scale(1.04); }
@@ -108,7 +108,7 @@
 .vs-fx__block .container { padding-inline: 64px; }
 .vs-fx__inner { display: flex; flex-direction: column; gap: 48px; }
 .vs-fx__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; }
-.vs-fx__title { display: flex; flex-direction: column; gap: 16px; width: 768px; }
+.vs-fx__title { display: flex; flex-direction: column; gap: 16px; flex: 0 1 768px; min-width: 0; }
 .vs-fx__title h2 { font-family: var(--font-heading); font-weight: 700; font-size: 48px; line-height: 56px; }
 .vs-fx__text { width: 360px; flex: none; color: var(--green-100); }
 .vs-stage { position: relative; height: 660px; }
@@ -148,9 +148,20 @@
 .vs-fan__pin img { position: absolute; left: -3px; top: -2px; width: 20px; height: 20px; max-width: none; }
 .vs-strip { display: none; }
 
+/* Màn 1100–1379: 2 thẻ sản phẩm cạnh nhau quá hẹp (tên/nút bị bóp) -> xếp dọc; ≤1279: khối '100%' xuống dòng riêng */
+@media (min-width: 1100px) and (max-width: 1379px) {
+  .vs-prod-grid { flex-direction: column; }
+  .vs-prod { flex: none; width: 100%; }
+}
+@media (min-width: 1100px) and (max-width: 1279px) {
+  .vs-safe { flex-wrap: wrap; }
+  .vs-safe__hl { flex: 1 1 100%; border-right: 0 !important; }
+}
+
 /* ---------- TABLET ---------- */
 @media (max-width: 1099px) {
-  .vs-hero__grid { flex-direction: column; align-items: stretch; }
+  .vs-hero { --u: 1px; }
+  .vs-hero__grid { flex-direction: column; align-items: stretch; gap: 56px; }
   .vs-hero__copy { width: auto; }
   .vs-collage { width: 100%; max-width: 612px; height: 520px; align-self: center; }
   .vs-collage__main { width: 78%; height: 78%; } .vs-collage__sub { width: 46%; height: 52%; }
@@ -168,7 +179,7 @@
   .vs-safe { flex-wrap: wrap; }
   .vs-safe__hl { flex: 1 1 100%; border-right: 0 !important; }
   .vs-fx__head { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .vs-fx__title, .vs-fx__text { width: auto; }
+  .vs-fx__title, .vs-fx__text { width: auto; flex: none; }
   .vs-stage { height: auto; display: flex; flex-direction: column; gap: 20px; }
   .vs-room { position: relative; top: auto; width: 100%; height: 360px; }
   .vs-room .cover { top: 0; height: 100%; }
@@ -183,9 +194,10 @@
   .vs-hero__title h1 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
   .vs-hero__actions { flex-direction: column; align-items: stretch; width: 100%; }
   .vs-hero__desc p { width: auto; }
-  .vs-collage { max-width: none; height: 400px; }
-  .vs-collage__main { left: 79px; right: auto; width: 279px; height: 343px; border-radius: var(--radius-card); }
-  .vs-collage__sub { top: 171px; bottom: auto; width: 165px; height: 229px; border-radius: var(--radius-card); }
+  /* tỉ lệ theo frame 390 (358×400) nhưng dùng % để không tràn khi màn < 390 */
+  .vs-collage { max-width: none; width: 100%; height: auto; aspect-ratio: 358 / 400; }
+  .vs-collage__main { left: 22.07%; right: auto; width: 77.93%; height: 85.75%; border-radius: var(--radius-card); }
+  .vs-collage__sub { top: 42.75%; bottom: auto; width: 46.09%; height: 57.25%; border-radius: var(--radius-card); }
   .vs-collage__sub::after { display: none; }
 
   .vs-products { padding-top: 64px; }
