@@ -20,6 +20,8 @@ import '../../styles/pages/d8-filler.css';
 import '../../styles/pages/vua-hieu-ung.css';
 import { initD8 } from './d8-filler.logic.js';
 import { initVasa } from './vua-hieu-ung.logic.js';
+import '../../styles/pages/keo-dan-gach.css';
+import { initKeoDanGach } from './keo-dan-gach.logic.js';
 import { markCurrentPage } from '../modules/header.js';
 
 const VIEWS = {
@@ -30,6 +32,7 @@ const VIEWS = {
   blog: { page: 'blog', title: 'Blog — Câu chuyện từ công trình | cBay' },
   'd8-filler': { page: 'd8-filler', title: 'Keo chống nứt D8 Filler | cBay' },
   'vua-hieu-ung': { page: 'vua-hieu-ung', title: 'Vữa hiệu ứng VASA | cBay' },
+  'keo-dan-gach': { page: 'keo-dan-gach', title: 'Keo dán gạch chống thấm VASA | cBay' },
   // Bài viết chi tiết: menu vẫn tô sáng "Blog" (nav: 'blog')
   'bai-viet': { page: 'bai-viet', nav: 'blog', title: 'DeMont Cafe: khi bức tường kể chuyện bằng chất liệu | Blog cBay' },
 };
@@ -45,6 +48,7 @@ initBlog();
 initBaiViet();
 initD8();
 initVasa();
+initKeoDanGach();
 
 function show(name) {
   Object.entries(mains).forEach(([n, el]) => (el.hidden = n !== name));

@@ -4,7 +4,7 @@
  * Gộp các trang đã dựng thành 1 tài liệu, nhúng sẵn CSS, JS, font, ảnh (base64) nên:
  *  - mở thẳng bằng cách bấm đúp file, không cần server, không cần mạng;
  *  - đăng lên Artifact / gửi qua chat được;
- *  - các trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc, #khach-hang, #ve-chung-toi, #blog, #bai-viet, #d8-filler, #vua-hieu-ung) như site thật.
+ *  - các trang chuyển qua lại bằng menu (hash #trang-chu, #san-da-spc, #khach-hang, #ve-chung-toi, #blog, #bai-viet, #d8-filler, #vua-hieu-ung, #keo-dan-gach) như site thật.
  *
  * Kết quả (thư mục dist-preview/):
  *   cbay-preview.html           tài liệu đầy đủ, mở trực tiếp
@@ -33,6 +33,7 @@ const blog = render(read('blog.html'));
 const post = render(read('bai-viet.html'));
 const d8 = render(read('d8-filler.html'));
 const vasa = render(read('vua-hieu-ung.html'));
+const kdg = render(read('keo-dan-gach.html'));
 const detailModal = neo.match(/(<!-- =+ POPUP · CHI TIẾT MẪU SÀN[\s\S]*?)<\/body>/)[1];
 const certModal = d8.match(/(<!-- =+ POPUP · CHỨNG NHẬN[\s\S]*?)<\/body>/)[1];
 const productModal = vasa.match(/(<!-- =+ POPUP · CHI TIẾT SẢN PHẨM VASA[\s\S]*?)<\/body>/)[1];
@@ -54,6 +55,7 @@ ${render('<!-- @include header.html -->')}
 <main data-view="bai-viet" hidden>${mainOf(post)}</main>
 <main data-view="d8-filler" hidden>${mainOf(d8)}</main>
 <main data-view="vua-hieu-ung" hidden>${mainOf(vasa)}</main>
+<main data-view="keo-dan-gach" hidden>${mainOf(kdg)}</main>
 ${render('<!-- @include contact-cta.html -->\n<!-- @include footer.html -->\n<!-- @include floating.html -->\n<!-- @include modals.html -->')}
 ${detailModal}
 ${certModal}
@@ -63,7 +65,7 @@ ${productModal}
 `;
 
 // ---- 2. Viết lại link giữa các trang ----
-const SOON = ['keo-dan-gach', 'tai-lieu'];
+const SOON = ['tai-lieu'];
 doc = doc
   .replace(/href="\.\/index\.html"/g, 'href="#trang-chu"')
   .replace(/href="\.\/neo-floor\.html#([\w-]+)"/g, 'href="#$1"')
@@ -75,6 +77,7 @@ doc = doc
   .replace(/href="\.\/bai-viet\.html"/g, 'href="#bai-viet"')
   .replace(/href="\.\/d8-filler\.html"/g, 'href="#d8-filler"')
   .replace(/href="\.\/vua-hieu-ung\.html"/g, 'href="#vua-hieu-ung"')
+  .replace(/href="\.\/keo-dan-gach\.html"/g, 'href="#keo-dan-gach"')
   .replace(new RegExp(`href="\\./(${SOON.join('|')})\\.html"`, 'g'), 'href="#" data-soon');
 writeFileSync(resolve(root, 'preview.html'), doc);
 
@@ -87,7 +90,7 @@ let html = readFileSync(out('preview.html'), 'utf8');
 
 const MIME = { '.webp': 'image/webp', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg' };
 // Bản xem thử bị giới hạn ~16MB (Artifact) -> ảnh webp lớn được thu nhỏ nhẹ (chỉ bản xem thử, ảnh trong public/ giữ nguyên).
-const SHRINK = { maxWidth: 1000, quality: 66, minBytes: 60_000 };
+const SHRINK = { maxWidth: 960, quality: 62, minBytes: 60_000 };
 const cacheDir = resolve(root, 'dist-preview-cache');
 mkdirSync(cacheDir, { recursive: true });
 const shrink = (file) => {
