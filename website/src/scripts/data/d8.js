@@ -24,7 +24,7 @@ export const D8_FEATURES = [
   {
     title: 'Độ bám dính cao',
     desc: 'Công thức polymer cải tiến tăng liên kết với nhiều loại bề mặt, giúp lớp keo bám chắc và ổn định trong suốt quá trình sử dụng.',
-    img: asset('assets/images/d8/hero.webp'), alt: 'Thùng keo D8 Filler tại công trình', pos: '50% 60%',
+    img: asset('assets/images/d8/hero.webp'), alt: 'Thùng keo D8 Filler tại công trình', pos: '92% 60%',
   },
   {
     title: 'Thích ứng đa dạng vật liệu',

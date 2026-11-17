@@ -85,7 +85,7 @@
 .vs-diff__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .vs-diff__text h2 { font-family: var(--font-heading); font-weight: 700; font-size: 48px; line-height: 56px; letter-spacing: -0.96px; color: var(--green-950); }
 .vs-diff__text h2 .em { color: var(--green-600); }
-.vs-diff__desc { width: 560px; max-width: 100%; font-size: var(--fs-large); line-height: var(--lh-large); color: var(--green-800); }
+.vs-diff__desc { width: 100%; font-size: var(--fs-large); line-height: var(--lh-large); color: var(--green-800); }
 .vs-formula { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; }
 .vs-formula__label { padding-bottom: 8px; color: var(--ink-500); }
 .vs-formula__list { display: flex; flex-wrap: wrap; column-gap: 32px; }

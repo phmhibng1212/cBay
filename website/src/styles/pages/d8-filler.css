@@ -114,8 +114,8 @@
 .d8-spec-list dd { flex: 1 1 0; min-width: 0; font-weight: 800; color: var(--green-950); }
 .d8-notes { display: flex; flex-direction: column; gap: 16px; }
 .d8-notes h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h5); line-height: var(--lh-h5); color: var(--green-950); }
-.d8-notes ul { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px; }
-.d8-notes li { display: flex; align-items: center; gap: 14px; width: calc(50% - 6px); padding: 16px 18px; border-radius: var(--radius-card); background: var(--green-50); color: var(--green-950); }
+.d8-notes ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } /* hàng đều nhau, không lệch cao thấp */
+.d8-notes li { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: var(--radius-card); background: var(--green-50); color: var(--green-950); }
 .d8-notes li img { flex: none; }
 
 /* ---------- TÀI LIỆU ---------- */
@@ -216,7 +216,7 @@
   .d8-specs__content { gap: 56px; }
   .d8-spec-list > div { gap: 24px; }
   .d8-spec-list dt, .d8-spec-list dd { flex: 1 1 0; width: auto; }
-  .d8-notes li { width: 100%; }
+  .d8-notes ul { grid-template-columns: minmax(0, 1fr); }
   .d8-doc__kind { font-size: var(--fs-body); line-height: var(--lh-body); }
 
   .modal__panel--cert { padding: 56px 16px 24px; }
