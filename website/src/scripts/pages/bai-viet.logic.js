@@ -8,16 +8,24 @@ export function initBaiViet() {
 
   const toc = document.querySelector('[data-toc]');
   if (!toc) return;
-  // Thu vào / mở ra mục lục
+  // Thu vào / mở ra mục lục (theo chiều ngang). Desktop mặc định mở; từ 1100px trở xuống là ngăn kéo, mặc định thu.
   const toggle = toc.querySelector('[data-toc-toggle]');
   const panel = toc.querySelector('[data-toc-panel]');
-  toggle?.addEventListener('click', () => {
-    const collapsed = toc.dataset.collapsed !== 'true';
+  const narrow = window.matchMedia('(max-width: 1100px)');
+  const setCollapsed = (collapsed) => {
     toc.dataset.collapsed = String(collapsed);
     toggle.setAttribute('aria-expanded', String(!collapsed));
-    toggle.setAttribute('aria-label', collapsed ? 'Mở rộng mục lục' : 'Thu gọn mục lục');
+    toggle.setAttribute('aria-label', collapsed ? 'Mở mục lục' : 'Thu gọn mục lục');
     panel.inert = collapsed; // ẩn khỏi bàn phím / trình đọc màn hình khi đã thu
+  };
+  setCollapsed(narrow.matches);
+  narrow.addEventListener('change', () => setCollapsed(narrow.matches));
+  toggle?.addEventListener('click', () => setCollapsed(toc.dataset.collapsed !== 'true'));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && narrow.matches && toc.dataset.collapsed === 'false') setCollapsed(true); });
+  document.addEventListener('click', (e) => { // ngăn kéo: bấm ra ngoài thì thu lại
+    if (narrow.matches && toc.dataset.collapsed === 'false' && !toc.contains(e.target)) setCollapsed(true);
   });
+  toc.addEventListener('click', (e) => { if (narrow.matches && e.target.closest('.ps-toc__item')) setCollapsed(true); });
   const links = [...toc.querySelectorAll('.ps-toc__item')];
   const targets = links.map((a) => document.getElementById(a.hash.slice(1)));
   const mark = (i) => links.forEach((a, k) => (k === i ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));

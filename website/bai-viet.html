@@ -40,12 +40,10 @@
     <section class="ps-content" aria-label="Nội dung bài viết">
       <div class="container ps-body">
         <nav class="ps-toc" aria-label="Mục lục" data-toc>
-          <div class="ps-toc__head">
-            <p class="ps-toc__title" id="toc-title">Nội dung</p>
-            <button type="button" class="ps-toc__toggle" aria-expanded="true" aria-controls="toc-list" aria-label="Thu gọn mục lục" data-toc-toggle><img src="/assets/icons/chevron-down.svg" alt="" width="20" height="20"></button>
-          </div>
-          <div class="ps-toc__panel" id="toc-list" data-toc-panel>
-            <div class="ps-toc__list">
+          <button type="button" class="ps-toc__toggle" aria-expanded="true" aria-controls="toc-panel" aria-label="Thu gọn mục lục" data-toc-toggle><img src="/assets/icons/chevron-down.svg" alt="" width="20" height="20"></button>
+          <div class="ps-toc__clip" id="toc-panel" data-toc-panel>
+            <div class="ps-toc__inner">
+              <p class="ps-toc__title">Nội dung</p>
               <a class="ps-toc__item" href="#bai-toan" aria-current="true">Bài toán của chủ đầu tư</a>
               <a class="ps-toc__item" href="#giai-phap">Giải pháp: vữa hiệu ứng VASA</a>
               <a class="ps-toc__item" href="#thi-cong">Quy trình thi công</a>
