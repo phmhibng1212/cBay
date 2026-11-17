@@ -137,29 +137,50 @@
   .kg-detail__body { flex-direction: column; }
   .kg-media { width: auto; }
   .kg-media__img { min-height: 420px; }
-  .kg-content { padding: 0; }
 }
 
-/* ---------- MOBILE (390) ---------- */
+/* ---------- MOBILE (390) — theo code thiết kế Kdg-mobile.dc.html (Figma chưa có frame mobile) ---------- */
 @media (max-width: 560px) {
-  .kg-hero__card { border-radius: var(--radius-block); }
-  .kg-hero__copy { padding: 40px 20px 0; gap: 24px; }
-  .kg-hero__title h1 { font-size: var(--fs-h4); line-height: var(--lh-h4); }
-  .kg-hero__actions { flex-direction: column; align-items: stretch; width: 100%; }
-  .kg-hero__actions .btn { width: 100%; }
-  .kg-stage { height: 372px; margin-top: 8px; }
-  .kg-stage__in { transform: scale(0.54); }
+  .kg-hero__card { border-radius: 20px; }
+  .kg-hero__copy { padding: 40px 24px 8px; gap: 28px; }
+  .kg-hero__title h1 { font-size: 46px; line-height: 1; letter-spacing: -0.05em; }
+  .kg-hero__title .eyebrow, .kg-head__title .eyebrow { font-weight: 600; line-height: 20px; }
+  .kg-hero__sub { padding-top: 6px; font-weight: 600; letter-spacing: -0.24px; }
+  .kg-hero__actions { flex-wrap: wrap; align-items: center; }
+  .kg-hero__actions .btn { height: 52px; padding-inline: 26px; }
+  /* 3 bao: bố cục theo code (hai bao bên nghiêng ∓8°, không vòng tròn lan toả) */
+  .kg-stage { flex: none; height: 380px; margin-top: 0; }
+  .kg-stage__in { inset: 0; left: 0; top: 0; width: auto; height: auto; margin: 0; transform: none; }
+  .kg-stage__ripple, .kg-stage__shadow { display: none; }
+  .kg-stage__in::before { content: ''; position: absolute; left: 50%; bottom: 72px; width: 78%; height: 46px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(15, 28, 18, 0.22), rgba(15, 28, 18, 0)); }
+  .kg-bag { display: block; width: auto; aspect-ratio: 572 / 900; top: auto; }
+  .kg-bag img, .kg-bag--s101 img, .kg-bag--s106 img, .kg-bag--s100 img { width: 100%; height: 100%; }
+  .kg-bag--s101 { left: 6%; bottom: 92px; height: 58%; transform: rotate(-8deg); }
+  .kg-bag--s106 { left: auto; right: 6%; bottom: 92px; height: 58%; transform: rotate(8deg); }
+  .kg-bag--s100 { left: 50%; bottom: 80px; height: 72%; transform: translateX(-50%); }
+
   .kg-compare, .kg-detail { padding-top: 64px; }
-  .kg-stack { gap: 24px; }
-  .kg-head__title h2 { font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: 0; }
+  .kg-stack { gap: 40px; }
+  .kg-head__title h2 { font-size: 30px; line-height: 36px; letter-spacing: -0.6px; }
+
   .kg-detail { padding-inline: 16px; }
-  .kg-detail__block { padding: 20px; border-radius: var(--radius-block); }
-  .kg-ptabs { display: flex; width: 100%; }
-  .kg-ptab { flex: 1 1 0; padding-inline: 8px; text-align: center; }
-  .kg-media { padding: 16px; }
-  .kg-media__img { min-height: 380px; }
-  .kg-content__title { font-size: var(--fs-h5); line-height: var(--lh-h5); letter-spacing: 0; }
-  .kg-pros li { width: 100%; }
+  .kg-detail__block { padding: 40px 20px; border-radius: 20px; }
+  .kg-detail__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; }
+  .kg-detail__std { font-size: 14px; line-height: 20px; color: var(--green-300); }
+  .kg-ptabs { flex-wrap: wrap; }
+  .kg-ptab { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; font-size: 14px; }
+  .kg-detail__body { flex-direction: column; min-height: 0; }
+  .kg-media { width: auto; height: 420px; }
+  .kg-media__img { min-height: 0; }
+  .kg-media__ripple { display: none; }
+  .kg-media__bag { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .kg-media__chip { padding: 6px 14px; font-size: 13px; line-height: 20px; }
+  .kg-btn { height: 46px; padding: 0 12px; font-size: 14px; }
+  .kg-media__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kg-content { padding: 12px 8px 0 16px; }
+  .kg-content__title { font-size: 28px; line-height: 34px; letter-spacing: -0.56px; }
+  .kg-subtab { font-size: 14px; }
+  .kg-pros li { font-size: 15px; line-height: 22px; }
   .kg-specs > div { flex-direction: column; gap: 2px; }
   .kg-specs dd { width: auto; }
   .kg-care { grid-template-columns: minmax(0, 1fr); }

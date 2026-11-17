@@ -44,7 +44,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 | 5 | Blog — tổng (`blog.html`) + bài viết chi tiết (`bai-viet.html`) | ✅ Đã dựng (desktop + mobile) — Figma `281:338` / `282:396`, mobile `376:843` / `376:844` |
 | 6 | D8 Filler (`d8-filler.html`) | ✅ Đã dựng (desktop + mobile) — Figma `284:440` / mobile `376:846` |
 | 7 | Vữa hiệu ứng VASA (`vua-hieu-ung.html`) | ✅ Đã dựng (desktop + mobile) — Figma `286:538` / mobile `376:847` |
-| 8 | Keo dán gạch chống thấm (`keo-dan-gach.html`) | ✅ Đã dựng (desktop khớp Figma 1440, cao 4137) — Figma `287:592` + bảng component `357:691`. **Chưa có frame mobile trong Figma** → mobile dựng theo code thiết kế (`Kdg-mobile.dc.html`) + quy ước các trang trước |
+| 8 | Keo dán gạch chống thấm (`keo-dan-gach.html`) | ✅ Đã dựng (desktop khớp Figma 1440, cao 4137) — Figma `287:592` + bảng component `357:691`. **Chưa có frame mobile trong Figma** → mobile dựng theo code thiết kế `Kdg-mobile.dc.html` (đã đối chiếu ảnh chụp 390) + phần dùng chung (header/CTA/footer) theo Figma các trang trước |
 | 9 | Tài liệu (`tai-lieu.html`, tên dự kiến) | Chờ design |
 
 ### Tên file trang dự kiến (CHƯA user xác nhận — link trong header/footer đang trỏ tới các tên này)
@@ -81,7 +81,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Tên menu: Figma footer "Vữa hiệu ứng / Giải pháp chống thấm", code "Vữa trắng phong cách / Keo dán gạch chống thấm" → dùng Figma ở footer, code ở dropdown.
 
 ### Quyết định tạm — Keo dán gạch (đợt 6, CHỜ user xác nhận)
-- **Mobile**: Figma chưa có → hero thu nhỏ khối 3 bao (scale 0.54) giữ nguyên bố cục desktop; bảng so sánh cuộn ngang (min-width 900); khối chi tiết xếp dọc; ô khổ gạch 2 cột; thẻ bảo quản 1 cột.
+- **Mobile** (theo code `Kdg-mobile.dc.html`, vì Figma chưa có): hero h1 46px, 3 bao hai bên nghiêng ∓8° không vòng tròn lan toả (desktop Figma thì đứng thẳng + có vòng); nút hero rộng theo chữ; bảng so sánh cuộn ngang (min-width 900, hàng 65px theo Figma desktop thay vì 60 của code); khối chi tiết padding 40/20, ô bao cao 420 không vòng tròn, có dòng "Chuẩn C1T · TCVN · ISO 13007" dưới pill (chỉ mobile — Figma desktop không có dòng này); ưu điểm 2 cột; ô khổ gạch 2 cột; thẻ bảo quản 1 cột. Tab "Chỉ tiêu kỹ thuật" mobile vẫn dạng hàng như Figma desktop (code mobile dùng chip + ô số) — chờ user chọn.
 - Nội dung 3 sản phẩm (TA-S100/S101/S106): Figma chỉ vẽ đủ biến thể S100 → S101/S106 lấy chữ từ code thiết kế, đối chiếu ảnh chụp Figma. Tab "Chỉ tiêu kỹ thuật" tạo từ dữ liệu bảng so sánh.
 - Bấm cột/pill sản phẩm → chi tiết đổi theo và về tab "Tổng quan". "Nhận bản mẫu" mở form dùng thử (chưa có lựa chọn "Keo dán gạch" trong form); "Liên hệ báo giá" → khối liên hệ cuối trang.
 - Khổ gạch vẽ theo tỷ lệ 100mm = 25px (lưới ô 25px), nội thất = xanh đậm, ngoại thất = xanh nhạt (theo Figma).

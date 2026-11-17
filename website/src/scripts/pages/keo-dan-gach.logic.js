@@ -17,6 +17,7 @@ export function initKeoDanGach() {
   const panel = detail.querySelector('[data-kdg-panel]');
   const bag = detail.querySelector('[data-kdg-bag]');
   const chip = detail.querySelector('[data-kdg-chip]');
+  const std = detail.querySelector('[data-kdg-std]');
   const name = detail.querySelector('[data-kdg-name]');
   let sel = 0;
   let sub = 0;
@@ -75,6 +76,7 @@ export function initKeoDanGach() {
     bag.src = p.img;
     bag.alt = `Bao keo ${p.code}`;
     chip.textContent = `25kg/bao · ${p.powder}`;
+    if (std) std.textContent = p.standard;
     name.textContent = p.name;
     panel.innerHTML = panelHTML();
   };
