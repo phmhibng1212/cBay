@@ -12,6 +12,12 @@ export const D8_PROJECTS = [
   { name: 'HUD Tower', tag: 'Toà nhà', loc: 'Lê Văn Lương — Hà Nội', img: asset('assets/images/d8/proj-hud-tower.webp') },
   { name: 'Toà T — Place Tower', tag: 'Toà nhà', loc: 'Lý Thường Kiệt — Hà Nội', img: asset('assets/images/d8/proj-place-tower.webp') },
   { name: 'Trụ sở đoàn Nghi Lễ Quân Đội', tag: 'Bộ tổng tham mưu', loc: 'Khương Đình — Hà Nội', img: asset('assets/images/d8/proj-doan-nghi-le-quan-doi.webp') },
+  // ---- Bổ sung theo yêu cầu user, lấy từ d8.com.vn/project_type/du-an-tieu-bieu (trang 1–2) ----
+  { name: 'Time Square Đà Nẵng', tag: 'Cao ốc', loc: 'Sơn Trà — Đà Nẵng', img: asset('assets/images/d8/proj-time-square-da-nang.webp'), pos: '62% 50%' },
+  { name: 'Nhà máy NEWEB', tag: 'Nhà máy', loc: 'KCN Đồng Văn III — Hà Nam', img: asset('assets/images/d8/proj-neweb-ha-nam.webp'), pos: '40% 50%' },
+  { name: 'Trống Đồng Palace Cảnh Hồ', tag: 'Nhà hàng', loc: 'Trường Trinh — Hà Nội', img: asset('assets/images/d8/proj-canh-ho-trong-dong.webp'), pos: '38% 50%' },
+  { name: 'Trường Pháp Alexandre Yersin', tag: 'Trường học', loc: 'Long Biên — Hà Nội', img: asset('assets/images/d8/proj-truong-phap-yersin.webp'), pos: '62% 50%' },
+  { name: 'Food Garden', tag: 'Nhà hàng', loc: 'TP Thanh Hóa', img: asset('assets/images/d8/proj-food-garden-thanh-hoa.webp'), pos: '30% 50%' },
 ];
 
 /** 4 lợi thế (tab + ảnh). Ảnh 1 từ Figma; ảnh 2–4 Figma không vẽ → dùng ảnh hero + ảnh công trình (như code thiết kế). */

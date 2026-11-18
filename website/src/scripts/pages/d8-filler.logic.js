@@ -16,7 +16,7 @@ function initProjects() {
   let idx = 0;
 
   track.innerHTML = D8_PROJECTS.map(
-    (p) => `<li class="d8-card"><span class="d8-card__media"><img class="cover" src="${p.img}" alt="${esc(p.name)}" loading="lazy"></span>
+    (p) => `<li class="d8-card"><span class="d8-card__media"><img class="cover" src="${p.img}" alt="${esc(p.name)}" loading="lazy"${p.pos ? ` style="object-position:${p.pos}"` : ''}></span>
       <span class="d8-card__cap"><strong class="d8-card__name">${esc(p.name)}</strong><span class="d8-card__meta">${esc(p.tag)} · ${esc(p.loc)}</span></span></li>`,
   ).join('');
   const cards = [...track.children];
@@ -28,7 +28,7 @@ function initProjects() {
   const render = () => {
     idx = Math.min(idx, maxIdx());
     track.style.transform = `translateX(${-idx * step()}px)`;
-    // Figma ghi "01 / 05" (7 dự án, hiện 3 thẻ/lượt) — giữ nguyên tổng cho cả mobile
+    // Figma ghi "01 / 05" khi có 7 dự án (hiện 3 thẻ/lượt); số bước = số thẻ − 2, nên thêm dự án thì tổng tự tăng
     const total = Math.max(1, cards.length - 2);
     count.textContent = `${pad(Math.min(idx + 1, total))} / ${pad(total)}`;
     prev.disabled = idx === 0;
