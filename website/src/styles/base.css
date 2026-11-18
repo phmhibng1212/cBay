@@ -5,6 +5,16 @@
 *::before,
 *::after { box-sizing: border-box; }
 
+/* Thanh cuộn theo màu thương hiệu: thanh mảnh, nền trong suốt, nút cuộn xanh (đọc được trên cả nền sáng và nền xanh đậm).
+   Các chỗ cần ẩn thanh cuộn (băng chuyền...) đặt scrollbar-width: none riêng nên vẫn thắng. */
+* { scrollbar-width: thin; scrollbar-color: var(--green-400) transparent; }
+@supports not (scrollbar-color: auto) { /* Safari cũ */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { border-radius: 8px; background: var(--green-400); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green-600); }
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
