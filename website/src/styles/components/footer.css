@@ -32,7 +32,6 @@
   font-family: var(--font-heading); font-weight: 700;
   font-size: min(64px, 14cqw); line-height: 80px; color: var(--white); white-space: nowrap;
 }
-.contact-cta__number:hover { color: var(--green-100); }
 
 @media (max-width: 1099px) {
   .contact-cta { padding: 40px var(--gutter); }
