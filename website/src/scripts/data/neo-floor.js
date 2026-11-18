@@ -37,11 +37,10 @@ export const LINES = [
     wear: '0.5mm',
     pack: '12 tấm/hộp (1,6692 m²/hộp)',
     weight: '17,50 kg/hộp',
-    // CHƯA CÓ ẢNH mẫu Marble Plus trong thiết kế -> hiển thị khung giữ chỗ (img: '')
     skus: [
-      { code: 'P0368', color: 'Đá Sồi Khói', pattern: 'Vân đá gỗ tự nhiên nhám', img: '' },
-      { code: 'P0369', color: 'Đá Vôi Tự nhiên', pattern: 'Vân đá tự nhiên nhám mềm', img: '' },
-      { code: 'P0370', color: 'Đá Sa Thạch Khói', pattern: 'Vân đá tự nhiên nhám mờ', img: '' },
+      { code: 'P0368', color: 'Đá Sồi Khói', pattern: 'Vân đá gỗ tự nhiên nhám', img: asset('assets/images/swatches/p0368.webp') },
+      { code: 'P0369', color: 'Đá Vôi Tự nhiên', pattern: 'Vân đá tự nhiên nhám mềm', img: asset('assets/images/swatches/p0369.webp') },
+      { code: 'P0370', color: 'Đá Sa Thạch Khói', pattern: 'Vân đá tự nhiên nhám mờ', img: asset('assets/images/swatches/p0370.webp') },
     ],
   },
 ];

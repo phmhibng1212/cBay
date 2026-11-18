@@ -100,7 +100,14 @@
 .d8-video__text { width: 380px; flex: none; color: var(--green-100); }
 .d8-video__player { position: relative; display: block; height: 720px; border-radius: var(--radius-media); overflow: clip; background: var(--green-800); }
 .d8-video__player .cover { transition: transform 0.8s var(--ease-out); }
+/* Video YouTube (Shorts dọc 9:16): bấm ▶ mới nạp trình phát (có thanh điều khiển của YouTube); ảnh poster mờ làm nền hai bên */
+.d8-video__start { position: absolute; inset: 0; z-index: 2; display: block; width: 100%; cursor: pointer; }
+.d8-video__start:focus-visible { outline: 3px solid var(--green-300); outline-offset: -6px; border-radius: inherit; }
 .d8-video__player:hover .cover { transform: scale(1.03); }
+.d8-video__player { transition: height var(--dur-base) var(--ease-out); }
+.d8-video__player.is-playing .d8-video__bg { transform: scale(1.12); filter: blur(28px) brightness(0.55); transition: none; }
+.d8-video__player.is-playing .d8-video__shade { display: none; }
+.d8-video__frame { position: absolute; z-index: 3; top: 0; bottom: 0; left: 50%; height: 100%; aspect-ratio: 9 / 16; max-width: 100%; transform: translateX(-50%); border: 0; background: #000; animation: fadeIn 0.4s ease; }
 .d8-video__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(102, 102, 102, 0.5)); }
 .d8-video__play { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 104px; height: 104px; margin: -52px 0 0 -52px; border-radius: 50%; background: var(--paper); transition: transform var(--dur-base) var(--ease-out); }
 .d8-video__player:hover .d8-video__play { transform: scale(1.08); }
@@ -166,6 +173,7 @@
   .d8-video__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .d8-video__title, .d8-video__text { width: auto; flex: none; }
   .d8-video__player { height: 480px; }
+  .d8-video__player.is-playing { height: 640px; }
   .d8-specs, .d8-docs { padding-top: 96px; }
   .d8-specs__grid, .d8-docs__grid { flex-direction: column; gap: 32px; }
   .d8-specs__title { position: static; width: auto; }
@@ -217,6 +225,7 @@
   .d8-video__head { gap: 24px; min-height: 0; }
   .d8-video__title { height: auto; font-size: var(--fs-h4); line-height: var(--lh-h4); letter-spacing: 0; }
   .d8-video__player { height: 179px; border-radius: var(--radius-card); }
+  .d8-video__player.is-playing { height: 560px; }
   .d8-video__play { width: 78px; height: 78px; margin: -39px 0 0 -39px; }
   .d8-video__play img { width: 16px; height: 16px; }
 

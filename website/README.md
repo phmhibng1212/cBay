@@ -65,7 +65,6 @@ website/
 ## Những chỗ dev cần nối tiếp (TODO)
 
 - **Gửi form**: `src/scripts/modules/lead.js` → điền `LEAD_ENDPOINT`. Hiện chưa gửi dữ liệu đi đâu (giống landing cũ).
-- **Ảnh Marble Plus**: thiết kế chưa có ảnh, đang hiện khung giữ chỗ (`src/scripts/data/neo-floor.js`).
 - **Bài viết Blog**: dữ liệu ở `src/scripts/data/blog.js`. Hiện chỉ có **1 trang chi tiết mẫu** (`bai-viet.html`, bài DeMont Cafe) nên mọi thẻ bài viết đều trỏ về trang này (`POST_URL`). Khi có CMS/nhiều bài: sinh trang theo bài (hoặc đọc `?bai=`) và thay `POST_URL` bằng đường dẫn từng bài.
 - **Bản xem thử gộp** (`npm run build:preview`): ảnh webp lớn được thu nhỏ nhẹ (cần ImageMagick `convert`, nếu thiếu thì dùng ảnh gốc) để file < 16MB. Chỉ ảnh hưởng bản xem thử.
 - **File tài liệu PDF** (trang D8): link đang để `#` (`data-doc`) — dev gắn đường dẫn file thật. Video hướng dẫn D8 mở link Google Drive trong code thiết kế.

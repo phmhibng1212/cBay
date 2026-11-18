@@ -58,7 +58,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Popup tự bật sau 10s: **tắt** (code thiết kế mặc định `popupMode = tab`).
 - Figma accordion D8 lặp chữ "Filler" 2 lần → đã bỏ lần lặp. Số thứ tự 01–04 chỉ có ở mục D8 trong Figma → đang hiện cho mục đang mở.
 - Slide hero 2 trong Figma có nút "trước" màu xanh (khác slide 1,3) → dùng thống nhất: trước = trắng, sau = xanh.
-- Ảnh mẫu **Marble Plus** chưa có → khung giữ chỗ.
+- Ảnh mẫu **Marble Plus**: user đã gửi 3 ảnh → gán theo thứ tự gửi: P0368 (Đá Sồi Khói) = ảnh xám sáng, P0369 (Đá Vôi Tự nhiên) = ảnh be, P0370 (Đá Sa Thạch Khói) = ảnh nâu xám. Cần user xác nhận đúng thứ tự mã.
 - Trang Khách hàng: tab "Resort" Figma ghi 4 nhưng chỉ có 3 card Resort (và tổng 16) → số trên tab được TỰ ĐẾM từ danh sách (Resort = 3). Code thiết kế có thêm "Homestay Phố đi bộ Mộc Châu" (Resort) — Figma không có nên chưa đưa vào.
 - Header: tab "Tài liệu - Catalog" đã ĐỔI thành "Khách hàng" (link `khach-hang.html`, cả menu desktop, menu mobile và cột "Nội dung" ở footer) theo yêu cầu user. Figma header vẫn ghi "Sản phẩm – Giải pháp" (gạch dài) ở trang Khách hàng/Về chúng tôi, Trang chủ ghi "-" → dùng bản Trang chủ.
 - Nút "Tư vấn cho công trình của bạn" (hero Khách hàng) → mở form liên hệ. "Xem dự án" → cuộn tới danh sách.
@@ -69,7 +69,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - **Blog chi tiết mobile**: Figma mobile bị CẮT do frame cố định chiều cao (tiêu đề 3 dòng bị cụt, khối meta "Đăng bởi/Ngày đăng…" ẩn, 3 ô thống kê bị nén 95px) → ĐÃ hiển thị đầy đủ theo ý đồ (meta như desktop, ô thống kê đủ padding, nên trang dài hơn Figma ~250px). Cần user xác nhận.
 - Blog mobile: thumbnail dự án (5 ảnh) Figma không vẽ trạng thái chọn → giữ như desktop (mờ 55% + viền xanh cho ảnh đang chọn).
 - **D8 (đợt 5)**: thứ tự mục theo Figma (Hero → Dự án → Tính năng → Video → Thông số → Tài liệu → Liên quan; code thiết kế xếp khác). Số liệu theo Figma ("1L & 5L", 1 tài liệu PDF) thay vì code ("5L ~4,5 kg", 2 tài liệu). Chấm tròn "Chứng nhận" trong pill Figma để trống (nền green-100) — code có ảnh chứng nhận nhỏ.
-- **D8**: popup "Chứng nhận Bộ Xây Dựng" (bấm pill) Figma chưa có → làm theo code (ảnh chứng nhận + chú thích). Video: bấm mở link Google Drive tab mới (code). Tài liệu PDF: link `#` chờ file thật.
+- **D8**: popup "Chứng nhận Bộ Xây Dựng" (bấm pill) Figma chưa có → làm theo code (ảnh chứng nhận + chú thích). Video "Xem D8 Filler thi công thực tế": theo yêu cầu user thay bằng YouTube Shorts `HJjIyGljTRU` (dọc 9:16) — bấm ▶ mới nạp iframe youtube-nocookie có thanh điều khiển; ảnh poster làm nền mờ hai bên; khung cao hơn khi phát (720/640/560). Chưa kiểm được video thật (môi trường không ra được YouTube) — cần user bấm thử, nhớ video phải để chế độ cho phép nhúng. Tài liệu PDF: link `#` chờ file thật.
 - **D8 Tính năng**: thanh tiến trình chạy 5s rồi tự sang mục kế, dừng khi rê chuột (code). Figma không có số 01–04 và không có bộ đếm trên ảnh → không làm. Ảnh mục 2–4 Figma không vẽ → ảnh hero + ảnh Masteri, HUD (như code).
 - **D8 carousel**: mỗi lần đi 1 thẻ; nhãn "01 / 05" cố định tổng 5 (Figma) cả trên mobile.
 - **VASA (đợt 5)**: Figma "quạt mẫu" dùng nhãn Vân hoa / Vân xước / Vân khối / Vân nhám / Travertine / Vân đá / Tường đất / Rơm trấu (khác tên trong code: Nhám đặc, Giả gạch, Vỏ cây…) → theo Figma, kèm ảnh texture Figma. Mặc định chọn "Vân hoa".

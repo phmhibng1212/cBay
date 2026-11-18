@@ -102,9 +102,31 @@ function initFeatures() {
   select(0);
 }
 
+/** Video YouTube (Shorts): chỉ nạp iframe khi bấm ▶ (nhẹ trang, không gọi YouTube lúc tải); có sẵn thanh điều khiển của YouTube. */
+function initVideo() {
+  const player = document.querySelector('[data-video-id]');
+  if (!player) return;
+  const start = player.querySelector('.d8-video__start');
+  start?.addEventListener('click', () => {
+    const id = player.dataset.videoId;
+    const frame = document.createElement('iframe');
+    frame.className = 'd8-video__frame';
+    frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=1&rel=0&playsinline=1&modestbranding=1&hl=vi`;
+    frame.title = player.dataset.videoTitle || 'Video';
+    frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    player.classList.add('is-playing');
+    start.remove();
+    player.append(frame);
+    frame.focus();
+  });
+}
+
 export function initD8() {
   initProjects();
   initFeatures();
+  initVideo();
   // File tài liệu chưa có link thật (dev gắn vào sau) -> không nhảy lên đầu trang
   document.querySelectorAll('[data-doc]').forEach((a) => {
     if (a.getAttribute('href') === '#') a.addEventListener('click', (e) => e.preventDefault());
