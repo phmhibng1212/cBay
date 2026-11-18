@@ -28,6 +28,8 @@
   padding-left: 48px; box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.3);
   color: var(--green-100); min-width: 0; container-type: inline-size; /* số ĐT co theo bề rộng cột, không bị cắt khi thu nhỏ màn */
 }
+/* Nút Gọi hotline chỉ có ý nghĩa trên điện thoại/máy tính bảng (≤1099px); desktop ẩn vì máy tính không gọi được */
+@media (min-width: 1100px) { .contact-cta__call { display: none; } }
 .contact-cta__number {
   font-family: var(--font-heading); font-weight: 700;
   font-size: min(64px, 14cqw); line-height: 80px; color: var(--white); white-space: nowrap;
