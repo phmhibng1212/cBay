@@ -80,19 +80,20 @@
   display: flex; flex-direction: column; gap: 24px; max-width: 1728px; margin-inline: auto; padding: 24px;
   background: var(--green-950); border-radius: var(--radius-block-lg); overflow: clip;
 }
-.ab-vision__row { display: flex; gap: 24px; min-height: 480px; }
+.ab-vision__row { display: flex; justify-content: space-between; gap: 24px; min-height: 480px; }
 .ab-vision__img { position: relative; flex: 0 0 40.93%; margin: 0; border-radius: 18px; overflow: clip; background: var(--green-800); }
 .ab-vision__img img { object-position: var(--pos, 50% 50%); }
-.ab-vision__text { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 32px; padding: 48px; }
+/* Lưới 2 cột thẳng hàng: cột chữ rộng bằng cột ảnh (cùng 40.93%) -> chữ "Tầm nhìn" thẳng với ảnh "Sứ mệnh" bên dưới và ngược lại */
+.ab-vision__text { flex: 0 0 40.93%; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 32px; padding: 48px 0; }
 .ab-vision__title { font-family: var(--font-heading); font-weight: 700; font-size: var(--fs-h1); line-height: var(--lh-h1); color: var(--green-400); }
-.ab-vision__body { display: flex; flex-direction: column; gap: 16px; max-width: 640px; color: var(--white); }
+.ab-vision__body { display: flex; flex-direction: column; gap: 16px; max-width: 100%; color: var(--white); }
 .ab-vision__body .soft { color: var(--green-100); }
 @media (max-width: 1099px) {
   .ab-vision { padding-top: 80px; }
   .ab-vision__row { flex-direction: column-reverse; min-height: 0; }
   .ab-vision__row--reverse { flex-direction: column; }
   .ab-vision__img { flex: none; height: 360px; }
-  .ab-vision__text { padding: 24px; }
+  .ab-vision__text { flex: none; padding: 24px; }
   .ab-vision__title { font-size: 48px; line-height: 56px; }
 }
 @media (max-width: 560px) {
@@ -106,7 +107,8 @@
 
 /* ---------- SẢN PHẨM LIÊN QUAN ---------- */
 .ab-eco { padding-block: 80px; } /* Figma: section p80 (cả dưới) */
-.ab-eco .container { display: flex; flex-direction: column; gap: 40px; }
+.ab-eco { padding-inline: 16px; }
+.ab-eco .container { display: flex; flex-direction: column; gap: 40px; max-width: 1408px; padding-inline: 24px; } /* thẳng hàng với khung xanh đậm bên trên (lề 16 + đệm 24 = mép ảnh) */
 .ab-eco__list { display: flex; gap: 20px; }
 .eco-card { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
 .eco-card__media { position: relative; height: 260px; border-radius: var(--radius-sm); background: var(--green-100); overflow: clip; }
@@ -127,7 +129,8 @@
 }
 /* Mobile: băng chuyền vuốt ngang, thẻ 265px (Figma 06 – Sản phẩm liên quan) */
 @media (max-width: 560px) {
-  .ab-eco .container { gap: 24px; }
+  .ab-eco { padding-inline: 0; }
+  .ab-eco .container { gap: 24px; padding-inline: var(--gutter); }
   .ab-eco__list { flex-wrap: nowrap; gap: 12px; margin-inline: -16px; padding-inline: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; scrollbar-width: none; }
   .ab-eco__list::-webkit-scrollbar { display: none; }
   .eco-card { flex: 0 0 265px; scroll-snap-align: start; }
