@@ -88,6 +88,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - Nội dung 3 sản phẩm (TA-S100/S101/S106): Figma chỉ vẽ đủ biến thể S100 → S101/S106 lấy chữ từ code thiết kế, đối chiếu ảnh chụp Figma. Tab "Chỉ tiêu kỹ thuật" tạo từ dữ liệu bảng so sánh.
 - Bấm cột/pill sản phẩm → chi tiết đổi theo và về tab "Tổng quan". "Nhận bản mẫu" mở form dùng thử (chưa có lựa chọn "Keo dán gạch" trong form); "Liên hệ báo giá" → khối liên hệ cuối trang.
 - Khổ gạch vẽ theo tỷ lệ 100mm = 25px (lưới ô 25px), nội thất = xanh đậm, ngoại thất = xanh nhạt (theo Figma).
+- Vòng tròn sau bao keo ở khối chi tiết (desktop/tablet): theo yêu cầu user, 3 vòng toả ra từ tâm rồi mờ dần như sóng (4.8s, lệch pha); giảm chuyển động thì giữ 3 vòng tĩnh như Figma. Vòng ở hero Keo dán gạch và ở thẻ VASA chưa làm sóng (CHỜ user xác nhận có muốn đồng bộ không).
 - Bao keo S100/S101/S106 lấy ảnh từ Figma; hero 3 bao đứng thẳng (Figma không xoay).
 - Link "Sản phẩm liên quan": D8 + Vữa VASA + Neo Floor (thẻ Neo cao hơn trên mobile).
 

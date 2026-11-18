@@ -72,7 +72,18 @@
 .kg-detail__body { display: flex; align-items: stretch; gap: 24px; min-height: 580px; }
 .kg-media { flex: none; width: 434.67px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px; border-radius: var(--radius-block); background: rgba(253, 253, 252, 0.06); }
 .kg-media__img { position: relative; flex: 1 1 0; min-height: 0; width: 100%; display: grid; place-items: center; }
-.kg-media__ripple { position: absolute; left: calc(50% - 0.34px); top: 50%; width: 380px; height: 380px; max-width: none; transform: translate(-50%, -50%); }
+/* Vòng tròn sau bao keo: 3 vòng toả ra từ tâm rồi mờ dần như sóng (giảm chuyển động: giữ 3 vòng tĩnh như Figma) */
+.kg-media__ripple { position: absolute; left: calc(50% - 0.34px); top: 50%; width: 380px; height: 380px; transform: translate(-50%, -50%); pointer-events: none; }
+.kg-media__ripple i { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1.5px solid var(--green-400); transform: translate(-50%, -50%); }
+.kg-media__ripple i:nth-child(1) { width: 380px; height: 380px; }
+.kg-media__ripple i:nth-child(2) { width: 260px; height: 260px; }
+.kg-media__ripple i:nth-child(3) { width: 140px; height: 140px; }
+@keyframes kgWave { 0% { transform: translate(-50%, -50%) scale(0.45); opacity: 0; } 25% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1.08); opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .kg-media__ripple i { width: 380px !important; height: 380px !important; opacity: 0; animation: kgWave 4.8s cubic-bezier(0.25, 0.6, 0.35, 1) infinite; }
+  .kg-media__ripple i:nth-child(2) { animation-delay: 1.6s; }
+  .kg-media__ripple i:nth-child(3) { animation-delay: 3.2s; }
+}
 .kg-media__bag { position: relative; width: 250px; height: 380px; object-fit: contain; border-radius: 8px; filter: drop-shadow(0 24px 32px rgba(0, 0, 0, 0.4)); animation: fadeIn 0.4s ease; }
 .kg-media__chip { padding: 8px 14px; border-radius: var(--radius-pill); background: rgba(253, 253, 252, 0.12); font-weight: 600; font-size: 14px; line-height: 20px; }
 .kg-media__actions { display: flex; gap: 8px; width: 100%; }
