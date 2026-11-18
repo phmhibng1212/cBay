@@ -2,11 +2,11 @@
    FOOTER + CTA LIÊN HỆ (khối xanh trước footer)
    ========================================================================== */
 /* ---------- Khối "Liên hệ với chúng tôi" ---------- */
-.contact-cta { padding: 40px 80px; }
+.contact-cta { padding: 40px var(--gutter); }
 .contact-cta__box {
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 48px; align-items: center;
-  max-width: 1728px; margin-inline: auto;
+  max-width: calc(var(--page-max) - 2 * var(--gutter)); margin-inline: auto; /* cùng bề rộng nội dung (1280) -> thẳng hàng với các khối bên trên và footer, không rộng hơn khi màn lớn */
   height: 432px; grid-template-rows: 288px; padding: 72px 64px; /* Figma: h432, hàng nội dung 288 */
   background: var(--green-600); border-radius: var(--radius-block); color: var(--white);
 }
@@ -59,7 +59,7 @@
   background: var(--green-950); border-top: 1px solid var(--ink-100); color: var(--white);
   padding: 64px var(--gutter) 40px;
 }
-.site-footer__inner { max-width: var(--page-max); margin-inline: auto; display: flex; flex-direction: column; gap: 48px; }
+.site-footer__inner { max-width: calc(var(--page-max) - 2 * var(--gutter)); margin-inline: auto; display: flex; flex-direction: column; gap: 48px; }
 .site-footer__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; }
 .site-footer__brand { flex: 1 0 0; max-width: 500px; display: flex; flex-direction: column; gap: 16px; color: var(--ink-200); }
 .site-footer__brand img { width: 91.86px; height: 50px; }
