@@ -102,32 +102,27 @@ function initFeatures() {
   select(0);
 }
 
-/** Video YouTube (Shorts): chỉ nạp iframe khi bấm ▶ (nhẹ trang, không gọi YouTube lúc tải); có sẵn thanh điều khiển của YouTube. */
+/** Video hướng dẫn (MP4 dọc 9:16, đặt ở public/assets/video): chỉ nạp khi bấm ▶; dùng trình phát có sẵn của trình duyệt (phát/dừng, tua, âm lượng, toàn màn hình). */
 function initVideo() {
-  const player = document.querySelector('[data-video-id]');
+  const player = document.querySelector('[data-video-src]');
   if (!player) return;
   const start = player.querySelector('.d8-video__start');
   start?.addEventListener('click', () => {
-    const id = player.dataset.videoId;
-    const frame = document.createElement('iframe');
-    frame.className = 'd8-video__frame';
-    frame.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&controls=1&rel=0&playsinline=1&modestbranding=1&hl=vi`;
-    frame.title = player.dataset.videoTitle || 'Video';
-    frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen';
-    frame.allowFullscreen = true;
-    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    const video = document.createElement('video');
+    video.className = 'd8-video__frame';
+    video.src = player.dataset.videoSrc;
+    video.poster = player.dataset.videoPoster || '';
+    video.controls = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.setAttribute('controlslist', 'nodownload');
+    video.setAttribute('aria-label', player.dataset.videoTitle || 'Video');
     player.classList.add('is-playing');
     start.remove();
-    player.append(frame);
-    // Lối thoát: một số môi trường (xem thử trong khung bảo mật, mạng chặn YouTube, video tắt nhúng) không hiện được trình phát
-    const out = document.createElement('a');
-    out.className = 'd8-video__out';
-    out.href = `https://www.youtube.com/shorts/${id}`;
-    out.target = '_blank';
-    out.rel = 'noopener noreferrer';
-    out.textContent = 'Không xem được? Mở trên YouTube ↗';
-    player.append(out);
-    frame.focus();
+    player.append(video);
+    video.play().catch(() => {}); // trình duyệt chặn tự phát -> người dùng bấm ▶ trên thanh điều khiển
+    video.focus();
   });
 }
 

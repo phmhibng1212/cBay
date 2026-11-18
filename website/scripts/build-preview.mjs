@@ -11,7 +11,7 @@
  *   cbay-preview.fragment.html  bản bỏ <html>/<head>/<body> (dùng cho Artifact)
  * Đây là bản để XEM; bản giao dev vẫn là site nhiều trang (npm run build).
  */
-import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync, copyFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { resolve, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -146,7 +146,12 @@ html = inlineAssets(html)
   .replace('</head>', `<style>\n${css}\n</style>\n</head>`)
   .replace('</body>', `<script type="module">\n${js}\n</script>\n</body>`);
 
+// Video MP4 (~7MB) không nhúng được vào 1 file (giới hạn 16MB) -> để file riêng cạnh trang xem thử, link tương đối
+html = html.replaceAll('/assets/video/', './assets/video/');
 writeFileSync(out('cbay-preview.html'), html);
+mkdirSync(out('assets/video'), { recursive: true });
+copyFileSync(resolve(root, 'public/assets/video/d8-thi-cong.mp4'), out('assets/video/d8-thi-cong.mp4'));
+copyFileSync(resolve(root, 'public/assets/video/d8-thi-cong-poster.webp'), out('assets/video/d8-thi-cong-poster.webp'));
 
 // ---- 5. Bản fragment cho Artifact ----
 const head = html.match(/<head>([\s\S]*?)<\/head>/)[1];

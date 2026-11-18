@@ -66,5 +66,6 @@ website/
 
 - **Gửi form**: `src/scripts/modules/lead.js` → điền `LEAD_ENDPOINT`. Hiện chưa gửi dữ liệu đi đâu (giống landing cũ).
 - **Bài viết Blog**: dữ liệu ở `src/scripts/data/blog.js`. Hiện chỉ có **1 trang chi tiết mẫu** (`bai-viet.html`, bài DeMont Cafe) nên mọi thẻ bài viết đều trỏ về trang này (`POST_URL`). Khi có CMS/nhiều bài: sinh trang theo bài (hoặc đọc `?bai=`) và thay `POST_URL` bằng đường dẫn từng bài.
+- **Video D8**: `public/assets/video/d8-thi-cong.mp4` (+ poster). Nếu đổi video, giữ tỉ lệ dọc 9:16 (khung phát dựa theo tỉ lệ này) và nén cho web (H.264, ≤ ~8MB).
 - **Bản xem thử gộp** (`npm run build:preview`): ảnh webp lớn được thu nhỏ nhẹ (cần ImageMagick `convert`, nếu thiếu thì dùng ảnh gốc) để file < 16MB. Chỉ ảnh hưởng bản xem thử.
 - **File tài liệu PDF** (trang D8): link đang để `#` (`data-doc`) — dev gắn đường dẫn file thật. Video hướng dẫn D8 mở link Google Drive trong code thiết kế.
