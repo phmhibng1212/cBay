@@ -3,7 +3,7 @@
  *
  * TODO(dev): hiện CHƯA gửi dữ liệu đi đâu (giống bản landing cũ và code thiết kế).
  * Khi có API/CRM/Google Sheet, điền URL vào LEAD_ENDPOINT — payload là JSON:
- *   { form: 'trial' | 'contact', page, product?, scale?, name, phone, area, job, at }
+ *   { form: 'trial' | 'contact', page, product?, need?, name, phone, area, job?, at }
  */
 export const LEAD_ENDPOINT = null;
 

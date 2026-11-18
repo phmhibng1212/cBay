@@ -49,17 +49,21 @@
       <h2 class="visually-hidden" id="contact-form-title">Liên hệ với cBay</h2>
       <label class="field"><span class="field__label">Tên</span><input class="field__input" name="name" type="text" placeholder="Nguyễn Văn A" autocomplete="name" required></label>
       <label class="field"><span class="field__label">Số điện thoại</span><input class="field__input" name="phone" type="tel" inputmode="tel" placeholder="09xx xxx xxx" autocomplete="tel" required pattern="[0-9 .+\-]{9,15}"></label>
-      <label class="field"><span class="field__label">Khu vực</span><input class="field__input" name="area" type="text" placeholder="Hà Nội" autocomplete="address-level1"></label>
-      <label class="field"><span class="field__label">Công việc/Dự án</span><input class="field__input" name="job" type="text" placeholder="Công việc hiện tại của bạn"></label>
-      <fieldset class="choice">
-        <legend class="choice__legend">Quy mô dự án</legend>
-        <div class="choice__list">
-          <label class="chip"><input type="radio" name="scale" value="van-phong" checked><span>Tòa nhà văn phòng</span></label>
-          <label class="chip"><input type="radio" name="scale" value="thuong-mai"><span>Trung tâm thương mại</span></label>
-          <label class="chip"><input type="radio" name="scale" value="nha-o"><span>Nhà ở</span></label>
-          <label class="chip"><input type="radio" name="scale" value="khac"><span>Khác</span></label>
+      <label class="field"><span class="field__label">Khu vực/Địa chỉ</span><input class="field__input" name="area" type="text" placeholder="Hà Nội" autocomplete="address-level1"></label>
+      <div class="field">
+        <span class="field__label" id="need-label">Nhu cầu sử dụng</span>
+        <div class="select" data-select>
+          <input type="hidden" name="need" value="">
+          <button type="button" class="field__input select__btn" id="need-btn" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="need-label need-btn" data-select-btn>
+            <span class="select__value" data-select-value data-placeholder="Chọn nhu cầu sử dụng">Chọn nhu cầu sử dụng</span>
+            <img class="select__chev" src="/assets/icons/chevron-down.svg" alt="" width="20" height="20">
+          </button>
+          <ul class="select__list" role="listbox" aria-labelledby="need-label" tabindex="-1" hidden data-select-list>
+            <li role="option" data-value="cong-trinh">Dùng cho công trình</li>
+            <li role="option" data-value="nha-o">Dùng cho nhà ở</li>
+          </ul>
         </div>
-      </fieldset>
+      </div>
       <button type="submit" class="form__submit">Liên hệ ngay</button>
     </form>
     <div class="form-success" data-form-success hidden>

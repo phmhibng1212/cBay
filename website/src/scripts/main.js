@@ -8,10 +8,12 @@ import { initHeader } from './modules/header.js';
 import { initModals } from './modules/modal.js';
 import { initForms } from './modules/forms.js';
 import { initMarquee } from './modules/marquee.js';
+import { initSelects } from './modules/select.js';
 
 export function initSite() {
   initHeader();
   initModals();
+  initSelects();
   initForms();
   initReveal();
   initMarquee();
