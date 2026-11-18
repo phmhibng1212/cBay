@@ -119,6 +119,14 @@ function initVideo() {
     player.classList.add('is-playing');
     start.remove();
     player.append(frame);
+    // Lối thoát: một số môi trường (xem thử trong khung bảo mật, mạng chặn YouTube, video tắt nhúng) không hiện được trình phát
+    const out = document.createElement('a');
+    out.className = 'd8-video__out';
+    out.href = `https://www.youtube.com/shorts/${id}`;
+    out.target = '_blank';
+    out.rel = 'noopener noreferrer';
+    out.textContent = 'Không xem được? Mở trên YouTube ↗';
+    player.append(out);
     frame.focus();
   });
 }

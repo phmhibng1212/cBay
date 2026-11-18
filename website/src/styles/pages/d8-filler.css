@@ -107,6 +107,8 @@
 .d8-video__player { transition: height var(--dur-base) var(--ease-out); }
 .d8-video__player.is-playing .d8-video__bg { transform: scale(1.12); filter: blur(28px) brightness(0.55); transition: none; }
 .d8-video__player.is-playing .d8-video__shade { display: none; }
+.d8-video__out { position: absolute; z-index: 4; right: 16px; bottom: 16px; padding: 8px 14px; border-radius: var(--radius-pill); background: rgba(15, 28, 18, 0.78); color: var(--white); font-weight: 800; font-size: var(--fs-small); line-height: var(--lh-small); backdrop-filter: blur(6px); transition: background-color var(--dur-fast); }
+.d8-video__out:hover { background: var(--green-600); }
 .d8-video__frame { position: absolute; z-index: 3; top: 0; bottom: 0; left: 50%; height: 100%; aspect-ratio: 9 / 16; max-width: 100%; transform: translateX(-50%); border: 0; background: #000; animation: fadeIn 0.4s ease; }
 .d8-video__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(102, 102, 102, 0.5)); }
 .d8-video__play { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 104px; height: 104px; margin: -52px 0 0 -52px; border-radius: 50%; background: var(--paper); transition: transform var(--dur-base) var(--ease-out); }
