@@ -147,9 +147,11 @@ html = inlineAssets(html)
   .replace('</body>', `<script type="module">\n${js}\n</script>\n</body>`);
 
 // Video MP4 (~7MB) không nhúng được vào 1 file (giới hạn 16MB) -> để file riêng cạnh trang xem thử, link tương đối
-html = html.replaceAll('/assets/video/', './assets/video/');
+html = html.replaceAll('/assets/video/', './assets/video/').replaceAll('/assets/docs/', './assets/docs/');
 writeFileSync(out('cbay-preview.html'), html);
 mkdirSync(out('assets/video'), { recursive: true });
+mkdirSync(out('assets/docs'), { recursive: true });
+copyFileSync(resolve(root, 'public/assets/docs/cBay-Catalogue-D8-Filler.pdf'), out('assets/docs/cBay-Catalogue-D8-Filler.pdf'));
 copyFileSync(resolve(root, 'public/assets/video/d8-thi-cong.mp4'), out('assets/video/d8-thi-cong.mp4'));
 copyFileSync(resolve(root, 'public/assets/video/d8-thi-cong-poster.webp'), out('assets/video/d8-thi-cong-poster.webp'));
 
