@@ -86,3 +86,17 @@ document.addEventListener('click', (e) => {
   clearTimeout(toast._t);
   toast._t = setTimeout(() => toast.remove(), 2600);
 });
+
+// Chỉ bản xem thử trên claude.ai (Artifact): khung xem không cho trang tự tải file bằng link `download`,
+// nên đi qua tính năng "downloads" của Artifact (hiện hộp xác nhận rồi lưu). Website thật không cần đoạn này.
+document.addEventListener('click', async (e) => {
+  const link = e.target.closest('a[download]');
+  if (!link || link.dataset.native || typeof window.claude?.use !== 'function') return;
+  e.preventDefault(); // phải chặn ngay (đồng bộ), trước khi await
+  const downloads = await window.claude.use('downloads').catch(() => null);
+  if (!downloads) { link.dataset.native = '1'; link.click(); delete link.dataset.native; return; } // không có -> tải kiểu trình duyệt
+  try {
+    const blob = await (await fetch(link.href)).blob();
+    await downloads.save({ filename: link.getAttribute('download') || 'tai-lieu.pdf', data: blob });
+  } catch { /* người xem từ chối / lỗi -> bỏ qua */ }
+}, true);
