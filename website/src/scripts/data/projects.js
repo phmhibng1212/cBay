@@ -26,6 +26,7 @@ export const PROJECTS = [
   { name: 'HUD Tower', type: 'Office', tags: [OFF], loc: 'Lê Văn Lương — Hà Nội', product: D8, img: asset('assets/images/projects/list/hud-tower.webp') },
   { name: 'Wine Tapas 99/81', type: 'Nhà hàng', tags: [FNB], loc: 'Việt Nam', product: VASA, img: asset('assets/images/projects/list/wine-tapas-99-81.webp') },
   { name: 'The View Phú Quý', type: 'Resort', tags: [RES], loc: 'Đảo Phú Quý', product: VASA, img: asset('assets/images/projects/list/the-view-phu-quy.webp') },
+  { name: 'Ciputra Hà Nội', type: 'Khu đô thị', tags: [KEY, URB], loc: 'Tây Hồ — Hà Nội', product: D8, img: asset('assets/images/projects/list/ciputra-ha-noi.webp') },
   { name: 'Masteri Ocean Park', type: 'Công trình', tags: [KEY, URB], loc: 'Ocean Park Gia Lâm — Hà Nội', product: D8, img: asset('assets/images/projects/list/masteri-ocean-park.webp') },
   { name: 'Alida Kafe', type: 'Coffee Shop', tags: [FNB], loc: 'Việt Nam', product: VASA, img: asset('assets/images/projects/list/alida-kafe.webp') },
   { name: 'Toà T — Place Tower', type: 'Office', tags: [OFF], loc: 'Lý Thường Kiệt — Hà Nội', product: D8, img: asset('assets/images/projects/list/place-tower.webp') },
