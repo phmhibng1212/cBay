@@ -200,10 +200,8 @@
   .acc-item__panel { left: 24px; right: 24px; bottom: 24px; }
   .acc-item__title { font-size: 26px; line-height: 34px; }
 }
-/* Mobile: accordion dọc, mục thu gọn cao 84, mục mở cao 440 */
-@media (max-width: 560px) {
-  .products__head { gap: 16px; align-items: flex-start; flex-direction: column; }
-  .products__head .title-section { margin-top: 16px; }
+/* Accordion dọc (như mobile) từ 767px trở xuống: 4 cột ngang quá hẹp, chữ bị cắt. Mục thu gọn cao 84, mục mở cao 440 */
+@media (max-width: 767px) {
   .accordion { flex-direction: column; gap: 8px; height: auto; margin-top: 24px; }
   .acc-item { flex: none; height: 84px; border-radius: var(--radius-card); transition: height 0.55s var(--ease-out); }
   .acc-item.is-active { flex: none; height: 440px; }
@@ -216,6 +214,11 @@
   .acc-item__panel { left: 20px; right: 20px; bottom: 20px; gap: 14px; }
   .acc-item__title { font-size: var(--fs-h5); line-height: var(--lh-h5); }
   .acc-item__num { display: none; }
+}
+/* Mobile (≤560) */
+@media (max-width: 560px) {
+  .products__head { gap: 16px; align-items: flex-start; flex-direction: column; }
+  .products__head .title-section { margin-top: 16px; }
 }
 
 /* ---------- 5. NEO FLOOR (khối xanh nhạt) ---------- */

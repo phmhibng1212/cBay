@@ -87,6 +87,7 @@ Build website **cBay** mới, **nhiều trang con (tổng cộng 9 trang)** từ
 - **Tiêu đề dự án bớt lặp** (yêu cầu user): Trang chủ "Các công trình tiêu biểu" → "Dự án tiêu biểu", câu mô tả bỏ chữ "tiêu biểu" ("Một số dự án đã tin dùng…"), link "Xem tất cả dự án"; trang VASA eyebrow "Dự án nổi bật" → "Đối tác". Các trang khác (Khách hàng, Blog, D8, Về chúng tôi) giữ nguyên — CHỜ user xác nhận vị trí đã đúng ý chưa.
 - **Chữ "Bộ Xây Dựng"** luôn liền nhau (dùng khoảng trắng không ngắt `&nbsp;`) để không bị rớt "Bộ" xuống cuối dòng — áp dụng ở Trang chủ + D8.
 - **Hero Trang chủ, slide 1** (yêu cầu user): ảnh toà nhà văn phòng thay bằng ảnh user gửi (toà nhà kính nhiều cây xanh, nền xanh lá, 1800×1350, `public/assets/images/hero/hero-office-tower.webp`); căn ảnh `object-position: 62% 50%` để toà nhà luôn nằm trong khung ở mọi cỡ màn.
+- **Accordion sản phẩm (Trang chủ)**: Figma chỉ có desktop ngang + mobile dọc nên ở màn ≤~640px 4 cột ngang quá hẹp, chữ bị cắt. User yêu cầu dùng layout dọc như mobile → chuyển sang dọc từ **≤767px** (mục thu gọn cao 84, mục mở cao 440); rê chuột để mở chỉ còn từ 768px (dưới đó bấm/chạm).
 - Header: nhóm "Sản phẩm – Giải pháp" không tô nền ở trang sản phẩm (Figma không tô), nút trang hiện tại khác (Blog…) tô nền ink/100.
 - Header: nút trang hiện tại có nền `ink/100` (theo Figma "Blog" ở trang Blog) → thêm style cho mọi trang.
 - Tên menu: Figma footer "Vữa hiệu ứng / Giải pháp chống thấm", code "Vữa trắng phong cách / Keo dán gạch chống thấm" → dùng Figma ở footer, code ở dropdown.

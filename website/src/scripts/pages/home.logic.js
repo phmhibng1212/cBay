@@ -66,7 +66,7 @@ function initAccordion() {
   const root = document.querySelector('[data-accordion]');
   if (!root) return;
   const items = [...root.querySelectorAll('[data-acc-item]')];
-  const canHover = window.matchMedia('(hover: hover) and (min-width: 561px)');
+  const canHover = window.matchMedia('(hover: hover) and (min-width: 768px)');
 
   const activate = (item) => {
     items.forEach((it) => {
