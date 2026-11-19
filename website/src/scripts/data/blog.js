@@ -95,7 +95,7 @@ export const FEATURED = [6, 7, 8, 9].map((i) => ({
 const VASA = 'Vữa hiệu ứng VASA';
 export const SHOWCASE = [
   {
-    name: 'DeMont Cafe', tag: 'Cà phê', used: [VASA, 'Keo chống nứt D8'],
+    name: 'DeMont Cafe', tag: 'Cà phê', used: [VASA],
     img: IMG_DEMONT,
     story: 'Một quán cà phê muốn bề mặt tường thô mộc nhưng vẫn sạch sẽ, dễ bảo trì. Hiệu ứng nhám đặc được thi công trực tiếp trên nền cũ, không bụi, hoàn thiện gọn trong thời gian quán tạm nghỉ.',
   },
