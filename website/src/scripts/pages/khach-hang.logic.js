@@ -10,7 +10,7 @@ export function initKhachHang() {
   const result = root.querySelector('[data-project-count]');
   let current = 0;
 
-  const countOf = (i) => (i === 0 ? PROJECTS.length : PROJECTS.filter((p) => p.type === TYPES[i]).length);
+  const countOf = (i) => (i === 0 ? PROJECTS.length : PROJECTS.filter((p) => p.tags.includes(TYPES[i])).length);
   const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
   const renderTabs = () => {
@@ -21,7 +21,7 @@ export function initKhachHang() {
   };
 
   const render = () => {
-    const list = current === 0 ? PROJECTS : PROJECTS.filter((p) => p.type === TYPES[current]);
+    const list = current === 0 ? PROJECTS : PROJECTS.filter((p) => p.tags.includes(TYPES[current]));
     result.textContent = `${list.length} dự án`;
     grid.hidden = list.length === 0;
     empty.hidden = list.length > 0;
